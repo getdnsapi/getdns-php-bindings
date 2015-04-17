@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Asynchronously retrieve IP addresses given a host name.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-address-sync.html">php_getdns_address_sync</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-cancel-callback.html">php_getdns_cancel_callback</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-address" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_address</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_address</span> &mdash; <span class="dc-title">Asynchronously retrieve IP addresses given a host name.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-address-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_address</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$extensions</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$userArg</code></span>
+   , <span class="methodparam"><span class="type">double</span> <code class="parameter reference">&$transID</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function provides an entry point into the getdns API library to
+   asynchronously retrieve IP addresses given a host name. It always returns both
+   IPv4 and IPv6 addresses. This function will use all of the namespaces from
+   the context. See php_getdns_address_sync() for a description of the response
+   data structure.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-address-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created DNS context that is to be used
+      with this request.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">name</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The host name to resolve to an address (note that an IP
+      address is considered invalid).
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">extensions</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The extensions dictionary for this request; NULL or 0 (zero) if no extensions.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">userArg</code></dt>
+
+    <dd>
+
+     <p class="para">
+      An indexed array that contains information used to control callback
+      processing. The first element of the array must contain a character
+      string representing the name of the PHP client function that will
+      receive and process the result of the DNS query. Additional array
+      elements are optional and may be included to be passed to the
+      callback function. The callback function will receive the complete
+      array for local processing with all elements included as specified.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">transID</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A value that is filled in by the function to identify the callback being made.
+      This value is passed by reference and any existing value will be overwritten.
+      It can be 0 (zero), in which case it is ignored and no value is assigned. The
+      php_getdns_cancel_callback() function uses the transID to determine which callback
+      is to be cancelled. If the function fails, transID is set to 0.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-address-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-address-sync.html">php_getdns_address_sync</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-cancel-callback.html">php_getdns_cancel_callback</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

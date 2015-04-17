@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Get the data type of an element from a dictionary.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-dict-get-bindata.html">php_getdns_dict_get_bindata</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-dict-get-dict.html">php_getdns_dict_get_dict</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-dict-get-data-type" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_dict_get_data_type</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_dict_get_data_type</span> &mdash; <span class="dc-title">Get the data type of an element from a dictionary.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-dict-get-data-type-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_dict_get_data_type</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$dict</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$value</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function gets the data type of an element from a dictionary. The dictionary
+   type is used to manage name/value pairs in which the names are strings and the
+   data types of the values are heterogeneous and include bindata, dictionaries,
+   lists, and integers. 
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-dict-get-data-type-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">dict</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created dictionary that is to be used with this request.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">name</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The name whose associated data type is to be returned.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">value</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The data type of the named dictionary element. Valid values include constants
+      t_bindata, t_dict, t_int, and t_list. Note that this argument is passed by
+      reference and any existing value will be overwritten.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-dict-get-data-type-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-dict-get-bindata.html">php_getdns_dict_get_bindata</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-dict-get-dict.html">php_getdns_dict_get_dict</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

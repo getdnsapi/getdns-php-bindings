@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Get the EDNS maximum UDP payload size.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-get-edns-extended-rcode.html">php_getdns_context_get_edns_extended_rcode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-get-edns-version.html">php_getdns_context_get_edns_version</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-context-get-edns-maximum-udp-payload-size" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_context_get_edns_maximum_udp_payload_size</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_get_edns_maximum_udp_payload_size</span> &mdash; <span class="dc-title">Get the EDNS maximum UDP payload size.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-context-get-edns-maximum-udp-payload-size-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_get_edns_maximum_udp_payload_size</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$value</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function gets the EDNS maximum UDP payload size. See
+   <a href="http://tools.ietf.org/rfc/rfc6891.txt" class="link external">&raquo;&nbsp;RFC 6891</a>
+   for a description of this value and its function.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-get-edns-maximum-udp-payload-size-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created DNS context that is to be used with this request.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">value</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The current EDNS maximum UDP payload size value. The value will be between
+      512 and 65535 inclusive; if not explicitly set outgoing values will adhere
+      to the suggestions in
+      <a href="http://tools.ietf.org/rfc/rfc6891.txt" class="link external">&raquo;&nbsp;RFC 6891</a>
+      and may follow a scheme that uses multiple values to maximize receptivity. 
+      Note that this argument is passed by reference and any existing value will be overwritten.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-get-edns-maximum-udp-payload-size-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-get-edns-extended-rcode.html">php_getdns_context_get_edns_extended_rcode</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-get-edns-version.html">php_getdns_context_get_edns_version</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

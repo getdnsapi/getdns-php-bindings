@@ -1,0 +1,2552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+
+<appendix xml:id="getdns.constants" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ &reftitle.constants;
+ &extension.constants;
+ <para>
+  <variablelist>
+   <varlistentry xml:id="constant.getdns-return-good">
+    <term>
+     <constant>GETDNS_RETURN_GOOD</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-good-text">
+    <term>
+     <constant>GETDNS_RETURN_GOOD_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-generic-error">
+    <term>
+     <constant>GETDNS_RETURN_GENERIC_ERROR</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-generic-error-text">
+    <term>
+     <constant>GETDNS_RETURN_GENERIC_ERROR_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-bad-domain-name">
+    <term>
+     <constant>GETDNS_RETURN_BAD_DOMAIN_NAME</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-bad-domain-name-text">
+    <term>
+     <constant>GETDNS_RETURN_BAD_DOMAIN_NAME_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-bad-context">
+    <term>
+     <constant>GETDNS_RETURN_BAD_CONTEXT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-bad-context-text">
+    <term>
+     <constant>GETDNS_RETURN_BAD_CONTEXT_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-context-update-fail">
+    <term>
+     <constant>GETDNS_RETURN_CONTEXT_UPDATE_FAIL</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-context-update-fail-text">
+    <term>
+     <constant>GETDNS_RETURN_CONTEXT_UPDATE_FAIL_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-unknown-transaction">
+    <term>
+     <constant>GETDNS_RETURN_UNKNOWN_TRANSACTION</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-unknown-transaction-text">
+    <term>
+     <constant>GETDNS_RETURN_UNKNOWN_TRANSACTION_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-no-such-list-item">
+    <term>
+     <constant>GETDNS_RETURN_NO_SUCH_LIST_ITEM</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-no-such-list-item-text">
+    <term>
+     <constant>GETDNS_RETURN_NO_SUCH_LIST_ITEM_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-no-such-dict-name">
+    <term>
+     <constant>GETDNS_RETURN_NO_SUCH_DICT_NAME</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-no-such-dict-name-text">
+    <term>
+     <constant>GETDNS_RETURN_NO_SUCH_DICT_NAME_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-wrong-type-requested">
+    <term>
+     <constant>GETDNS_RETURN_WRONG_TYPE_REQUESTED</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-wrong-type-requested-text">
+    <term>
+     <constant>GETDNS_RETURN_WRONG_TYPE_REQUESTED_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-no-such-extension">
+    <term>
+     <constant>GETDNS_RETURN_NO_SUCH_EXTENSION</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-no-such-extension-text">
+    <term>
+     <constant>GETDNS_RETURN_NO_SUCH_EXTENSION_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-extension-misformat">
+    <term>
+     <constant>GETDNS_RETURN_EXTENSION_MISFORMAT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-extension-misformat-text">
+    <term>
+     <constant>GETDNS_RETURN_EXTENSION_MISFORMAT_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-dnssec-with-stub-disallowed">
+    <term>
+     <constant>GETDNS_RETURN_DNSSEC_WITH_STUB_DISALLOWED</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-dnssec-with-stub-disallowed-text">
+    <term>
+     <constant>GETDNS_RETURN_DNSSEC_WITH_STUB_DISALLOWED_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-memory-error">
+    <term>
+     <constant>GETDNS_RETURN_MEMORY_ERROR</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-memory-error-text">
+    <term>
+     <constant>GETDNS_RETURN_MEMORY_ERROR_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-invalid-parameter">
+    <term>
+     <constant>GETDNS_RETURN_INVALID_PARAMETER</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-invalid-parameter-text">
+    <term>
+     <constant>GETDNS_RETURN_INVALID_PARAMETER_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-respstatus-good">
+    <term>
+     <constant>GETDNS_RESPSTATUS_GOOD</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-respstatus-good-text">
+    <term>
+     <constant>GETDNS_RESPSTATUS_GOOD_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-respstatus-no-name">
+    <term>
+     <constant>GETDNS_RESPSTATUS_NO_NAME</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-respstatus-no-name-text">
+    <term>
+     <constant>GETDNS_RESPSTATUS_NO_NAME_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-respstatus-all-timeout">
+    <term>
+     <constant>GETDNS_RESPSTATUS_ALL_TIMEOUT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-respstatus-all-timeout-text">
+    <term>
+     <constant>GETDNS_RESPSTATUS_ALL_TIMEOUT_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-respstatus-no-secure-answers">
+    <term>
+     <constant>GETDNS_RESPSTATUS_NO_SECURE_ANSWERS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-respstatus-no-secure-answers-text">
+    <term>
+     <constant>GETDNS_RESPSTATUS_NO_SECURE_ANSWERS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-respstatus-all-bogus-answers">
+    <term>
+     <constant>GETDNS_RESPSTATUS_ALL_BOGUS_ANSWERS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-respstatus-all-bogus-answers-text">
+    <term>
+     <constant>GETDNS_RESPSTATUS_ALL_BOGUS_ANSWERS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-dnssec-secure">
+    <term>
+     <constant>GETDNS_DNSSEC_SECURE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-dnssec-secure-text">
+    <term>
+     <constant>GETDNS_DNSSEC_SECURE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-dnssec-bogus">
+    <term>
+     <constant>GETDNS_DNSSEC_BOGUS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-dnssec-bogus-text">
+    <term>
+     <constant>GETDNS_DNSSEC_BOGUS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-dnssec-indeterminate">
+    <term>
+     <constant>GETDNS_DNSSEC_INDETERMINATE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-dnssec-indeterminate-text">
+    <term>
+     <constant>GETDNS_DNSSEC_INDETERMINATE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-dnssec-insecure">
+    <term>
+     <constant>GETDNS_DNSSEC_INSECURE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-dnssec-insecure-text">
+    <term>
+     <constant>GETDNS_DNSSEC_INSECURE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-dnssec-not-performed">
+    <term>
+     <constant>GETDNS_DNSSEC_NOT_PERFORMED</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-dnssec-not-performed-text">
+    <term>
+     <constant>GETDNS_DNSSEC_NOT_PERFORMED_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-namespace-dns">
+    <term>
+     <constant>GETDNS_NAMESPACE_DNS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-namespace-dns-text">
+    <term>
+     <constant>GETDNS_NAMESPACE_DNS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-namespace-localnames">
+    <term>
+     <constant>GETDNS_NAMESPACE_LOCALNAMES</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-namespace-localnames-text">
+    <term>
+     <constant>GETDNS_NAMESPACE_LOCALNAMES_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-namespace-netbios">
+    <term>
+     <constant>GETDNS_NAMESPACE_NETBIOS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-namespace-netbios-text">
+    <term>
+     <constant>GETDNS_NAMESPACE_NETBIOS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-namespace-mdns">
+    <term>
+     <constant>GETDNS_NAMESPACE_MDNS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-namespace-mdns-text">
+    <term>
+     <constant>GETDNS_NAMESPACE_MDNS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-namespace-nis">
+    <term>
+     <constant>GETDNS_NAMESPACE_NIS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-namespace-nis-text">
+    <term>
+     <constant>GETDNS_NAMESPACE_NIS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-resolution-stub">
+    <term>
+     <constant>GETDNS_RESOLUTION_STUB</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-resolution-stub-text">
+    <term>
+     <constant>GETDNS_RESOLUTION_STUB_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-resolution-recursing">
+    <term>
+     <constant>GETDNS_RESOLUTION_RECURSING</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-resolution-recursing-text">
+    <term>
+     <constant>GETDNS_RESOLUTION_RECURSING_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-redirects-follow">
+    <term>
+     <constant>GETDNS_REDIRECTS_FOLLOW</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-redirects-follow-text">
+    <term>
+     <constant>GETDNS_REDIRECTS_FOLLOW_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-redirects-do-not-follow">
+    <term>
+     <constant>GETDNS_REDIRECTS_DO_NOT_FOLLOW</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-redirects-do-not-follow-text">
+    <term>
+     <constant>GETDNS_REDIRECTS_DO_NOT_FOLLOW_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-udp-first-and-fall-back-to-tcp">
+    <term>
+     <constant>GETDNS_TRANSPORT_UDP_FIRST_AND_FALL_BACK_TO_TCP</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-udp-first-and-fall-back-to-tcp-text">
+    <term>
+     <constant>GETDNS_TRANSPORT_UDP_FIRST_AND_FALL_BACK_TO_TCP_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-udp-only">
+    <term>
+     <constant>GETDNS_TRANSPORT_UDP_ONLY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-udp-only-text">
+    <term>
+     <constant>GETDNS_TRANSPORT_UDP_ONLY_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tcp-only">
+    <term>
+     <constant>GETDNS_TRANSPORT_TCP_ONLY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tcp-only-text">
+    <term>
+     <constant>GETDNS_TRANSPORT_TCP_ONLY_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tcp-only-keep-connections-open">
+    <term>
+     <constant>GETDNS_TRANSPORT_TCP_ONLY_KEEP_CONNECTIONS_OPEN</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tcp-only-keep-connections-open-text">
+    <term>
+     <constant>GETDNS_TRANSPORT_TCP_ONLY_KEEP_CONNECTIONS_OPEN_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-append-name-always">
+    <term>
+     <constant>GETDNS_APPEND_NAME_ALWAYS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-append-name-always-text">
+    <term>
+     <constant>GETDNS_APPEND_NAME_ALWAYS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-append-name-only-to-single-label-after-failure">
+    <term>
+     <constant>GETDNS_APPEND_NAME_ONLY_TO_SINGLE_LABEL_AFTER_FAILURE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-append-name-only-to-single-label-after-failure-text">
+    <term>
+     <constant>GETDNS_APPEND_NAME_ONLY_TO_SINGLE_LABEL_AFTER_FAILURE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-append-name-only-to-multiple-label-name-after-failure">
+    <term>
+     <constant>GETDNS_APPEND_NAME_ONLY_TO_MULTIPLE_LABEL_NAME_AFTER_FAILURE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-append-name-only-to-multiple-label-name-after-failure-text">
+    <term>
+     <constant>GETDNS_APPEND_NAME_ONLY_TO_MULTIPLE_LABEL_NAME_AFTER_FAILURE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-append-name-never">
+    <term>
+     <constant>GETDNS_APPEND_NAME_NEVER</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-append-name-never-text">
+    <term>
+     <constant>GETDNS_APPEND_NAME_NEVER_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-namespaces">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_NAMESPACES</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-namespaces-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_NAMESPACES_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-resolution-type">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_RESOLUTION_TYPE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-resolution-type-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_RESOLUTION_TYPE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-follow-redirects">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_FOLLOW_REDIRECTS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-follow-redirects-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_FOLLOW_REDIRECTS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-upstream-recursive-servers">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_UPSTREAM_RECURSIVE_SERVERS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-upstream-recursive-servers-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_UPSTREAM_RECURSIVE_SERVERS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-dns-root-servers">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_DNS_ROOT_SERVERS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-dns-root-servers-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_DNS_ROOT_SERVERS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-dns-transport">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_DNS_TRANSPORT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-dns-transport-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_DNS_TRANSPORT_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-limit-outstanding-queries">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_LIMIT_OUTSTANDING_QUERIES</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-limit-outstanding-queries-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_LIMIT_OUTSTANDING_QUERIES_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-append-name">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_APPEND_NAME</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-append-name-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_APPEND_NAME_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-suffix">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_SUFFIX</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-suffix-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_SUFFIX_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-dnssec-trust-anchors">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_DNSSEC_TRUST_ANCHORS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-dnssec-trust-anchors-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_DNSSEC_TRUST_ANCHORS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-edns-maximum-udp-payload-size">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_EDNS_MAXIMUM_UDP_PAYLOAD_SIZE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-edns-maximum-udp-payload-size-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_EDNS_MAXIMUM_UDP_PAYLOAD_SIZE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-edns-extended-rcode">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_EDNS_EXTENDED_RCODE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-edns-extended-rcode-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_EDNS_EXTENDED_RCODE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-edns-version">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_EDNS_VERSION</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-edns-version-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_EDNS_VERSION_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-edns-do-bit">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_EDNS_DO_BIT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-edns-do-bit-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_EDNS_DO_BIT_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-dnssec-allowed-skew">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_DNSSEC_ALLOWED_SKEW</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-dnssec-allowed-skew-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_DNSSEC_ALLOWED_SKEW_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-memory-functions">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_MEMORY_FUNCTIONS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-memory-functions-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_MEMORY_FUNCTIONS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-timeout">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_TIMEOUT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-timeout-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_TIMEOUT_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-callback-complete">
+    <term>
+     <constant>GETDNS_CALLBACK_COMPLETE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-callback-complete-text">
+    <term>
+     <constant>GETDNS_CALLBACK_COMPLETE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-callback-cancel">
+    <term>
+     <constant>GETDNS_CALLBACK_CANCEL</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-callback-cancel-text">
+    <term>
+     <constant>GETDNS_CALLBACK_CANCEL_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-callback-timeout">
+    <term>
+     <constant>GETDNS_CALLBACK_TIMEOUT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-callback-timeout-text">
+    <term>
+     <constant>GETDNS_CALLBACK_TIMEOUT_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-callback-error">
+    <term>
+     <constant>GETDNS_CALLBACK_ERROR</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-callback-error-text">
+    <term>
+     <constant>GETDNS_CALLBACK_ERROR_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-nametype-dns">
+    <term>
+     <constant>GETDNS_NAMETYPE_DNS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-nametype-dns-text">
+    <term>
+     <constant>GETDNS_NAMETYPE_DNS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-nametype-wins">
+    <term>
+     <constant>GETDNS_NAMETYPE_WINS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-nametype-wins-text">
+    <term>
+     <constant>GETDNS_NAMETYPE_WINS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-extension-true">
+    <term>
+     <constant>GETDNS_EXTENSION_TRUE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-extension-true-text">
+    <term>
+     <constant>GETDNS_EXTENSION_TRUE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-extension-false">
+    <term>
+     <constant>GETDNS_EXTENSION_FALSE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-extension-false-text">
+    <term>
+     <constant>GETDNS_EXTENSION_FALSE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-bad-dns-cname-in-target">
+    <term>
+     <constant>GETDNS_BAD_DNS_CNAME_IN_TARGET</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-bad-dns-cname-in-target-text">
+    <term>
+     <constant>GETDNS_BAD_DNS_CNAME_IN_TARGET_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-bad-dns-all-numeric-label">
+    <term>
+     <constant>GETDNS_BAD_DNS_ALL_NUMERIC_LABEL</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-bad-dns-all-numeric-label-text">
+    <term>
+     <constant>GETDNS_BAD_DNS_ALL_NUMERIC_LABEL_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-bad-dns-cname-returned-for-other-type">
+    <term>
+     <constant>GETDNS_BAD_DNS_CNAME_RETURNED_FOR_OTHER_TYPE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-bad-dns-cname-returned-for-other-type-text">
+    <term>
+     <constant>GETDNS_BAD_DNS_CNAME_RETURNED_FOR_OTHER_TYPE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-a">
+    <term>
+     <constant>GETDNS_RRTYPE_A</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-ns">
+    <term>
+     <constant>GETDNS_RRTYPE_NS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-md">
+    <term>
+     <constant>GETDNS_RRTYPE_MD</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-mf">
+    <term>
+     <constant>GETDNS_RRTYPE_MF</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-cname">
+    <term>
+     <constant>GETDNS_RRTYPE_CNAME</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-soa">
+    <term>
+     <constant>GETDNS_RRTYPE_SOA</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-mb">
+    <term>
+     <constant>GETDNS_RRTYPE_MB</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-mg">
+    <term>
+     <constant>GETDNS_RRTYPE_MG</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-mr">
+    <term>
+     <constant>GETDNS_RRTYPE_MR</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-null">
+    <term>
+     <constant>GETDNS_RRTYPE_NULL</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-wks">
+    <term>
+     <constant>GETDNS_RRTYPE_WKS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-ptr">
+    <term>
+     <constant>GETDNS_RRTYPE_PTR</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-hinfo">
+    <term>
+     <constant>GETDNS_RRTYPE_HINFO</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-minfo">
+    <term>
+     <constant>GETDNS_RRTYPE_MINFO</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-mx">
+    <term>
+     <constant>GETDNS_RRTYPE_MX</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-txt">
+    <term>
+     <constant>GETDNS_RRTYPE_TXT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-rp">
+    <term>
+     <constant>GETDNS_RRTYPE_RP</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-afsdb">
+    <term>
+     <constant>GETDNS_RRTYPE_AFSDB</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-x25">
+    <term>
+     <constant>GETDNS_RRTYPE_X25</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-isdn">
+    <term>
+     <constant>GETDNS_RRTYPE_ISDN</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-rt">
+    <term>
+     <constant>GETDNS_RRTYPE_RT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-nsap">
+    <term>
+     <constant>GETDNS_RRTYPE_NSAP</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-sig">
+    <term>
+     <constant>GETDNS_RRTYPE_SIG</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-key">
+    <term>
+     <constant>GETDNS_RRTYPE_KEY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-px">
+    <term>
+     <constant>GETDNS_RRTYPE_PX</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-gpos">
+    <term>
+     <constant>GETDNS_RRTYPE_GPOS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-aaaa">
+    <term>
+     <constant>GETDNS_RRTYPE_AAAA</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-loc">
+    <term>
+     <constant>GETDNS_RRTYPE_LOC</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-nxt">
+    <term>
+     <constant>GETDNS_RRTYPE_NXT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-eid">
+    <term>
+     <constant>GETDNS_RRTYPE_EID</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-nimloc">
+    <term>
+     <constant>GETDNS_RRTYPE_NIMLOC</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-srv">
+    <term>
+     <constant>GETDNS_RRTYPE_SRV</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-atma">
+    <term>
+     <constant>GETDNS_RRTYPE_ATMA</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-naptr">
+    <term>
+     <constant>GETDNS_RRTYPE_NAPTR</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-kx">
+    <term>
+     <constant>GETDNS_RRTYPE_KX</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-cert">
+    <term>
+     <constant>GETDNS_RRTYPE_CERT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-a6">
+    <term>
+     <constant>GETDNS_RRTYPE_A6</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-dname">
+    <term>
+     <constant>GETDNS_RRTYPE_DNAME</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-sink">
+    <term>
+     <constant>GETDNS_RRTYPE_SINK</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-opt">
+    <term>
+     <constant>GETDNS_RRTYPE_OPT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-apl">
+    <term>
+     <constant>GETDNS_RRTYPE_APL</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-ds">
+    <term>
+     <constant>GETDNS_RRTYPE_DS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-sshfp">
+    <term>
+     <constant>GETDNS_RRTYPE_SSHFP</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-ipseckey">
+    <term>
+     <constant>GETDNS_RRTYPE_IPSECKEY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-rrsig">
+    <term>
+     <constant>GETDNS_RRTYPE_RRSIG</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-nsec">
+    <term>
+     <constant>GETDNS_RRTYPE_NSEC</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-dnskey">
+    <term>
+     <constant>GETDNS_RRTYPE_DNSKEY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-dhcid">
+    <term>
+     <constant>GETDNS_RRTYPE_DHCID</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-nsec3">
+    <term>
+     <constant>GETDNS_RRTYPE_NSEC3</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-nsec3param">
+    <term>
+     <constant>GETDNS_RRTYPE_NSEC3PARAM</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-tlsa">
+    <term>
+     <constant>GETDNS_RRTYPE_TLSA</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-hip">
+    <term>
+     <constant>GETDNS_RRTYPE_HIP</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-ninfo">
+    <term>
+     <constant>GETDNS_RRTYPE_NINFO</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-rkey">
+    <term>
+     <constant>GETDNS_RRTYPE_RKEY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-talink">
+    <term>
+     <constant>GETDNS_RRTYPE_TALINK</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-cds">
+    <term>
+     <constant>GETDNS_RRTYPE_CDS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-cdnskey">
+    <term>
+     <constant>GETDNS_RRTYPE_CDNSKEY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-openpgpkey">
+    <term>
+     <constant>GETDNS_RRTYPE_OPENPGPKEY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-csync">
+    <term>
+     <constant>GETDNS_RRTYPE_CSYNC</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-spf">
+    <term>
+     <constant>GETDNS_RRTYPE_SPF</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-uinfo">
+    <term>
+     <constant>GETDNS_RRTYPE_UINFO</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-uid">
+    <term>
+     <constant>GETDNS_RRTYPE_UID</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-gid">
+    <term>
+     <constant>GETDNS_RRTYPE_GID</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-unspec">
+    <term>
+     <constant>GETDNS_RRTYPE_UNSPEC</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-nid">
+    <term>
+     <constant>GETDNS_RRTYPE_NID</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-l32">
+    <term>
+     <constant>GETDNS_RRTYPE_L32</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-l64">
+    <term>
+     <constant>GETDNS_RRTYPE_L64</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-lp">
+    <term>
+     <constant>GETDNS_RRTYPE_LP</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-eui48">
+    <term>
+     <constant>GETDNS_RRTYPE_EUI48</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-eui64">
+    <term>
+     <constant>GETDNS_RRTYPE_EUI64</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-tkey">
+    <term>
+     <constant>GETDNS_RRTYPE_TKEY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-tsig">
+    <term>
+     <constant>GETDNS_RRTYPE_TSIG</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-ixfr">
+    <term>
+     <constant>GETDNS_RRTYPE_IXFR</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-axfr">
+    <term>
+     <constant>GETDNS_RRTYPE_AXFR</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-mailb">
+    <term>
+     <constant>GETDNS_RRTYPE_MAILB</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-maila">
+    <term>
+     <constant>GETDNS_RRTYPE_MAILA</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-any">
+    <term>
+     <constant>GETDNS_RRTYPE_ANY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-uri">
+    <term>
+     <constant>GETDNS_RRTYPE_URI</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-caa">
+    <term>
+     <constant>GETDNS_RRTYPE_CAA</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-ta">
+    <term>
+     <constant>GETDNS_RRTYPE_TA</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrtype-dlv">
+    <term>
+     <constant>GETDNS_RRTYPE_DLV</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrclass-in">
+    <term>
+     <constant>GETDNS_RRCLASS_IN</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrclass-ch">
+    <term>
+     <constant>GETDNS_RRCLASS_CH</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrclass-hs">
+    <term>
+     <constant>GETDNS_RRCLASS_HS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrclass-none">
+    <term>
+     <constant>GETDNS_RRCLASS_NONE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rrclass-any">
+    <term>
+     <constant>GETDNS_RRCLASS_ANY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-opcode-query">
+    <term>
+     <constant>GETDNS_OPCODE_QUERY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-opcode-iquery">
+    <term>
+     <constant>GETDNS_OPCODE_IQUERY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-opcode-status">
+    <term>
+     <constant>GETDNS_OPCODE_STATUS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-opcode-notify">
+    <term>
+     <constant>GETDNS_OPCODE_NOTIFY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-opcode-update">
+    <term>
+     <constant>GETDNS_OPCODE_UPDATE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-noerror">
+    <term>
+     <constant>GETDNS_RCODE_NOERROR</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-formerr">
+    <term>
+     <constant>GETDNS_RCODE_FORMERR</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-servfail">
+    <term>
+     <constant>GETDNS_RCODE_SERVFAIL</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-nxdomain">
+    <term>
+     <constant>GETDNS_RCODE_NXDOMAIN</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-notimp">
+    <term>
+     <constant>GETDNS_RCODE_NOTIMP</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-refused">
+    <term>
+     <constant>GETDNS_RCODE_REFUSED</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-yxdomain">
+    <term>
+     <constant>GETDNS_RCODE_YXDOMAIN</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-yxrrset">
+    <term>
+     <constant>GETDNS_RCODE_YXRRSET</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-nxrrset">
+    <term>
+     <constant>GETDNS_RCODE_NXRRSET</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-notauth">
+    <term>
+     <constant>GETDNS_RCODE_NOTAUTH</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-notzone">
+    <term>
+     <constant>GETDNS_RCODE_NOTZONE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-badvers">
+    <term>
+     <constant>GETDNS_RCODE_BADVERS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-badsig">
+    <term>
+     <constant>GETDNS_RCODE_BADSIG</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-badkey">
+    <term>
+     <constant>GETDNS_RCODE_BADKEY</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-badtime">
+    <term>
+     <constant>GETDNS_RCODE_BADTIME</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-badmode">
+    <term>
+     <constant>GETDNS_RCODE_BADMODE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-badname">
+    <term>
+     <constant>GETDNS_RCODE_BADNAME</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-badalg">
+    <term>
+     <constant>GETDNS_RCODE_BADALG</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-rcode-badtrunc">
+    <term>
+     <constant>GETDNS_RCODE_BADTRUNC</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.t-dict">
+    <term>
+     <constant>t_dict</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.t-list">
+    <term>
+     <constant>t_list</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.t-int">
+    <term>
+     <constant>t_int</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.t-bindata">
+    <term>
+     <constant>t_bindata</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+  </variablelist>
+ </para>
+</appendix>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Create a new DNS context.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-cancel-callback.html">php_getdns_cancel_callback</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-destroy.html">php_getdns_context_destroy</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-context-create" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_context_create</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_create</span> &mdash; <span class="dc-title">Create a new DNS context.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-context-create-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_create</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$context</code></span>
+   , <span class="methodparam"><span class="type">bool</span> <code class="parameter">$setFromOS</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   Calls to getdns functions require a DNS context, which is a group of
+   API settings that affect how DNS calls are made. For most applications,
+   a default context is sufficient.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-create-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The variable to receive the created context. Note that this argument is
+      passed by reference and any existing value will be overwritten. The
+      context must be freed using php_getdns_context_destroy().
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">setFromOS</code></dt>
+
+    <dd>
+
+     <p class="para">
+      This variable describes how certain default context values are determined.
+      Most applications will want setFromOS set to 1. When the context is used
+      in the API for the first time and setFromOS is 1, the API starts replacing
+      some of the values with values from the operating system, such as those
+      that would be found in res_query(3), /etc/resolv.conf, and so on, then proceeds
+      with the new function. Some advanced users will not want the API to change
+      the values to the OS&#039;s defaults; if setFromOS is 0, the API will not do any
+      updates to the initial values based on changes in the OS. For example, this
+      might be useful if the API is acting as a stub resolver that is using a
+      specific upstream recursive resolver chosen by the application, not the one
+      that might come back from DHCP.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-create-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code.
+   GETDNS_RETURN_GOOD indicates successful completion. 
+   </p>
+   <p class="para">
+   The call to php_getdns_context_create() immediately returns a context that
+   can be used with other API calls; that context contains the API&#039;s default values.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-cancel-callback.html">php_getdns_cancel_callback</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-destroy.html">php_getdns_context_destroy</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

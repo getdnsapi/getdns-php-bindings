@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Set the value of the EDNS DO bit.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-dnssec-trust-anchors.html">php_getdns_context_set_dnssec_trust_anchors</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-edns-extended-rcode.html">php_getdns_context_set_edns_extended_rcode</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-context-set-edns-do-bit" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_context_set_edns_do_bit</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_set_edns_do_bit</span> &mdash; <span class="dc-title">Set the value of the EDNS DO bit.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-context-set-edns-do-bit-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_set_edns_do_bit</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
+   , <span class="methodparam"><span class="type">bool</span> <code class="parameter">$value</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function sets the value of the EDNS DO (DNSSEC OK) bit to either TRUE or FALSE.
+   See <a href="http://tools.ietf.org/rfc/rfc3225.txt" class="link external">&raquo;&nbsp;RFC 3225</a> for a
+   description of this flag and its function.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-set-edns-do-bit-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created DNS context that is to be used with this request.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">value</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The value used to set the EDNS DO bit. It must be a valid boolean value.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-set-edns-do-bit-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-dnssec-trust-anchors.html">php_getdns_context_set_dnssec_trust_anchors</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-edns-extended-rcode.html">php_getdns_context_set_edns_extended_rcode</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Remove a name-value pair from a dictionary.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-dict-get-names.html">php_getdns_dict_get_names</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-dict-set-bindata.html">php_getdns_dict_set_bindata</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-dict-remove-name" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_dict_remove_name</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_dict_remove_name</span> &mdash; <span class="dc-title">Remove a name-value pair from a dictionary.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-dict-remove-name-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_dict_remove_name</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$dict</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function removes the name-value pair identified by the &quot;name&quot; parameter
+   from the given dictionary.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-dict-remove-name-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">dict</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created dictionary that is to be used with this request.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">name</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The name of the name-value pair to be removed.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-dict-remove-name-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates successful completion.
+   GETDNS_RETURN_NO_SUCH_DICT_NAME indicates that the name doesn&#039;t exist in the dictionary.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-dict-get-names.html">php_getdns_dict_get_names</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-dict-set-bindata.html">php_getdns_dict_set_bindata</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+
+<refentry xml:id="function.php-getdns-context-get-api-information" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>php_getdns_context_get_api_information</refname>
+  <refpurpose>Get information about the getdns API and a specific context.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>int</type><methodname>php_getdns_context_get_api_information</methodname>
+   <methodparam><type>int</type><parameter>context</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+   This function describes getdns library parameters and a specific context
+   in dictionary format. The dictionary can then be converted into a string
+   or accessed using the php_getdns_dict_get_*() functions.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <variablelist>
+   <varlistentry>
+    <term><parameter>context</parameter></term>
+    <listitem>
+     <para>
+      The previously created DNS context that is to be used with this request.
+     </para>
+    </listitem>
+   </varlistentry>
+  </variablelist>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+   Returns the integer value of a getdns dictionary. The returned dictionary will
+   contain the following name/value pairs:
+   <itemizedlist>
+   <listitem>
+   <para>
+   version_string, a bindata string that represents the version of the getdns library.
+   </para>
+   </listitem>
+   <listitem>
+   <para>
+   implementation_string, a bindata string set by the getdns library implementer.
+   It might be human-readable, and it might have information in it useful to an
+   application developer, but it doesn't have to.
+   </para>
+   </listitem>
+   <listitem>
+   <para>
+   resolution_type, an int that represents the type of resolver that the API is
+   acting as in this context. The value will be either GETDNS_RESOLUTION_RECURSING
+   or GETDNS_RESOLUTION_STUB (it will be a recursing resolver unless the application
+   changed this in a context.
+   </para>
+   </listitem>
+   <listitem>
+   <para>
+   all_context, a dictionary with names for all the types of context. This can be used
+   with php_getdns_pretty_print_dict() for debugging.
+   </para>
+   </listitem>
+   </itemizedlist>
+  </para>
+ </refsect1>
+
+
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

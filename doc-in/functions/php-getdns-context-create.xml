@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Revision$ -->
+
+<refentry xml:id="function.php-getdns-context-create" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <refnamediv>
+  <refname>php_getdns_context_create</refname>
+  <refpurpose>Create a new DNS context.</refpurpose>
+ </refnamediv>
+
+ <refsect1 role="description">
+  &reftitle.description;
+  <methodsynopsis>
+   <type>int</type><methodname>php_getdns_context_create</methodname>
+   <methodparam><type>int</type><parameter role="reference">context</parameter></methodparam>
+   <methodparam><type>bool</type><parameter>setFromOS</parameter></methodparam>
+  </methodsynopsis>
+  <para>
+   Calls to getdns functions require a DNS context, which is a group of
+   API settings that affect how DNS calls are made. For most applications,
+   a default context is sufficient.
+  </para>
+ </refsect1>
+
+ <refsect1 role="parameters">
+  &reftitle.parameters;
+  <variablelist>
+   <varlistentry>
+    <term><parameter>context</parameter></term>
+    <listitem>
+     <para>
+      The variable to receive the created context. Note that this argument is
+      passed by reference and any existing value will be overwritten. The
+      context must be freed using php_getdns_context_destroy().
+     </para>
+    </listitem>
+   </varlistentry>
+   <varlistentry>
+    <term><parameter>setFromOS</parameter></term>
+    <listitem>
+     <para>
+      This variable describes how certain default context values are determined.
+      Most applications will want setFromOS set to 1. When the context is used
+      in the API for the first time and setFromOS is 1, the API starts replacing
+      some of the values with values from the operating system, such as those
+      that would be found in res_query(3), /etc/resolv.conf, and so on, then proceeds
+      with the new function. Some advanced users will not want the API to change
+      the values to the OS's defaults; if setFromOS is 0, the API will not do any
+      updates to the initial values based on changes in the OS. For example, this
+      might be useful if the API is acting as a stub resolver that is using a
+      specific upstream recursive resolver chosen by the application, not the one
+      that might come back from DHCP.
+     </para>
+    </listitem>
+   </varlistentry>
+  </variablelist>
+ </refsect1>
+
+ <refsect1 role="returnvalues">
+  &reftitle.returnvalues;
+  <para>
+   This function returns an integer response code.
+   GETDNS_RETURN_GOOD indicates successful completion. 
+   </para>
+   <para>
+   The call to php_getdns_context_create() immediately returns a context that
+   can be used with other API calls; that context contains the API's default values.
+  </para>
+ </refsect1>
+
+
+</refentry>
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-omittag:t
+sgml-shorttag:t
+sgml-minimize-attributes:nil
+sgml-always-quote-attributes:t
+sgml-indent-step:1
+sgml-indent-data:t
+indent-tabs-mode:nil
+sgml-parent-document:nil
+sgml-default-dtd-file:"~/.phpdoc/manual.ced"
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+vim600: syn=xml fen fdm=syntax fdl=2 si
+vim: et tw=78 syn=sgml
+vi: ts=1 sw=1
+-->

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Get information about the getdns API and a specific context.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-detach-eventloop.html">php_getdns_context_detach_eventloop</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-get-append-name.html">php_getdns_context_get_append_name</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-context-get-api-information" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_context_get_api_information</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_get_api_information</span> &mdash; <span class="dc-title">Get information about the getdns API and a specific context.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-context-get-api-information-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_get_api_information</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function describes getdns library parameters and a specific context
+   in dictionary format. The dictionary can then be converted into a string
+   or accessed using the php_getdns_dict_get_*() functions.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-get-api-information-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created DNS context that is to be used with this request.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-get-api-information-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   Returns the integer value of a getdns dictionary. The returned dictionary will
+   contain the following name/value pairs:
+   <ul class="itemizedlist">
+   <li class="listitem">
+   <p class="para">
+   version_string, a bindata string that represents the version of the getdns library.
+   </p>
+   </li>
+   <li class="listitem">
+   <p class="para">
+   implementation_string, a bindata string set by the getdns library implementer.
+   It might be human-readable, and it might have information in it useful to an
+   application developer, but it doesn&#039;t have to.
+   </p>
+   </li>
+   <li class="listitem">
+   <p class="para">
+   resolution_type, an int that represents the type of resolver that the API is
+   acting as in this context. The value will be either GETDNS_RESOLUTION_RECURSING
+   or GETDNS_RESOLUTION_STUB (it will be a recursing resolver unless the application
+   changed this in a context.
+   </p>
+   </li>
+   <li class="listitem">
+   <p class="para">
+   all_context, a dictionary with names for all the types of context. This can be used
+   with php_getdns_pretty_print_dict() for debugging.
+   </p>
+   </li>
+   </ul>
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-detach-eventloop.html">php_getdns_context_detach_eventloop</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-get-append-name.html">php_getdns_context_get_append_name</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

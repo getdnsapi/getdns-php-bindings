@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Perform DNSSEC validation without using extensions.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-strerror.html">php_getdns_strerror</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href=""></a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-validate-dnssec" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_validate_dnssec</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_validate_dnssec</span> &mdash; <span class="dc-title">Perform DNSSEC validation without using extensions.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-validate-dnssec-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_validate_dnssec</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$toValidate</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$supportRecords</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$trustAnchors</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function can be used by an application to have the getdns library perform DNSSEC
+   validation without using extensions as part of a query. The getdns library will use
+   the resource records in supportRecords to construct the validation chain and the
+   DNSKEY or DS records in trustAnchors as trust anchors. The default list of trust
+   anchor records that is used by the library to validate DNSSEC can be retrieved
+   using the php_getdns_root_trust_anchor() helper function.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-validate-dnssec-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">toValidate</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A reference to the list that represents the resource record to be validated.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">supportRecords</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A reference to the list that represents the records used to construct the
+      validation chain.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">trustAnchors</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A reference to the list that represents the trust anchor records to use
+      for validation.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-validate-dnssec-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_DNSSEC_SECURE indicates successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-strerror.html">php_getdns_strerror</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href=""></a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

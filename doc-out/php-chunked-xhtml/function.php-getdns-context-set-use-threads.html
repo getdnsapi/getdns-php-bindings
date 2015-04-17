@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Set underlying unbound library asynchronous processing behavior.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-upstream-recursive-servers.html">php_getdns_context_set_upstream_recursive_servers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-convert-alabel-to-ulabel.html">php_getdns_convert_alabel_to_ulabel</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-context-set-use-threads" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_context_set_use_threads</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_set_use_threads</span> &mdash; <span class="dc-title">Set underlying unbound library asynchronous processing behavior.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-context-set-use-threads-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_set_use_threads</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
+   , <span class="methodparam"><span class="type">bool</span> <code class="parameter">$useThreads</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function sets a context behaviour for asynchronous action by the unbound
+   library that the getdns library depends on. The value of the useThreads parameter
+   determines if libunbound will use background threads or a forked process to handle
+   work in the background.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-set-use-threads-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created DNS context that is to be used with this request.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">useThreads</code></dt>
+
+    <dd>
+
+     <p class="para">
+      This value must be either TRUE or FALSE. If TRUE, libunbound will create a thread
+      to handle work in the background. If FALSE, a process is forked to handle work in
+      the background.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-set-use-threads-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-upstream-recursive-servers.html">php_getdns_context_set_upstream_recursive_servers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-convert-alabel-to-ulabel.html">php_getdns_convert_alabel_to_ulabel</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Set DNS root servers for recursive resolvers.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-append-name.html">php_getdns_context_set_append_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-dns-transport.html">php_getdns_context_set_dns_transport</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-context-set-dns-root-servers" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_context_set_dns_root_servers</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_set_dns_root_servers</span> &mdash; <span class="dc-title">Set DNS root servers for recursive resolvers.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-context-set-dns-root-servers-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_set_dns_root_servers</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$value</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function sets the DNS root servers to be used for recursive resolution.
+   The value parameter must be a list that contains dictionaries of addresses
+   to be used for looking up top-level domains; the default is the list of
+   &quot;normal&quot; IANA root servers. Each dictionary in the list must contain at least
+   two names: address_type (whose value is a bindata; currently either &quot;IPv4&quot; or
+   &quot;IPv6&quot;) and address_data (whose value is a bindata).
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-set-dns-root-servers-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created DNS context that is to be used with this request.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">value</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The list that contains the dictionaries that describe the root servers
+      to be set in the context for recursive resolution.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-set-dns-root-servers-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-append-name.html">php_getdns_context_set_append_name</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-dns-transport.html">php_getdns_context_set_dns_transport</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

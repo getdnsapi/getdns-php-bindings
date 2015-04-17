@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Destroy an existing DNS context.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-create.html">php_getdns_context_create</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-detach-eventloop.html">php_getdns_context_detach_eventloop</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-context-destroy" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_context_destroy</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_destroy</span> &mdash; <span class="dc-title">Destroy an existing DNS context.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-context-destroy-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">NULL</span> <span class="methodname"><strong>php_getdns_context_destroy</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function cleans up the context, including cleaning up all outstanding
+   transactions that were called using this context. When getdns_context_destroy()
+   returns, the application knows that all outstanding transactions associated
+   with this context will have been called; callbacks that had not been called before
+   getdns_context_destroy() was called will be called with a callback_type of
+   GETDNS_CALLBACK_CANCEL. getdns_context_destroy() returns after all of the needed
+   cleanup is done and callbacks are made.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-destroy-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The context to be destroyed.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-destroy-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function does not return any values. The context will be invalid
+   after the function returns.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-create.html">php_getdns_context_create</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-detach-eventloop.html">php_getdns_context_detach_eventloop</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>
