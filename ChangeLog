@@ -1,0 +1,9 @@
+* 2015-04-20: Version 0.2.0 
+  * Fixed async event management functions.
+  * Removed php_getdns_context_set_eventloop() as a result
+    of fixing the event management functions.
+  * Updated documentation to reflect async changes.
+  * Added more test cases.
+
+* 2015-04-17: Version 0.1.0
+  * Initial release.

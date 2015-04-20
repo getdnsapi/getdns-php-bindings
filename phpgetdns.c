@@ -49,14 +49,6 @@
 #include "getdns_libevent.h"
 #include "getdns_extra.h"
 
-/* Local structure for sharing parameters between PHP and the async callback function. */
-
-struct user_args_t {
-    zval *phpUserArg;
-    char *phpFuncName;
-    size_t phpFuncNameLen;
-};
-
 ZEND_DECLARE_MODULE_GLOBALS(getdns)
 
 ZEND_BEGIN_ARG_INFO_EX(address_svc_args, 0, 0, 6)
@@ -279,7 +271,6 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_context_set_edns_extended_rcode, context_set_value_args)
     PHP_FE(php_getdns_context_set_edns_maximum_udp_payload_size, context_set_value_args)
     PHP_FE(php_getdns_context_set_edns_version, context_set_value_args)
-    PHP_FE(php_getdns_context_set_eventloop, context_only_args)
     PHP_FE(php_getdns_context_set_follow_redirects, context_set_value_args)
     PHP_FE(php_getdns_context_set_limit_outstanding_queries, context_set_value_args)
     PHP_FE(php_getdns_context_set_namespaces, set_namespaces_args)
@@ -1208,7 +1199,6 @@ PHP_FUNCTION(php_getdns_address)
     getdns_dict *extensions = NULL;
     void *userArg = NULL;
     getdns_transaction_t trans = 0, *transPtr = NULL;
-    struct event_base *eventBase;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
@@ -1235,24 +1225,9 @@ PHP_FUNCTION(php_getdns_address)
     context = (getdns_context *) phpContext;
     extensions = (getdns_dict *) phpExtensions;
     transPtr = (trans == 0) ? NULL : &trans;
-
-    /* Create an event base and put it in the context. */
-    eventBase = (struct event_base *) event_base_new();
-    if (eventBase == NULL) {
-	result = GETDNS_RETURN_GENERIC_ERROR;
-    } else {
-	(void) getdns_extension_set_libevent_base(context, eventBase);
-	result =
-	    getdns_address(context, name, extensions, userArg, transPtr,
-			   async_callback);
-	if (result == GETDNS_RETURN_BAD_DOMAIN_NAME) {
-	    event_base_free(eventBase);
-	} else {
-	    /* Call the event loop. */
-	    int dispatchReturn = event_base_dispatch(eventBase);
-	    event_base_free(eventBase);
-	}
-    }
+    result = getdns_address(context, name, extensions,
+                            userArg, transPtr,
+			    async_callback);
 
     /* Return the transaction identifier and the result. */
     ZVAL_DOUBLE(phpTrans, (uint64_t) trans);
@@ -1338,6 +1313,19 @@ PHP_FUNCTION(php_getdns_context_create)
     /* Store the context value and return the result. */
     convert_to_long(phpOut);
     ZVAL_LONG(phpOut, (long) context);
+
+    /* Create an event base for async functions. */
+    if (result == GETDNS_RETURN_GOOD) {
+        struct event_base *eventBase = (struct event_base *) event_base_new();
+        if (eventBase == NULL) {
+	    result = GETDNS_RETURN_GENERIC_ERROR;
+	    ZVAL_LONG(phpOut, 0);
+            getdns_context_destroy(context);
+        }
+        else {
+	    (void) getdns_extension_set_libevent_base(context, eventBase);
+        }
+    }
     RETURN_LONG((long) result);
 }
 
@@ -2375,7 +2363,6 @@ PHP_FUNCTION(php_getdns_general)
     getdns_dict *extensions = NULL;
     void *userArg = NULL;
     getdns_transaction_t trans = 0, *transPtr = NULL;
-    struct event_base *eventBase;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
@@ -2403,24 +2390,9 @@ PHP_FUNCTION(php_getdns_general)
     requestType = (uint16_t) phpReqType;
     extensions = (getdns_dict *) phpExtensions;
     transPtr = (trans == 0) ? NULL : &trans;
-
-    /* Create an event base and put it in the context. */
-    eventBase = (struct event_base *) event_base_new();
-    if (eventBase == NULL) {
-	result = GETDNS_RETURN_GENERIC_ERROR;
-    } else {
-	(void) getdns_extension_set_libevent_base(context, eventBase);
-	result =
-	    getdns_general(context, name, requestType, extensions, userArg,
-			   transPtr, async_callback);
-	if (result == GETDNS_RETURN_BAD_DOMAIN_NAME) {
-	    event_base_free(eventBase);
-	} else {
-	    /* Call the event loop. */
-	    int dispatchReturn = event_base_dispatch(eventBase);
-	    event_base_free(eventBase);
-	}
-    }
+    result = getdns_general(context, name, requestType,
+                            extensions, userArg,
+			    transPtr, async_callback);
 
     /* Return the transaction identifier and the result. */
     ZVAL_DOUBLE(phpTrans, (uint64_t) trans);
@@ -2474,8 +2446,6 @@ PHP_FUNCTION(php_getdns_hostname)
     zval *phpTrans = NULL, *phpUserArg = NULL;
     void *userArg = NULL;
     getdns_transaction_t trans = 0, *transPtr = NULL;
-    struct event_base *eventBase;
-    struct user_args_t user_args = { NULL, NULL, 0 };
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
@@ -2503,24 +2473,9 @@ PHP_FUNCTION(php_getdns_hostname)
     address = (getdns_dict *) phpDict;
     extensions = (getdns_dict *) phpExtensions;
     transPtr = (trans == 0) ? NULL : &trans;
-
-    /* Create an event base and put it in the context. */
-    eventBase = (struct event_base *) event_base_new();
-    if (eventBase == NULL) {
-	result = GETDNS_RETURN_GENERIC_ERROR;
-    } else {
-	(void) getdns_extension_set_libevent_base(context, eventBase);
-	result =
-	    getdns_hostname(context, address, extensions, userArg, transPtr,
-			    async_callback);
-	if (result == GETDNS_RETURN_BAD_DOMAIN_NAME) {
-	    event_base_free(eventBase);
-	} else {
-	    /* Call the event loop. */
-	    int dispatchReturn = event_base_dispatch(eventBase);
-	    event_base_free(eventBase);
-	}
-    }
+    result = getdns_hostname(context, address, extensions,
+                             userArg, transPtr,
+			     async_callback);
 
     /* Return the transaction identifier and the result. */
     ZVAL_DOUBLE(phpTrans, (uint64_t) trans);
@@ -2960,7 +2915,6 @@ PHP_FUNCTION(php_getdns_service)
     getdns_dict *extensions = NULL;
     void *userArg = NULL;
     getdns_transaction_t trans = 0, *transPtr = NULL;
-    struct event_base *eventBase;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
@@ -2987,24 +2941,9 @@ PHP_FUNCTION(php_getdns_service)
     context = (getdns_context *) phpContext;
     extensions = (getdns_dict *) phpExtensions;
     transPtr = (trans == 0) ? NULL : &trans;
-
-    /* Create an event base and put it in the context. */
-    eventBase = (struct event_base *) event_base_new();
-    if (eventBase == NULL) {
-	result = GETDNS_RETURN_GENERIC_ERROR;
-    } else {
-	(void) getdns_extension_set_libevent_base(context, eventBase);
-	result =
-	    getdns_service(context, name, extensions, userArg, transPtr,
-			   async_callback);
-	if (result == GETDNS_RETURN_BAD_DOMAIN_NAME) {
-	    event_base_free(eventBase);
-	} else {
-	    /* Call the event loop. */
-	    int dispatchReturn = event_base_dispatch(eventBase);
-	    event_base_free(eventBase);
-	}
-    }
+    result = getdns_service(context, name, extensions,
+                            userArg, transPtr,
+			    async_callback);
 
     /* Return the transaction identifier and the result. */
     ZVAL_DOUBLE(phpTrans, (uint64_t) trans);
@@ -3689,82 +3628,6 @@ PHP_FUNCTION(php_getdns_context_run)
 
     /* There is no return value. */
     RETURN_NULL();
-}
-
-/**
- * Event loop callback functions for php_getdns_context_set_eventloop.
- * THESE FUNCTIONS ARE A WORK IN PROGRESS.
- */
-void callback_cleanup(getdns_eventloop * loop)
-{
-    printf("callback_cleanup\n");
-}
-
-getdns_return_t callback_clear(getdns_eventloop * loop,
-			       getdns_eventloop_event * ev)
-{
-    getdns_return_t result = 0;
-
-    printf("callback_clear\n");
-    return result;
-}
-
-void callback_run(getdns_eventloop * loop)
-{
-    printf("callback_run\n");
-}
-
-void callback_run_once(getdns_eventloop * loop, int blocking)
-{
-    printf("callback_run_once\n");
-}
-
-getdns_return_t callback_schedule(getdns_eventloop * loop,
-				  int fd,
-				  uint64_t timeout,
-				  getdns_eventloop_event * ev)
-{
-    getdns_return_t result = 0;
-
-    printf("callback_schedule\n");
-    return result;
-}
-
-/**
- * Function to set an event loop extension on a context.
- */
-PHP_FUNCTION(php_getdns_context_set_eventloop)
-{
-    long phpContext = 0;
-    getdns_context *context = NULL;
-    getdns_eventloop eventLoop;
-    getdns_eventloop_vmt vmt;
-    getdns_return_t result;
-
-    /* Retrieve parameters. */
-    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "l", &phpContext)
-	== FAILURE) {
-	RETURN_NULL();
-    }
-
-    /* Convert parameters. */
-    context = (getdns_context *) phpContext;
-
-    /* Build the event loop method table structure. */
-    vmt.cleanup = callback_cleanup;
-    vmt.schedule = callback_schedule;
-    vmt.clear = callback_clear;
-    vmt.run = callback_run;
-    vmt.run_once = callback_run_once;
-    eventLoop.vmt = &vmt;
-
-    /* Call the function. */
-    printf("Calling getdns_context_set_eventloop... ");
-    result = getdns_context_set_eventloop(context, &eventLoop);
-    printf("done.\n");
-
-    /* Return the result. */
-    RETURN_LONG((long) result);
 }
 
 /**

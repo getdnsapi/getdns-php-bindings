@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-general" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_general</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_general</span> &mdash; <span class="dc-title">Asynchronously perform a DNS query for records of a specified type.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.2.0)</p><p class="refpurpose"><span class="refname">php_getdns_general</span> &mdash; <span class="dc-title">Asynchronously perform a DNS query for records of a specified type.</span></p>
 
  </div>
 
@@ -35,6 +35,11 @@
    are not used. Most typical use cases for applications are probably satisifed via
    calls to php_getdns_address_sync(), which would replace getaddrinfo().
    See php_getdns_general_sync() for a description of the response data structure.
+  </p>
+  <p class="para">
+   Note that this function enqueues an event that must be processed to produce
+   queries and return results. Calling php_context_run() after calling this
+   function will ensure that all queued events are processed.
   </p>
  </div>
 

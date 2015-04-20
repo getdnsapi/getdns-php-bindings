@@ -197,6 +197,7 @@
   $result = php_getdns_address($context, $name, $extensions, $userArgs, $transID);
   if ($result == GETDNS_RETURN_GOOD) {
     echo "done; transID " . $transID . "\n";
+    php_getdns_context_run($context);
   }
   else {
     echo "error: " . $result . "\n";
@@ -219,6 +220,7 @@
   $result = php_getdns_address($context, $name, $extensions, $userArgs, $transID);
   if ($result == GETDNS_RETURN_GOOD) {
     echo "done; transID " . $transID . "\n";
+    php_getdns_context_run($context);
   }
   else {
     echo "error: " . $result . "\n";
@@ -231,6 +233,7 @@
   $result = php_getdns_address($context, $name, $extensions, $userArgs, $transID);
   if ($result == GETDNS_RETURN_GOOD) {
     echo "done; transID " . $transID . "\n";
+    php_getdns_context_run($context);
   }
   else {
     echo "error: " . $result . "\n";

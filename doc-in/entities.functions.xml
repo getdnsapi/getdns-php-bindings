@@ -34,7 +34,6 @@
 &reference.getdns.functions.php-getdns-context-set-edns-extended-rcode;
 &reference.getdns.functions.php-getdns-context-set-edns-maximum-udp-payload-size;
 &reference.getdns.functions.php-getdns-context-set-edns-version;
-&reference.getdns.functions.php-getdns-context-set-eventloop;
 &reference.getdns.functions.php-getdns-context-set-follow-redirects;
 &reference.getdns.functions.php-getdns-context-set-limit-outstanding-queries;
 &reference.getdns.functions.php-getdns-context-set-namespaces;
