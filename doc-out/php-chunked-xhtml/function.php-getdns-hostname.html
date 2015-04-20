@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-hostname" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_hostname</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.1.0)</p><p class="refpurpose"><span class="refname">php_getdns_hostname</span> &mdash; <span class="dc-title">Asynchronously retrieve host names given an IP address.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.2.0)</p><p class="refpurpose"><span class="refname">php_getdns_hostname</span> &mdash; <span class="dc-title">Asynchronously retrieve host names given an IP address.</span></p>
 
  </div>
 
@@ -32,6 +32,11 @@
    This function provides an entry point into the getdns API library to asynchronously
    retrieve host names given an IPv4 or IPv6 address.
    See php_getdns_hostname_sync() for a description of the response data structure.
+  </p>
+  <p class="para">
+   Note that this function enqueues an event that must be processed to produce
+   queries and return results. Calling php_context_run() after calling this
+   function will ensure that all queued events are processed.
   </p>
  </div>
 

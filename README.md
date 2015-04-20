@@ -1,14 +1,15 @@
 getdns-php
 ==========
 
-A PHP language binding for the getdns API, version 0.1.0.
+A PHP language binding for the getdns API, version 0.2.0.
 This implementation is licensed under the New BSD License (BSD-new).
 
 NOTE: THIS IS AN ALPHA RELEASE!
 
 Dependencies:
 
-* libgetdns 0.1.7
+* PHP 5.x (PHP 5.5.9 was used for development and testing)
+* libgetdns 0.1.7 (configured with --with-libevent)
 * libgetdns_ext_event 0.1.7
 * getdns library header files
 
@@ -32,6 +33,7 @@ implemented in this extension:
 
 * getdns_context_create_with_memory_functions()
 * getdns_context_create_with_extended_memory_functions()
+* getdns_context_set_eventloop()
 * getdns_context_set_memory_functions()
 * getdns_context_set_extended_memory_functions()
 * getdns_dict_create_with_memory_functions()
@@ -70,12 +72,6 @@ above.
 
 ## To Do
 
-* Complete the documentation.
-* Complete test case development.
-* Test and confirm asnynchronous function operation. Limited
-testing of `php_getdns_address()` has been done. While the code
-"works", asynch operation needs to be confirmed.
-* Finish wrapper functions for the following library functions:
-  * `getdns_context_set_eventloop()`
+* Complete testing and test case development.
 * A whole bunch of other things not yet listed here. Remember, this
 is an ALPHA release.
