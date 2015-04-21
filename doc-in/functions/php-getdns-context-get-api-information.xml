@@ -39,6 +39,8 @@
   <para>
    Returns the integer value of a getdns dictionary. The returned dictionary will
    contain the following name/value pairs:
+   </para>
+   <para>
    <itemizedlist>
    <listitem>
    <para>
@@ -67,6 +69,10 @@
    </para>
    </listitem>
    </itemizedlist>
+  </para>
+  <para>
+   Note that the returned dictionary should be freed using
+   php_getdns_dict_destroy() when it is no longer needed.
   </para>
  </refsect1>
 
