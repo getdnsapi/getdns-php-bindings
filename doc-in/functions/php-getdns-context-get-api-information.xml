@@ -56,15 +56,14 @@
    </listitem>
    <listitem>
    <para>
-   resolution_type, an int that represents the type of resolver that the API is
+   resolution_type, an int that represents the type of resolver that the getdns library is
    acting as in this context. The value will be either GETDNS_RESOLUTION_RECURSING
-   or GETDNS_RESOLUTION_STUB (it will be a recursing resolver unless the application
-   changed this in a context.
+   or GETDNS_RESOLUTION_STUB. GETDNS_RESOLUTION_RECURSING is the default.
    </para>
    </listitem>
    <listitem>
    <para>
-   all_context, a dictionary with names for all the types of context. This can be used
+   all_context, a dictionary with names for all of the context types. This can be used
    with php_getdns_pretty_print_dict() for debugging.
    </para>
    </listitem>

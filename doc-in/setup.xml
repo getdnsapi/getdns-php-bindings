@@ -55,7 +55,7 @@ $ phpize --clean
   </para>
   <para>
    The getdns library and associated PHP language bindings are
-   not currently for Microsoft Windows.
+   not currently available for Microsoft Windows.
   </para>
  </section>
 
@@ -70,7 +70,7 @@ $ phpize --clean
  <section xml:id="getdns.resources">
   &reftitle.resources;
   <para>
-   The getdns extension does not have any specific resource requirements.
+   The getdns extension has no resource types defined.
   </para>
  </section>
 

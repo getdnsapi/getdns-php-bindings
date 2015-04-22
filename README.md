@@ -57,9 +57,7 @@ doc-in directory.
 Documentation intended for human consumption is provided in
 HTML format and can be found in the doc-out directory. The
 documentation root can be found at
-doc-out/php-chunked-xhtml/index.html. Note that a small
-number of asynchronous event management functions remain
-undocumented.
+doc-out/php-chunked-xhtml/index.html.
 
 ## Regression Tests
 
