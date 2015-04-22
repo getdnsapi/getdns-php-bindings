@@ -57,7 +57,7 @@ ZEND_END_MODULE_GLOBALS(getdns)
 
 /* Miscellaneous definitions. */
 
-#define PHP_GETDNS_VERSION "0.2.0"
+#define PHP_GETDNS_VERSION "0.3.0"
 #define PHP_GETDNS_EXTNAME "getdns"
 
 /* PHP environment setup functions. */
@@ -139,6 +139,7 @@ PHP_FUNCTION(php_getdns_dict_util_set_string);
 PHP_FUNCTION(php_getdns_display_ip_address);
 PHP_FUNCTION(php_getdns_general);
 PHP_FUNCTION(php_getdns_general_sync);
+PHP_FUNCTION(php_getdns_get_errorstr_by_id);
 PHP_FUNCTION(php_getdns_hostname);
 PHP_FUNCTION(php_getdns_hostname_sync);
 PHP_FUNCTION(php_getdns_list_create);
@@ -161,7 +162,6 @@ PHP_FUNCTION(php_getdns_print_json_list);
 PHP_FUNCTION(php_getdns_root_trust_anchor);
 PHP_FUNCTION(php_getdns_service);
 PHP_FUNCTION(php_getdns_service_sync);
-PHP_FUNCTION(php_getdns_strerror);
 PHP_FUNCTION(php_getdns_validate_dnssec);
 
 extern zend_module_entry getdns_module_entry;

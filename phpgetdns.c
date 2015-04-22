@@ -140,6 +140,10 @@ ZEND_BEGIN_ARG_INFO_EX(dict_set_value_args, 0, 0, 3)
     ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(errorstr_args, 0, 0, 1)
+    ZEND_ARG_INFO(0, errorValue)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(general_args, 0, 0, 7)
     ZEND_ARG_INFO(0, context)
     ZEND_ARG_INFO(0, name)
@@ -222,12 +226,6 @@ ZEND_BEGIN_ARG_INFO_EX(set_use_threads_args, 0, 0, 2)
     ZEND_ARG_INFO(0, useThreads)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(strerror_args, 0, 0, 3)
-    ZEND_ARG_INFO(0, errorValue)
-    ZEND_ARG_INFO(1, outputString)
-    ZEND_ARG_INFO(1, outputStringLen)
-ZEND_END_ARG_INFO()
-
 ZEND_BEGIN_ARG_INFO_EX(validate_dnssec_args, 0, 0, 3)
     ZEND_ARG_INFO(0, toValidate)
     ZEND_ARG_INFO(0, supportRecords)
@@ -304,6 +302,7 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_display_ip_address, bindata_only_args)
     PHP_FE(php_getdns_general, general_args)
     PHP_FE(php_getdns_general_sync, general_sync_args)
+    PHP_FE(php_getdns_get_errorstr_by_id, errorstr_args)
     PHP_FE(php_getdns_hostname, hostname_args)
     PHP_FE(php_getdns_hostname_sync, hostname_sync_args)
     PHP_FE(php_getdns_list_create, NULL)
@@ -325,7 +324,6 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_print_json_list, pretty_print_json_value_args)
     PHP_FE(php_getdns_service, address_svc_args)
     PHP_FE(php_getdns_service_sync, address_svc_sync_args)
-    PHP_FE(php_getdns_strerror, strerror_args)
     PHP_FE(php_getdns_validate_dnssec, validate_dnssec_args)
     {NULL, NULL, NULL}
 };
@@ -2982,44 +2980,6 @@ PHP_FUNCTION(php_getdns_service_sync)
 }
 
 /**
- * Function to translate an error code to a string.
- */
-PHP_FUNCTION(php_getdns_strerror)
-{
-    long phpPtr = 0;
-    zval *phpOutStr = NULL, *phpOutLen = 0;
-    char buf[256];
-    size_t bufLen = sizeof(buf);
-    getdns_return_t err = 0, result = 0;
-
-    /* Retrieve parameters. */
-    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "lzz", &phpPtr, &phpOutStr, &phpOutLen) ==
-	FAILURE) {
-	RETURN_NULL();
-    }
-
-    /*
-     * Convert parameters and call the function.
-     * getdns requires the caller to provide the size of the buffer, which
-     * seems strange given that the caller doesn't know the length of the string
-     * being returned. OK, well, use a reasonably large size and hope that it's
-     * big enough.
-     */
-    err = (getdns_return_t) phpPtr;
-    result = getdns_strerror(err, (char *) &buf, bufLen);
-
-    /* Store the response values and return the result. */
-    bufLen = strlen(buf);
-    convert_to_null(phpOutStr);
-    convert_to_string(phpOutStr);
-    Z_STRVAL_P(phpOutStr) = estrdup(buf);
-    Z_STRLEN_P(phpOutStr) = bufLen;
-    convert_to_null(phpOutLen);
-    ZVAL_LONG(phpOutLen, (long) bufLen);
-    RETURN_LONG((long) result);
-}
-
-/**
  * Function to validate DNSSEC.
  */
 PHP_FUNCTION(php_getdns_validate_dnssec)
@@ -3740,6 +3700,29 @@ PHP_FUNCTION(php_getdns_dict_util_set_string)
 
     /* Return the result. */
     RETURN_LONG((long) result);
+}
+
+/**
+ * Function to translate an error code to a string.
+ */
+PHP_FUNCTION(php_getdns_get_errorstr_by_id)
+{
+    long phpPtr = 0;
+    uint16_t err;
+    const char *errorStr = NULL;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "l", &phpPtr) ==
+	FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    err = (uint16_t) phpPtr;
+    errorStr = getdns_get_errorstr_by_id(err);
+
+    /* Return the result. */
+    RETURN_STRING(errorStr, 1);
 }
 
 /**

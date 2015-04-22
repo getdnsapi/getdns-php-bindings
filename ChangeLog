@@ -1,3 +1,8 @@
+* 2015-04-22: Version 0.3.0
+  * Added php_getdns_get_errorstr_by_id()
+  * Removed php_getdns_strerror()
+  * Added test case and updated documentation.
+
 * 2015-04-20: Version 0.2.0 
   * Fixed async event management functions.
   * Removed php_getdns_context_set_eventloop() as a result
