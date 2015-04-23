@@ -12,7 +12,8 @@ $address = php_getdns_dict_create();
 $result = php_getdns_dict_set_bindata($address, "address_type", "IPv4");
 var_dump($result);
 
-$result = php_getdns_dict_set_bindata($address, "address_data", "\x08\x08\x08\x08");
+$binData = pack("n*", 0x0808, 0x0808);
+$result = php_getdns_dict_set_bindata($address, "address_data", $binData);
 var_dump($result);
 
 $extensions = NULL;
