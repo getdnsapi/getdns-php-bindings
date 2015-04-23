@@ -2916,7 +2916,7 @@ PHP_FUNCTION(php_getdns_service)
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
-	(ZEND_NUM_ARGS()TSRMLS_CC, "lsllzz", &phpContext, &name, &nameLen,
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lslzz", &phpContext, &name, &nameLen,
 	 &phpExtensions, &phpUserArg, &phpTrans) == FAILURE) {
 	RETURN_NULL();
     }
@@ -2963,7 +2963,7 @@ PHP_FUNCTION(php_getdns_service_sync)
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
-	(ZEND_NUM_ARGS()TSRMLS_CC, "lsl", &phpContext, &name, &nameLen,
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lslz", &phpContext, &name, &nameLen,
 	 &phpExtensions, &phpOut) == FAILURE) {
 	RETURN_NULL();
     }
