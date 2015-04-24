@@ -1,7 +1,7 @@
 getdns-php
 ==========
 
-A PHP language binding for the getdns API, version 0.3.0.
+A PHP language binding for the getdns API, version 0.4.0.
 This implementation is licensed under the New BSD License (BSD-new).
 
 NOTE: THIS IS AN ALPHA RELEASE!

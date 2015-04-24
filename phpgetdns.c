@@ -2005,22 +2005,22 @@ PHP_FUNCTION(php_getdns_dict_destroy)
 }
 
 /**
- * Function to retrieve binary data from a dictionary.
+ * Function to retrieve a bindata value from a dictionary.
  */
 PHP_FUNCTION(php_getdns_dict_get_bindata)
 {
     long phpPtr = 0;
     char *phpName = NULL;
     size_t phpNameLen = 0;
-    zval *phpOut = NULL;
+    zval *phpBindata = NULL;
     getdns_bindata *answer;
     getdns_dict *dict = NULL;
     getdns_return_t result = 0;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
-	(ZEND_NUM_ARGS()TSRMLS_CC, "lsz", &phpPtr, &phpName,
-	 &phpNameLen, &phpOut) == FAILURE) {
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lsz", &phpPtr,
+	 &phpName, &phpNameLen, &phpBindata) == FAILURE) {
 	RETURN_NULL();
     }
 
@@ -2029,8 +2029,8 @@ PHP_FUNCTION(php_getdns_dict_get_bindata)
     result = getdns_dict_get_bindata(dict, phpName, &answer);
 
     /* Store the output value and return the result. */
-    convert_to_null(phpOut);
-    ZVAL_LONG(phpOut, (long) answer);
+    convert_to_null(phpBindata);
+    ZVAL_STRINGL(phpBindata, (char *) answer->data, answer->size, 1);
     RETURN_LONG((long) result);
 }
 
@@ -2213,26 +2213,27 @@ PHP_FUNCTION(php_getdns_dict_remove_name)
  */
 PHP_FUNCTION(php_getdns_dict_set_bindata)
 {
-    long phpDict = 0, phpBindata = 0;
-    char *phpName = NULL;
-    size_t phpNameLen = 0;
+    long phpDict = 0;
+    char *phpName = NULL, *phpBindata = NULL;
+    size_t phpNameLen = 0, phpBindataLen = 0;
     getdns_return_t result = 0;
     getdns_dict *dict = NULL;
-    getdns_bindata *bindata = NULL;
+    getdns_bindata bindata = {0, NULL};
     char *name = NULL;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
-	(ZEND_NUM_ARGS()TSRMLS_CC, "lsl", &phpDict, &phpName, &phpNameLen,
-	 &phpBindata) == FAILURE) {
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lss", &phpDict, &phpName, &phpNameLen,
+	 &phpBindata, &phpBindataLen) == FAILURE) {
 	RETURN_NULL();
     }
 
     /* Convert parameters and call the function. */
     dict = (getdns_dict *) phpDict;
     name = phpName;
-    bindata = (getdns_bindata *) phpBindata;
-    result = getdns_dict_set_bindata(dict, name, bindata);
+    bindata.size = phpBindataLen;
+    bindata.data = (void *) phpBindata;
+    result = getdns_dict_set_bindata(dict, name, &bindata);
 
     /* Return the result. */
     RETURN_LONG((long) result);
@@ -2327,19 +2328,21 @@ PHP_FUNCTION(php_getdns_dict_set_list)
  */
 PHP_FUNCTION(php_getdns_display_ip_address)
 {
-    long phpPtr = 0;
-    getdns_bindata *bindata = NULL;
+    char *phpBindata = NULL;
+    size_t phpBindataLen = 0;
+    getdns_bindata bindata = {0, NULL};
     char *ipAddress = NULL;
 
     /* Retrieve parameters. */
-    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "l", &phpPtr) ==
-	FAILURE) {
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "s",
+        &phpBindata, &phpBindataLen) == FAILURE) {
 	RETURN_NULL();
     }
 
     /* Convert parameters and call the function. */
-    bindata = (getdns_bindata *) phpPtr;
-    ipAddress = getdns_display_ip_address(bindata);
+    bindata.size = phpBindataLen;
+    bindata.data = (void *) phpBindata;
+    ipAddress = getdns_display_ip_address(&bindata);
 
     /* Return the string value. Duplicate the string for PHP and free the local copy. */
     RETVAL_STRING(ipAddress, 1);
@@ -2571,12 +2574,12 @@ PHP_FUNCTION(php_getdns_list_destroy)
 }
 
 /**
- * Function to retrieve binary data from a list.
+ * Function to retrieve a bindata value from a list.
  */
 PHP_FUNCTION(php_getdns_list_get_bindata)
 {
     long phpPtr = 0, phpIndex = 0;
-    zval *phpOut = NULL;
+    zval *phpBindata = NULL;
     size_t index = 0;
     getdns_return_t result = 0;
     getdns_list *list = NULL;
@@ -2584,7 +2587,8 @@ PHP_FUNCTION(php_getdns_list_get_bindata)
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
-	(ZEND_NUM_ARGS()TSRMLS_CC, "llz", &phpPtr, &phpIndex, &phpOut) == FAILURE) {
+	(ZEND_NUM_ARGS()TSRMLS_CC, "llz", &phpPtr,
+	&phpIndex, &phpBindata) == FAILURE) {
 	RETURN_NULL();
     }
 
@@ -2594,8 +2598,8 @@ PHP_FUNCTION(php_getdns_list_get_bindata)
     result = getdns_list_get_bindata(list, index, &answer);
 
     /* Store the response value and return the result. */
-    convert_to_null(phpOut);
-    ZVAL_LONG(phpOut, (long) answer);
+    convert_to_null(phpBindata);
+    ZVAL_STRINGL(phpBindata, (char *) answer->data, answer->size, 1);
     RETURN_LONG((long) result);
 }
 
@@ -2746,24 +2750,27 @@ PHP_FUNCTION(php_getdns_list_get_list)
  */
 PHP_FUNCTION(php_getdns_list_set_bindata)
 {
-    long phpList = 0, phpIndex = 0, phpBindata = 0;
+    long phpList = 0, phpIndex = 0;
+    char *phpBindata = NULL;
+    size_t phpBindataLen = 0;
     size_t index = 0;
     getdns_return_t result = 0;
     getdns_list *list = NULL;
-    getdns_bindata *bindata = NULL;
+    getdns_bindata bindata = {0, NULL};
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
-	(ZEND_NUM_ARGS()TSRMLS_CC, "lll", &phpList, &phpIndex,
-	 &phpBindata) == FAILURE) {
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lls", &phpList, &phpIndex,
+	 &phpBindata, &phpBindataLen) == FAILURE) {
 	RETURN_NULL();
     }
 
     /* Convert parameters and call the function. */
     list = (getdns_list *) phpList;
     index = (size_t) phpIndex;
-    bindata = (getdns_bindata *) phpBindata;
-    result = getdns_list_set_bindata(list, index, bindata);
+    bindata.size = phpBindataLen;
+    bindata.data = (void *) phpBindata;
+    result = getdns_list_set_bindata(list, index, &bindata);
 
     /* Return the result. */
     RETURN_LONG((long) result);
@@ -2916,7 +2923,7 @@ PHP_FUNCTION(php_getdns_service)
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
-	(ZEND_NUM_ARGS()TSRMLS_CC, "lsllzz", &phpContext, &name, &nameLen,
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lslzz", &phpContext, &name, &nameLen,
 	 &phpExtensions, &phpUserArg, &phpTrans) == FAILURE) {
 	RETURN_NULL();
     }
@@ -2963,7 +2970,7 @@ PHP_FUNCTION(php_getdns_service_sync)
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
-	(ZEND_NUM_ARGS()TSRMLS_CC, "lsl", &phpContext, &name, &nameLen,
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lslz", &phpContext, &name, &nameLen,
 	 &phpExtensions, &phpOut) == FAILURE) {
 	RETURN_NULL();
     }

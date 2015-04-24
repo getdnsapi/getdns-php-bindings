@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-list-set-bindata" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_list_set_bindata</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.3.0)</p><p class="refpurpose"><span class="refname">php_getdns_list_set_bindata</span> &mdash; <span class="dc-title">Set a bindata value in a list.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.4.0)</p><p class="refpurpose"><span class="refname">php_getdns_list_set_bindata</span> &mdash; <span class="dc-title">Set a bindata value in a list.</span></p>
 
  </div>
 
@@ -23,7 +23,7 @@
    <span class="type">int</span> <span class="methodname"><strong>php_getdns_list_set_bindata</strong></span>
     ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$list</code></span>
    , <span class="methodparam"><span class="type">int</span> <code class="parameter">$index</code></span>
-   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$value</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$value</code></span>
    )</div>
 
   <p class="para rdfs-comment">
@@ -72,7 +72,8 @@
     <dd>
 
      <p class="para">
-      The bindata value to be set.
+      The string of binary data to be set. The PHP pack() function can be used
+      to create a string of binary data.
      </p>
     </dd>
 

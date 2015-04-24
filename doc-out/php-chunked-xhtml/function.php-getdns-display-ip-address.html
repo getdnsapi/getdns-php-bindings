@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-display-ip-address" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_display_ip_address</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.3.0)</p><p class="refpurpose"><span class="refname">php_getdns_display_ip_address</span> &mdash; <span class="dc-title">Convert an IP address in bindata format to a character string.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.4.0)</p><p class="refpurpose"><span class="refname">php_getdns_display_ip_address</span> &mdash; <span class="dc-title">Convert an IP address in bindata format to a character string.</span></p>
 
  </div>
 
@@ -21,12 +21,12 @@
   <h3 class="title">Description</h3>
   <div class="methodsynopsis dc-description">
    <span class="type">string</span> <span class="methodname"><strong>php_getdns_display_ip_address</strong></span>
-    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$bindata</code></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$bindata</code></span>
    )</div>
 
   <p class="para rdfs-comment">
-   This function converts an IPv4 or IPv6 address in bindata format to a
-   presentation-friendly character string.
+   This function converts an IPv4 or IPv6 address in bindata (binary string)
+   format to a presentation-friendly character string.
   </p>
  </div>
 
@@ -42,7 +42,7 @@
     <dd>
 
      <p class="para">
-      A reference to an IP address in bindata format.
+      A character string containing an IP address in bindata (binary string) format.
      </p>
     </dd>
 

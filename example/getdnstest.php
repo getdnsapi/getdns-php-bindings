@@ -72,25 +72,20 @@
 	$errCode = 0;
         $result = php_getdns_dict_get_int($dict, "status", $errCode);
         if ($errCode != GETDNS_RESPSTATUS_GOOD) {
-          $errMsg = "";
-          $errMsgLen = 0;
-          $result = php_getdns_strerror($errCode, $errMsg, $errMsgLen);
+          $errMsg = php_getdns_get_errorstr_by_id($errCode);
           echo "Error " . $errCode . ": " . $errMsg . "\n";
           //exit($errCode);
 	  break;
         }
 	$list = 0;
-        $result = php_getdns_dict_get_list($dict, "just_address_answers",
-	$list);
+        $result = php_getdns_dict_get_list($dict, "just_address_answers", $list);
 	$listLength = 0;
         $result = php_getdns_list_get_length($list, $listLength);
         for ($recCount = 0; $recCount < $listLength; $recCount++) {
 	  $thisAddress = 0;
-	  $binData = 0;
-          $result = php_getdns_list_get_dict($list, $recCount,
-	  $thisAddress);
-          $result = php_getdns_dict_get_bindata($thisAddress, "address_data",
-	  $binData);
+	  $binData = "";
+          $result = php_getdns_list_get_dict($list, $recCount, $thisAddress);
+          $result = php_getdns_dict_get_bindata($thisAddress, "address_data", $binData);
           $result = php_getdns_display_ip_address($binData);
           echo "The address is " . $result . "\n";
         }
@@ -165,26 +160,21 @@
   $result = php_getdns_dict_get_int($response, "status", $errCode);
   if ($errCode != GETDNS_RESPSTATUS_GOOD) {
     var_dump($errCode);
-    $errMsg = "";
-    $errMsgLen = 0;
-    $result = php_getdns_strerror($errCode, $errMsg, $errMsgLen);
+    $errMsg = php_getdns_get_errorstr_by_id($errCode);
     echo "Error " . $errCode . " " . $errMsg . "\n";
     exit($result);
   }
   $list = 0;
-  $result = php_getdns_dict_get_list($response, "just_address_answers",
-  $list);
+  $result = php_getdns_dict_get_list($response, "just_address_answers", $list);
   //echo "list:\n"; var_dump($list);
   $listLength = 0;
   $result = php_getdns_list_get_length($list, $listLength);
   //echo "listLength:\n"; var_dump($listLength);
   for ($recCount = 0; $recCount < $listLength; $recCount++) {
     $thisAddress = 0;
-    $binData = 0;
-    $result = php_getdns_list_get_dict($list, $recCount,
-    $thisAddress);
-    $result = php_getdns_dict_get_bindata($thisAddress, "address_data",
-    $binData);
+    $binData = "";
+    $result = php_getdns_list_get_dict($list, $recCount, $thisAddress);
+    $result = php_getdns_dict_get_bindata($thisAddress, "address_data", $binData);
     $result = php_getdns_display_ip_address($binData);
     echo "The address is " . $result . "\n";
   }

@@ -1,5 +1,5 @@
 --TEST--
-Test function php_getdns_address_sync() by calling it with its expected arguments
+Test function php_getdns_general_sync() by calling it with its expected arguments
 --FILE--
 <?php
 
@@ -9,9 +9,10 @@ $result = php_getdns_context_create($context, $setFromOS);
 var_dump($result);
 
 $name = "www.getdnsapi.net";
+$reqType = GETDNS_RRTYPE_NS;
 $extensions = NULL;
 $response = 0;
-$result = php_getdns_address_sync($context, $name, $extensions, $response);
+$result = php_getdns_general_sync($context, $name, $reqType, $extensions, $response);
 var_dump($result);
 
 php_getdns_dict_destroy($response);
