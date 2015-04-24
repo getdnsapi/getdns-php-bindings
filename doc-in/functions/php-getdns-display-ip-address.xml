@@ -11,11 +11,11 @@
   &reftitle.description;
   <methodsynopsis>
    <type>string</type><methodname>php_getdns_display_ip_address</methodname>
-   <methodparam><type>int</type><parameter>bindata</parameter></methodparam>
+   <methodparam><type>string</type><parameter>bindata</parameter></methodparam>
   </methodsynopsis>
   <para>
-   This function converts an IPv4 or IPv6 address in bindata format to a
-   presentation-friendly character string.
+   This function converts an IPv4 or IPv6 address in bindata (binary string)
+   format to a presentation-friendly character string.
   </para>
  </refsect1>
 
@@ -26,7 +26,7 @@
     <term><parameter>bindata</parameter></term>
     <listitem>
      <para>
-      A reference to an IP address in bindata format.
+      A character string containing an IP address in bindata (binary string) format.
      </para>
     </listitem>
    </varlistentry>

@@ -38,8 +38,8 @@
     <listitem>
      <para>
       A reference to a dictionary structure containing two names: address_type (whose
-      value is bindata and is either "IPv4" or "IPv6") and address_data whose value
-      is bindata.
+      value is bindata and is either "IPv4" or "IPv6") and address_data (whose value
+      is a binary character string (bindata) representing the address to be resolved).
      </para>
     </listitem>
    </varlistentry>
@@ -55,7 +55,7 @@
     <term><parameter>response</parameter></term>
     <listitem>
      <para>
-      The dictionary to receive the response. The ddictionary always contains at least
+      The dictionary to receive the response. The dictionary always contains at least
       three names: replies_full (a list containing the DNS response as binary data),
       replies_tree (a list containing the parsed DNS response data) and status (an
       int). Note that this argument is passed by reference and any existing value will

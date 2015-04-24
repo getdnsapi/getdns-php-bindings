@@ -44,9 +44,9 @@
     <term><parameter>address</parameter></term>
     <listitem>
      <para>
-      A reference to a dictionary structure containing two names: address_type
-      (whose value is bindata and is either "IPv4" or "IPv6") and address_data
-      whose value is bindata. 
+      A reference to a dictionary structure containing two names: address_type (whose
+      value is bindata and is either "IPv4" or "IPv6") and address_data (whose value
+      is a binary character string (bindata) representing the address to be resolved).
      </para>
     </listitem>
    </varlistentry>

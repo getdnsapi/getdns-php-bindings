@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-hostname-sync" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_hostname_sync</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.3.0)</p><p class="refpurpose"><span class="refname">php_getdns_hostname_sync</span> &mdash; <span class="dc-title">Synchronously retrieve host names given an IP address.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.4.0)</p><p class="refpurpose"><span class="refname">php_getdns_hostname_sync</span> &mdash; <span class="dc-title">Synchronously retrieve host names given an IP address.</span></p>
 
  </div>
 
@@ -58,8 +58,8 @@
 
      <p class="para">
       A reference to a dictionary structure containing two names: address_type (whose
-      value is bindata and is either &quot;IPv4&quot; or &quot;IPv6&quot;) and address_data whose value
-      is bindata.
+      value is bindata and is either &quot;IPv4&quot; or &quot;IPv6&quot;) and address_data (whose value
+      is a binary character string (bindata) representing the address to be resolved).
      </p>
     </dd>
 
@@ -83,7 +83,7 @@
     <dd>
 
      <p class="para">
-      The dictionary to receive the response. The ddictionary always contains at least
+      The dictionary to receive the response. The dictionary always contains at least
       three names: replies_full (a list containing the DNS response as binary data),
       replies_tree (a list containing the parsed DNS response data) and status (an
       int). Note that this argument is passed by reference and any existing value will

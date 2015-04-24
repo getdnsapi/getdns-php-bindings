@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-dict-set-bindata" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_dict_set_bindata</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.3.0)</p><p class="refpurpose"><span class="refname">php_getdns_dict_set_bindata</span> &mdash; <span class="dc-title">Set a bindata value in a dictionary.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.4.0)</p><p class="refpurpose"><span class="refname">php_getdns_dict_set_bindata</span> &mdash; <span class="dc-title">Set a bindata value in a dictionary.</span></p>
 
  </div>
 
@@ -23,7 +23,7 @@
    <span class="type">int</span> <span class="methodname"><strong>php_getdns_dict_set_bindata</strong></span>
     ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$dict</code></span>
    , <span class="methodparam"><span class="type">string</span> <code class="parameter">$name</code></span>
-   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$value</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$value</code></span>
    )</div>
 
   <p class="para rdfs-comment">
@@ -69,7 +69,8 @@
     <dd>
 
      <p class="para">
-      A reference to the bindata value to be associated with the given name.
+      The string of binary data to be associated with the given name. The PHP pack()
+      function can be used to create a string of binary data.
      </p>
     </dd>
 

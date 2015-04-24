@@ -13,7 +13,7 @@
    <type>int</type><methodname>php_getdns_dict_get_bindata</methodname>
    <methodparam><type>int</type><parameter>dict</parameter></methodparam>
    <methodparam><type>string</type><parameter>name</parameter></methodparam>
-   <methodparam><type>int</type><parameter role="reference">value</parameter></methodparam>
+   <methodparam><type>string</type><parameter role="reference">value</parameter></methodparam>
   </methodsynopsis>
   <para>
    This function gets a bindata value from a dictionary. The dictionary type is used
@@ -45,8 +45,10 @@
     <term><parameter>value</parameter></term>
     <listitem>
      <para>
-      The bindata value to be returned. Note that this argument is passed by
-      reference and any existing value will be overwritten.
+      The bindata value to be returned. The character string can be converted
+      into an associative array of elements using the PHP unpack() function.
+      Note that this argument is passed by reference and any existing value
+      will be overwritten.
      </para>
     </listitem>
    </varlistentry>

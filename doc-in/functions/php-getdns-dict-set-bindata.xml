@@ -13,7 +13,7 @@
    <type>int</type><methodname>php_getdns_dict_set_bindata</methodname>
    <methodparam><type>int</type><parameter>dict</parameter></methodparam>
    <methodparam><type>string</type><parameter>name</parameter></methodparam>
-   <methodparam><type>int</type><parameter>value</parameter></methodparam>
+   <methodparam><type>string</type><parameter>value</parameter></methodparam>
   </methodsynopsis>
   <para>
    This function sets a bindata value in a dictionary. The dictionary type is used
@@ -45,7 +45,8 @@
     <term><parameter>value</parameter></term>
     <listitem>
      <para>
-      A reference to the bindata value to be associated with the given name.
+      The string of binary data to be associated with the given name. The PHP pack()
+      function can be used to create a string of binary data.
      </para>
     </listitem>
    </varlistentry>
