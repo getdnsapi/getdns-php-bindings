@@ -3827,12 +3827,18 @@ PHP_FUNCTION(php_getdns_dict_util_get_string)
     /* Convert parameters and call the function. */
     dict = (getdns_dict *) phpDict;
     result = getdns_dict_util_get_string(dict, name, &value);
-    vLen = strlen(value);
 
-    /* Store the output value and return the result. */
-    convert_to_string(phpOut);
-    Z_STRVAL_P(phpOut) = estrdup(value);
-    Z_STRLEN_P(phpOut) = vLen;
+    if (value) {
+        vLen = strlen(value);
+
+        /* Store the output value and return the result. */
+        convert_to_string(phpOut);
+        Z_STRVAL_P(phpOut) = estrdup(value);
+        Z_STRLEN_P(phpOut) = vLen;
+    }
+    else {
+        convert_to_null(phpOut);
+    }
     RETURN_LONG((long) result);
 }
 
