@@ -31,7 +31,7 @@ if test "$PHP_GETDNS" != "no"; then
 
   AC_MSG_CHECKING([getdns header files])
   GETDNS_INC_DIR="/usr/local/include/getdns"
-  INC_FILES="$GETDNS_INC_DIR/getdns.h $GETDNS_INC_DIR/getdns_extra.h $GETDNS_INC_DIR/getdns_libevent.h"
+  INC_FILES="$GETDNS_INC_DIR/getdns.h $GETDNS_INC_DIR/getdns_extra.h $GETDNS_INC_DIR/getdns_ext_libevent.h"
   for i in $INC_FILES; do
     if test ! -f $i; then
       AC_MSG_ERROR([getdns header files not found in $GETDNS_INC_DIR])
