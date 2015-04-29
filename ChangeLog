@@ -1,3 +1,15 @@
+* 2015-04-29: Version 0.5.0
+  * Fixed functions that exchange unsigned 64-bit integers
+    (which are now represented as 16-character hex strings).
+  * Fixed an asynch callback bug that could cause segmentation
+    faults.
+  * Fixes to confirm positive results when allocating memory.
+  * Updated documentation and test cases.
+
+* 2015-04-24: Version 0.4.0
+  * Fixed bindata get/set functions.
+  * Updated bindata documentation and test cases.
+
 * 2015-04-22: Version 0.3.0
   * Added php_getdns_get_errorstr_by_id()
   * Removed php_getdns_strerror()
