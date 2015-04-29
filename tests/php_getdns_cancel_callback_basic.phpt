@@ -1,5 +1,5 @@
 --TEST--
-Test function php_getdns_general() by calling it with its expected arguments
+Test function php_getdns_cancel_callback() by calling it with its expected arguments
 --FILE--
 <?php
 
@@ -15,15 +15,15 @@ $result = php_getdns_context_create($context, $setFromOS);
 var_dump($result);
 
 $name = "www.getdnsapi.net";
-$reqType = GETDNS_RRTYPE_NS;
 $extensions = NULL;
-$transID = "";
+$transID = "1";
 $userArgs[0] = "php_echo_addresses";
 $userArgs[1] = "User args test 1";
-$result = php_getdns_general($context, $name, $reqType, $extensions, $userArgs, $transID);
+$result = php_getdns_address($context, $name, $extensions, $userArgs, $transID);
 var_dump($result, $transID);
 if ($result == GETDNS_RETURN_GOOD) {
-    php_getdns_context_run($context);
+    $result = php_getdns_cancel_callback($context, $transID);
+    var_dump($result);
 }
 
 php_getdns_context_destroy($context);
@@ -33,5 +33,6 @@ php_getdns_context_destroy($context);
 int(0)
 int(0)
 string(16) "%s"
-int(700)
+int(701)
 string(16) "%s"
+int(0)

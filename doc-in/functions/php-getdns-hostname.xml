@@ -15,7 +15,7 @@
    <methodparam><type>int</type><parameter>address</parameter></methodparam>
    <methodparam><type>int</type><parameter>extensions</parameter></methodparam>
    <methodparam><type>array</type><parameter>userArg</parameter></methodparam>
-   <methodparam><type>double</type><parameter role="reference">transID</parameter></methodparam>
+   <methodparam><type>mixed</type><parameter role="reference">transID</parameter></methodparam>
   </methodsynopsis>
   <para>
    This function provides an entry point into the getdns API library to asynchronously
@@ -70,17 +70,29 @@
       callback function. The callback function will receive the complete
       array for local processing with all elements included as specified.
      </para>
+     <para>
+      The callback function should be declared as follows:
+      <programlisting>
+        function_name($dict, $callbackType, $userArg, $transID)
+        // $dict: An int representing the dictionary containing the response.
+        // $callbackType: The getdns callback type.
+        // $userArg: The original user arguments provided by the caller.
+        // $transID: A 16-character string in hex format that contains the identifier of the transaction being processed.
+      </programlisting>
+     </para>
     </listitem>
    </varlistentry>
    <varlistentry>
     <term><parameter>transID</parameter></term>
     <listitem>
      <para>
-      A value that is filled in by the function to identify the callback being made.
-      This value is passed by reference and any existing value will be overwritten.
-      It can be 0 (zero), in which case it is ignored and no value is assigned. The
-      php_getdns_cancel_callback() function uses the transID to determine which
-      callback is to be cancelled. If the function fails, transID is set to 0. 
+      A 16-character string value in hexadecimal format representing an unsigned
+      64-bit integer that is filled in by the function to identify the callback
+      being made. This value is passed by reference and any existing value will
+      be overwritten; an empty string ("") is acceptable on input. It can also
+      be NULL, in which case it is ignored and no value is assigned.
+      The php_getdns_cancel_callback() function uses the transID to determine which
+      callback is to be cancelled.
      </para>
     </listitem>
    </varlistentry>

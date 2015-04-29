@@ -35,23 +35,6 @@
  */
 
   /**
-   * Example callback function to process context change types.
-   *
-   * Parameters:
-   * $changed: the numeric value that identifies the context element that's been updated.
-   *
-   * NOTE: For now the name of this function MUST be "phpGetDNSContextCallback". It's hard-coded
-   * in the getdns PHP extension due to a limitation in the getdns API.
-   */
-  function phpGetDNSContextCallback($changed)
-  {
-    // Do something appropriate with the change type.
-    if ($userArg != NULL) {
-      var_dump($changed);
-    }
-  }
-
-  /**
    * Example callback function to process getdns responses.
    *
    * Parameters:
@@ -59,12 +42,13 @@
    * $callbackType: the reason for calling the callback.
    * $userArg: whatever the PHP client passed to the getdns async function call.
    */
-  function php_echo_addresses($dict, $callbackType, $userArg)
+  function php_echo_addresses($dict, $callbackType, $userArg, $transID)
   {
     // Do something appropriate with userArg.
     if ($userArg != NULL) {
       //var_dump($userArg);
     }
+    //var_dump($transID);
 
     switch ($callbackType) {
       case GETDNS_CALLBACK_COMPLETE:
@@ -89,7 +73,7 @@
           $result = php_getdns_display_ip_address($binData);
           echo "The address is " . $result . "\n";
         }
-      break;
+        break;
       case GETDNS_CALLBACK_CANCEL:
         echo "Callback cancelled.\n";
         break;
@@ -181,7 +165,7 @@
   php_getdns_dict_destroy($response);
 
   echo "\nAsynchronously resolving " . $name . "...\n";
-  $transID = (double) 0; // Must be a non-zero integer to get populated by the getdns library.
+  $transID = "0"; // Must be a non-zero integer to get populated by the getdns library.
   $userArgs[0] = "php_echo_addresses";
   $userArgs[1] = "User args test 1";
   $result = php_getdns_address($context, $name, $extensions, $userArgs, $transID);
@@ -194,7 +178,7 @@
   }
 
   echo "\nAsynchronously resolving " . $name . " with dnssec_return_only_secure set...\n";
-  $transID = (double) 1;
+  $transID = "1";
   $userArgs[0] = "php_echo_addresses";
   $userArgs[1] = "User args test 2";
   $extensions = php_getdns_dict_create();
@@ -218,7 +202,7 @@
   $name = "www.dnssec-failed.org";
   $userArgs[0] = "php_echo_addresses";
   $userArgs[1] = "User args test 3";
-  $transID = (double) 2;
+  $transID = "2";
   echo "\nAsynchronously resolving " . $name . " with dnssec_return_only_secure set...\n";
   $result = php_getdns_address($context, $name, $extensions, $userArgs, $transID);
   if ($result == GETDNS_RETURN_GOOD) {
@@ -258,13 +242,13 @@
 
   // Set the timeout.
   echo "Testing getting/setting the timeout value...\n";
-  $timeout = (double) 0;
+  $timeout = "";
   $result = php_getdns_context_get_timeout($context, $timeout);
   var_dump($result, $timeout);
-  $timeout = (double) 10000;
+  $timeout = "0000000000002710";
   $result = php_getdns_context_set_timeout($context, $timeout);
   var_dump($result, $timeout);
-  $timeout = (double) 0;
+  $timeout = "";
   $result = php_getdns_context_get_timeout($context, $timeout);
   var_dump($result, $timeout);
 

@@ -1,14 +1,14 @@
 getdns-php
 ==========
 
-A PHP language binding for the getdns API, version 0.4.0.
+A PHP language binding for the getdns API, version 0.5.0.
 This implementation is licensed under the New BSD License (BSD-new).
 
 NOTE: THIS IS AN ALPHA RELEASE!
 
 Dependencies:
 
-* PHP 5.x (PHP 5.5.9 was used for development and testing)
+* PHP 5.x (PHP 5.6.8 was used for development and testing)
 * libgetdns 0.1.7 (configured with --with-libevent)
 * libgetdns_ext_event 0.1.7
 * getdns library header files
@@ -71,5 +71,4 @@ above.
 ## To Do
 
 * Complete testing and test case development.
-* A whole bunch of other things not yet listed here. Remember, this
-is an ALPHA release.
+* Fix bugs as they are uncovered by testing.

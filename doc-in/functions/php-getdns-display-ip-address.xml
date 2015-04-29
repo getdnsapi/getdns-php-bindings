@@ -36,8 +36,9 @@
  <refsect1 role="returnvalues">
   &reftitle.returnvalues;
   <para>
-   This function returns an IP address in character string format. Errors in
-   the conversion process are indicated with a NULL return value.
+   This function returns an IP address in character string format.
+   NULL is returned if any conversion or memory allocation errors
+   are encountered.
   </para>
  </refsect1>
 

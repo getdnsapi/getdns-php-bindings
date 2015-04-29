@@ -47,6 +47,7 @@
   &reftitle.returnvalues;
   <para>
    This function returns a character string containing the formatted list.
+   NULL is returned if any conversion or memory allocation errors are encountered.
   </para>
  </refsect1>
 

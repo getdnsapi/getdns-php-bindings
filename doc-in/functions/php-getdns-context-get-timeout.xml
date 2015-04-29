@@ -12,7 +12,7 @@
   <methodsynopsis>
    <type>int</type><methodname>php_getdns_context_get_timeout</methodname>
    <methodparam><type>int</type><parameter>context</parameter></methodparam>
-   <methodparam><type>double</type><parameter role="reference">value</parameter></methodparam>
+   <methodparam><type>string</type><parameter role="reference">value</parameter></methodparam>
   </methodsynopsis>
   <para>
    This function can be used to get the current value for the number of milliseconds that the getdns
@@ -36,8 +36,16 @@
     <listitem>
      <para>
       The number of milliseconds that the getdns library will wait for requests to
-      return. The default is not specified. Note that this argument is passed by
-      reference and any existing value will be overwritten.
+      return. The default is not specified. The value returned will be a 16-character
+      hexadecimal string representing the timeout value. Note that this argument is
+      passed by reference and any existing value will be overwritten.
+     </para>
+     <para>
+      The getdns library uses an unsigned 64-bit integer to represent the timeout
+      value. PHP does not have native support for unsigned 64-bit integers, so
+      a character string representation of the value is used to pass the value
+      between PHP user space and getdns. String values are padded with leading
+      zero (0) characters.
      </para>
     </listitem>
    </varlistentry>

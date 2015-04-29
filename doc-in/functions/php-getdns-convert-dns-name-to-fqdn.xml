@@ -44,7 +44,8 @@
      <para>
       A string value that will contain the FQDN converted to presentation
       format. Note that this argument is passed by reference and any existing
-      value will be overwritten. 
+      value will be overwritten. NULL is returned if any conversion or
+      memory allocation errors are encountered.
      </para>
     </listitem>
    </varlistentry>

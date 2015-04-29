@@ -46,7 +46,7 @@
 #include "php_ini.h"
 #include "php_getdns.h"
 #include "getdns.h"
-#include "getdns_libevent.h"
+#include "getdns_ext_libevent.h"
 #include "getdns_extra.h"
 
 ZEND_DECLARE_MODULE_GLOBALS(getdns)
@@ -1091,7 +1091,8 @@ PHP_MINFO_FUNCTION(getdns)
 {
     php_info_print_table_start();
     php_info_print_table_header(2, "GetDNS Support", "enabled");
-    php_info_print_table_row(2, "Extension Version", "0.0.1");
+    php_info_print_table_row(2, "Extension Version", PHP_GETDNS_VERSION);
+    php_info_print_table_row(2, "getdns Library Version", GETDNS_COMPILATION_COMMENT);
     php_info_print_table_row(2, "Author",
 			     "Scott Hollenbeck <shollenbeck@verisign.com>");
     php_info_print_table_end();
@@ -1106,12 +1107,11 @@ void context_update_callback(getdns_context *context,
 			     void *userArg)
 {
     int phpResult = 0;
-    zval *userArgs, *args[2], **hashData;
-    zval cbVal, funcName, retVal;
+    zval *clientArgs[2], *userArgs, **hashData;
+    zval funcName, retVal;
     char *phpCallback = NULL;
     HashTable *arrayHash;
     HashPosition hashPtr;
-
 
     /*
      * Set up PHP function arguments and call the function in PHP
@@ -1126,18 +1126,29 @@ void context_update_callback(getdns_context *context,
     zend_hash_internal_pointer_reset_ex(arrayHash, &hashPtr);
     if (zend_hash_get_current_data_ex(arrayHash, (void**) &hashData, &hashPtr) == SUCCESS) {
         phpCallback = (char *) Z_STRVAL_PP(hashData);
-        ZVAL_STRING(&funcName, phpCallback, 0);
-        args[0] = &cbVal;
-        ZVAL_LONG(args[0], (long) changedValue);
-        args[1] = userArgs;
-        phpResult = call_user_function(EG(function_table),
-                           NULL, &funcName, &retVal, 2,
-			   args TSRMLS_CC);
-        if (phpResult == FAILURE) {
-            php_error_docref(NULL TSRMLS_CC,
-	        E_ERROR, "Callback failed!");
-        }
     }
+    else {
+        php_error_docref(NULL TSRMLS_DC, E_WARNING, "Invalid callback parameters!");
+	return;
+    }
+
+    /*
+     * Create zvals for parameters.
+     * No need for userArgs since they're just pass-through here.
+     */
+    ZVAL_STRING(&funcName, phpCallback, 1);
+    MAKE_STD_ZVAL(clientArgs[0]);
+    ZVAL_LONG(clientArgs[0], (long) changedValue);
+    clientArgs[1] = userArgs;
+
+    phpResult = call_user_function(EG(function_table), NULL,
+                   &funcName, &retVal, 2, clientArgs TSRMLS_DC);
+    if (phpResult == FAILURE) {
+        php_error_docref(NULL TSRMLS_DC, E_WARNING, "Callback failed!");
+    }
+
+    zval_dtor(&funcName);
+    zval_dtor(clientArgs[0]);
 }
 
 /**
@@ -1146,14 +1157,17 @@ void context_update_callback(getdns_context *context,
 void async_callback(getdns_context *context,
 		    getdns_callback_type_t callbackType,
 		    getdns_dict *response,
-		    void *userArg, getdns_transaction_t transID)
+		    void *userArg,
+		    getdns_transaction_t transID)
 {
     int phpResult = 0;
-    zval *userArgs, *args[3], **hashData;
-    zval cbType, dictVal, funcName, retVal;
+    zval *clientArgs[4], *userArgs, **hashData;
+    zval funcName, retVal;
     char *phpCallback = NULL;
     HashTable *arrayHash;
     HashPosition hashPtr;
+    size_t transIDSize = sizeof(getdns_transaction_t) * 2;
+    char *transIDStr = NULL;
 
     /*
      * Set up PHP function arguments and call the function in PHP
@@ -1168,19 +1182,42 @@ void async_callback(getdns_context *context,
     zend_hash_internal_pointer_reset_ex(arrayHash, &hashPtr);
     if (zend_hash_get_current_data_ex(arrayHash, (void**) &hashData, &hashPtr) == SUCCESS) {
         phpCallback = (char *) Z_STRVAL_PP(hashData);
-        ZVAL_STRING(&funcName, phpCallback, 0);
-        args[0] = &dictVal;
-        ZVAL_LONG(args[0], (long) response);
-        args[1] = &cbType;
-        ZVAL_LONG(args[1], (long) callbackType);
-        args[2] = userArgs;
+    }
+    else {
+        php_error_docref(NULL TSRMLS_DC, E_WARNING, "Invalid callback parameters!");
+	return;
+    }
+
+    /*
+     * Create zvals for parameters.
+     * No need for userArgs since they're just pass-through here.
+     */
+    ZVAL_STRING(&funcName, phpCallback, 1);
+    MAKE_STD_ZVAL(clientArgs[0]);
+    ZVAL_LONG(clientArgs[0], (long) response);
+    MAKE_STD_ZVAL(clientArgs[1]);
+    ZVAL_LONG(clientArgs[1], callbackType);
+    clientArgs[2] = userArgs;
+    MAKE_STD_ZVAL(clientArgs[3]);
+    transIDStr = (char *) malloc(transIDSize + 1);
+    if (transIDStr) {
+        snprintf(transIDStr, transIDSize + 1, "%016llX", (unsigned long long) transID);
+        ZVAL_STRING(clientArgs[3], transIDStr, 1);
+        free(transIDStr);
         phpResult = call_user_function(EG(function_table), NULL,
-	                   &funcName, &retVal, 3, args TSRMLS_CC);
+                   &funcName, &retVal, 4, clientArgs TSRMLS_DC);
         if (phpResult == FAILURE) {
-            php_error_docref(NULL TSRMLS_CC,
-       	        E_ERROR, "Callback failed!");
+            php_error_docref(NULL TSRMLS_DC, E_WARNING, "Callback failed!");
         }
     }
+    else {
+        php_error_docref(NULL TSRMLS_DC, E_WARNING, "Callback failed; memory error!");
+    }
+
+    zval_dtor(&funcName);
+    zval_dtor(clientArgs[0]);
+    zval_dtor(clientArgs[1]);
+    zval_dtor(clientArgs[3]);
 }
 
 /**
@@ -1197,6 +1234,8 @@ PHP_FUNCTION(php_getdns_address)
     getdns_dict *extensions = NULL;
     void *userArg = NULL;
     getdns_transaction_t trans = 0, *transPtr = NULL;
+    char *endPtr = NULL, *transIDStr = NULL, *transStr = NULL;
+    size_t transIDSize = sizeof(getdns_transaction_t) * 2;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
@@ -1212,23 +1251,38 @@ PHP_FUNCTION(php_getdns_address)
     else {
         RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
     }
-    if (Z_TYPE_P(phpTrans) == IS_DOUBLE) {
-        trans = (getdns_transaction_t) Z_LVAL_P(phpTrans);
-    }   
-    else {
-        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    switch (Z_TYPE_P(phpTrans)) {
+        case IS_NULL:
+	    transPtr = NULL;
+	    break;
+	case IS_STRING:
+	    transStr = Z_STRVAL_P(phpTrans);
+	    endPtr = NULL;
+
+	    trans = (uint64_t) strtoull(transStr, &endPtr, 16);
+            transPtr = &trans;
+	    break;
+        default:
+	    RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
     }
 
     /* Set up parameters and call the function. */
     context = (getdns_context *) phpContext;
     extensions = (getdns_dict *) phpExtensions;
-    transPtr = (trans == 0) ? NULL : &trans;
     result = getdns_address(context, name, extensions,
                             userArg, transPtr,
 			    async_callback);
 
     /* Return the transaction identifier and the result. */
-    ZVAL_DOUBLE(phpTrans, (uint64_t) trans);
+    if (transPtr) {
+        convert_to_null(phpTrans);
+        transIDStr = (char *) malloc(transIDSize + 1);
+        if (transIDStr) {
+            snprintf(transIDStr, transIDSize + 1, "%016llX", (unsigned long long) trans);
+            ZVAL_STRING(phpTrans, transIDStr, 1);
+            free(transIDStr);
+        }
+    }
     RETURN_LONG((long) result);
 }
 
@@ -1270,19 +1324,32 @@ PHP_FUNCTION(php_getdns_cancel_callback)
 {
     getdns_return_t result = 0;
     struct getdns_context *context = NULL;
-    long phpContext = 0, phpTransID = 0;
+    long phpContext = 0;
+    zval *phpTransID = NULL;
     getdns_transaction_t transID = 0;
+    char *transIDStr = NULL;
+    size_t transIDSize = sizeof(getdns_transaction_t) * 2;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
-	(ZEND_NUM_ARGS()TSRMLS_CC, "ld", &phpContext,
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpContext,
 	 &phpTransID) == FAILURE) {
 	RETURN_NULL();
     }
 
+    /* Validate arguments. */
+    if (Z_TYPE_P(phpTransID) == IS_STRING) {
+	char *transStr = Z_STRVAL_P(phpTransID);
+	char *endPtr = NULL;
+
+	transID = (uint64_t) strtoull(transStr, &endPtr, 16);
+    }   
+    else {
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    }
+
     /* Set up parameters and call the function. */
     context = (getdns_context *) phpContext;
-    transID = (getdns_transaction_t) phpTransID;
     result = getdns_cancel_callback(context, transID);
 
     /* Return the result. */
@@ -1314,7 +1381,7 @@ PHP_FUNCTION(php_getdns_context_create)
 
     /* Create an event base for async functions. */
     if (result == GETDNS_RETURN_GOOD) {
-        struct event_base *eventBase = (struct event_base *) event_base_new();
+        struct event_base *eventBase = (struct event_base *) (intptr_t) event_base_new();
         if (eventBase == NULL) {
 	    result = GETDNS_RETURN_GENERIC_ERROR;
 	    ZVAL_LONG(phpOut, 0);
@@ -1718,22 +1785,27 @@ PHP_FUNCTION(php_getdns_context_set_namespaces)
     }
 
     value = malloc(count * sizeof(getdns_namespace_t));
-    valPtr = value;
-    for (zend_hash_internal_pointer_reset_ex(arrayHash, &hashPtr);
-         zend_hash_get_current_data_ex(arrayHash, (void**) &arrayData, &hashPtr) == SUCCESS;
-         zend_hash_move_forward_ex(arrayHash, &hashPtr)) {
-        if (Z_TYPE_PP(arrayData) == IS_LONG) {
-	    *valPtr = (getdns_namespace_t) Z_LVAL_PP(arrayData);
-	    *valPtr++;
-	}
-	else {
-	    free(value);
-	    RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
-	}
-    }
+    if (value) {
+        valPtr = value;
+        for (zend_hash_internal_pointer_reset_ex(arrayHash, &hashPtr);
+             zend_hash_get_current_data_ex(arrayHash, (void**) &arrayData, &hashPtr) == SUCCESS;
+             zend_hash_move_forward_ex(arrayHash, &hashPtr)) {
+            if (Z_TYPE_PP(arrayData) == IS_LONG) {
+	        *valPtr = (getdns_namespace_t) Z_LVAL_PP(arrayData);
+	        *valPtr++;
+	    }
+	    else {
+	        free(value);
+	        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+	    }
+        }
 
-    result = getdns_context_set_namespaces(context, count, value);
-    free(value);
+        result = getdns_context_set_namespaces(context, count, value);
+        free(value);
+    }
+    else {
+        result = GETDNS_RETURN_MEMORY_ERROR;
+    }
 
     /* Return the result. */
     RETURN_LONG((long) result);
@@ -1797,20 +1869,30 @@ PHP_FUNCTION(php_getdns_context_set_suffix)
 PHP_FUNCTION(php_getdns_context_set_timeout)
 {
     long phpPtr = 0;
-    double phpValue = 0;
+    zval *phpValue = 0;
     getdns_context *context = NULL;
     getdns_return_t result;
     uint64_t value = 0;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
-	(ZEND_NUM_ARGS()TSRMLS_CC, "ld", &phpPtr, &phpValue) == FAILURE) {
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpPtr, &phpValue) == FAILURE) {
 	RETURN_NULL();
+    }
+
+    /* Validate parameters. */
+    if (Z_TYPE_P(phpValue) == IS_STRING) {
+    	char *valStr = Z_STRVAL_P(phpValue);
+	char *endPtr = NULL;
+
+	value = (uint64_t) strtoull(valStr, &endPtr, 16);
+    }   
+    else {
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
     }
 
     /* Convert parameters and call the function. */
     context = (getdns_context *) phpPtr;
-    value = (uint64_t) phpValue;
     result = getdns_context_set_timeout(context, value);
 
     /* Return the result. */
@@ -1861,8 +1943,13 @@ PHP_FUNCTION(php_getdns_convert_alabel_to_ulabel)
     uLabel = getdns_convert_alabel_to_ulabel(phpStr);
 
     /* Return the string value. Duplicate the string for PHP and free the local copy. */
-    RETVAL_STRING(uLabel, 1);
-    free(uLabel);
+    if (uLabel) {
+        RETVAL_STRING(uLabel, 1);
+        free(uLabel);
+    }
+    else {
+        RETURN_NULL();
+    }
 }
 
 /**
@@ -1886,12 +1973,15 @@ PHP_FUNCTION(php_getdns_convert_dns_name_to_fqdn)
     /* Convert parameters and call the function. */
     dnsName = (getdns_bindata *) phpPtr;
     result = getdns_convert_dns_name_to_fqdn(dnsName, &fqdn);
-    fqdnLen = strlen(fqdn);
+    convert_to_null(phpOut);
+    if (fqdn) {
+        fqdnLen = strlen(fqdn);
 
-    /* Store the output value and return the result. */
-    convert_to_string(phpOut);
-    Z_STRVAL_P(phpOut) = estrdup(fqdn);
-    Z_STRLEN_P(phpOut) = fqdnLen;
+        /* Store the output value and return the result. */
+        convert_to_string(phpOut);
+        Z_STRVAL_P(phpOut) = estrdup(fqdn);
+        Z_STRLEN_P(phpOut) = fqdnLen;
+    }
     RETURN_LONG((long) result);
 }
 
@@ -1940,8 +2030,13 @@ PHP_FUNCTION(php_getdns_convert_ulabel_to_alabel)
     aLabel = getdns_convert_ulabel_to_alabel(phpStr);
 
     /* Return the string value. Duplicate the string for PHP and free the local copy. */
-    RETVAL_STRING(aLabel, 1);
-    free(aLabel);
+    if (aLabel) {
+        RETVAL_STRING(aLabel, 1);
+        free(aLabel);
+    }
+    else {
+        RETURN_NULL();
+    }
 }
 
 /**
@@ -2363,7 +2458,9 @@ PHP_FUNCTION(php_getdns_general)
     uint16_t requestType = 0;
     getdns_dict *extensions = NULL;
     void *userArg = NULL;
-    getdns_transaction_t trans = 0, *transPtr = NULL;
+    getdns_transaction_t trans = 0, *transPtr;
+    char *endPtr = NULL, *transIDStr = NULL, *transStr = NULL;
+    size_t transIDSize = sizeof(getdns_transaction_t) * 2;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
@@ -2379,24 +2476,39 @@ PHP_FUNCTION(php_getdns_general)
     else {
         RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
     }
-    if (Z_TYPE_P(phpTrans) == IS_DOUBLE) {
-        trans = (getdns_transaction_t) Z_LVAL_P(phpTrans);
-    }   
-    else {
-        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    switch (Z_TYPE_P(phpTrans)) {
+        case IS_NULL:
+    	    transPtr = NULL;
+    	    break;
+    	case IS_STRING:
+	    transStr = Z_STRVAL_P(phpTrans);
+    	    endPtr = NULL;
+
+    	    trans = (uint64_t) strtoull(transStr, &endPtr, 16);
+            transPtr = &trans;
+	    break;
+        default:
+    	    RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
     }
 
     /* Set up parameters and call the function. */
     context = (getdns_context *) phpContext;
     requestType = (uint16_t) phpReqType;
     extensions = (getdns_dict *) phpExtensions;
-    transPtr = (trans == 0) ? NULL : &trans;
     result = getdns_general(context, name, requestType,
                             extensions, userArg,
 			    transPtr, async_callback);
 
     /* Return the transaction identifier and the result. */
-    ZVAL_DOUBLE(phpTrans, (uint64_t) trans);
+    if (transPtr) {
+        convert_to_null(phpTrans);
+        transIDStr = (char *) malloc(transIDSize + 1);
+        if (transIDStr) {
+            snprintf(transIDStr, transIDSize + 1, "%016llX", (unsigned long long) trans);
+            ZVAL_STRING(phpTrans, transIDStr, 1);
+            free(transIDStr);
+        }
+    }
     RETURN_LONG((long) result);
 }
 
@@ -2446,7 +2558,9 @@ PHP_FUNCTION(php_getdns_hostname)
     getdns_dict *address = NULL, *extensions = NULL;
     zval *phpTrans = NULL, *phpUserArg = NULL;
     void *userArg = NULL;
-    getdns_transaction_t trans = 0, *transPtr = NULL;
+    getdns_transaction_t trans = 0, *transPtr;
+    char *endPtr = NULL, *transIDStr = NULL, *transStr = NULL;
+    size_t transIDSize = sizeof(getdns_transaction_t) * 2;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
@@ -2462,24 +2576,39 @@ PHP_FUNCTION(php_getdns_hostname)
     else {
         RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
     }
-    if (Z_TYPE_P(phpTrans) == IS_DOUBLE) {
-        trans = (getdns_transaction_t) Z_LVAL_P(phpTrans);
-    }   
-    else {
-        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    switch (Z_TYPE_P(phpTrans)) {
+        case IS_NULL:
+    	    transPtr = NULL;
+    	    break;
+    	case IS_STRING:
+	    transStr = Z_STRVAL_P(phpTrans);
+    	    endPtr = NULL;
+
+    	    trans = (uint64_t) strtoull(transStr, &endPtr, 16);
+            transPtr = &trans;
+	    break;
+        default:
+    	    RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
     }
 
     /* Set up parameters and call the function. */
     context = (getdns_context *) phpContext;
     address = (getdns_dict *) phpDict;
     extensions = (getdns_dict *) phpExtensions;
-    transPtr = (trans == 0) ? NULL : &trans;
     result = getdns_hostname(context, address, extensions,
                              userArg, transPtr,
 			     async_callback);
 
     /* Return the transaction identifier and the result. */
-    ZVAL_DOUBLE(phpTrans, (uint64_t) trans);
+    if (transPtr) {
+        convert_to_null(phpTrans);
+        transIDStr = (char *) malloc(transIDSize + 1);
+        if (transIDStr) {
+            snprintf(transIDStr, transIDSize + 1, "%016llX", (unsigned long long) trans);
+            ZVAL_STRING(phpTrans, transIDStr, 1);
+            free(transIDStr);
+        }
+    }
     RETURN_LONG((long) result);
 }
 
@@ -2671,7 +2800,7 @@ PHP_FUNCTION(php_getdns_list_get_int)
     size_t index = 0;
     getdns_return_t result = 0;
     getdns_list *list = NULL;
-    uint32_t answer = NULL;
+    uint32_t answer = 0;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
@@ -2919,7 +3048,9 @@ PHP_FUNCTION(php_getdns_service)
     zval *phpTrans = NULL, *phpUserArg = NULL;
     getdns_dict *extensions = NULL;
     void *userArg = NULL;
-    getdns_transaction_t trans = 0, *transPtr = NULL;
+    getdns_transaction_t trans = 0, *transPtr;
+    char *endPtr = NULL, *transIDStr = NULL, *transStr = NULL;
+    size_t transIDSize = sizeof(getdns_transaction_t) * 2;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters
@@ -2935,23 +3066,38 @@ PHP_FUNCTION(php_getdns_service)
     else {
         RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
     }
-    if (Z_TYPE_P(phpTrans) == IS_DOUBLE) {
-        trans = (getdns_transaction_t) Z_LVAL_P(phpTrans);
-    }   
-    else {
-        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    switch (Z_TYPE_P(phpTrans)) {
+        case IS_NULL:
+    	    transPtr = NULL;
+    	    break;
+    	case IS_STRING:
+	    transStr = Z_STRVAL_P(phpTrans);
+    	    endPtr = NULL;
+
+    	    trans = (uint64_t) strtoull(transStr, &endPtr, 16);
+            transPtr = &trans;
+	    break;
+        default:
+    	    RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
     }
 
     /* Set up parameters and call the function. */
     context = (getdns_context *) phpContext;
     extensions = (getdns_dict *) phpExtensions;
-    transPtr = (trans == 0) ? NULL : &trans;
     result = getdns_service(context, name, extensions,
                             userArg, transPtr,
 			    async_callback);
 
     /* Return the transaction identifier and the result. */
-    ZVAL_DOUBLE(phpTrans, (uint64_t) trans);
+    if (transPtr) {
+        convert_to_null(phpTrans);
+        transIDStr = (char *) malloc(transIDSize + 1);
+        if (transIDStr) {
+            snprintf(transIDStr, transIDSize + 1, "%016llX", (unsigned long long) trans);
+            ZVAL_STRING(phpTrans, transIDStr, 1);
+            free(transIDStr);
+        }
+    }
     RETURN_LONG((long) result);
 }
 
@@ -3467,6 +3613,8 @@ PHP_FUNCTION(php_getdns_context_get_timeout)
     getdns_context *context = NULL;
     uint64_t value;
     getdns_return_t result;
+    char *timeoutStr = NULL;
+    size_t timeoutSize = sizeof(uint64_t) * 2;
 
     /* Retrieve parameters. */
     if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpContext, &phpOut)
@@ -3480,7 +3628,12 @@ PHP_FUNCTION(php_getdns_context_get_timeout)
 
     /* Store the response value and return the result. */
     convert_to_null(phpOut);
-    ZVAL_DOUBLE(phpOut, value);
+    timeoutStr = (char *) malloc(timeoutSize + 1);
+    if (timeoutStr) {
+        snprintf(timeoutStr, timeoutSize + 1, "%016llX", (unsigned long long) value);
+        ZVAL_STRING(phpOut, timeoutStr, 1);
+        free(timeoutStr);
+    }
     RETURN_LONG((long) result);
 }
 
@@ -3674,12 +3827,18 @@ PHP_FUNCTION(php_getdns_dict_util_get_string)
     /* Convert parameters and call the function. */
     dict = (getdns_dict *) phpDict;
     result = getdns_dict_util_get_string(dict, name, &value);
-    vLen = strlen(value);
 
-    /* Store the output value and return the result. */
-    convert_to_string(phpOut);
-    Z_STRVAL_P(phpOut) = estrdup(value);
-    Z_STRLEN_P(phpOut) = vLen;
+    if (value) {
+        vLen = strlen(value);
+
+        /* Store the output value and return the result. */
+        convert_to_string(phpOut);
+        Z_STRVAL_P(phpOut) = estrdup(value);
+        Z_STRLEN_P(phpOut) = vLen;
+    }
+    else {
+        convert_to_null(phpOut);
+    }
     RETURN_LONG((long) result);
 }
 

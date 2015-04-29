@@ -39,6 +39,8 @@
   &reftitle.returnvalues;
   <para>
    This function returns a string representing an IDN in U-label format.
+   NULL is returned if any conversion or memory allocation errors are
+   encountered.
   </para>
  </refsect1>
 

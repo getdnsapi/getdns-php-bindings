@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-context-get-timeout" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_context_get_timeout</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.4.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_get_timeout</span> &mdash; <span class="dc-title">Get the timeout value for DNS queries.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_get_timeout</span> &mdash; <span class="dc-title">Get the timeout value for DNS queries.</span></p>
 
  </div>
 
@@ -22,7 +22,7 @@
   <div class="methodsynopsis dc-description">
    <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_get_timeout</strong></span>
     ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
-   , <span class="methodparam"><span class="type">double</span> <code class="parameter reference">&$value</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter reference">&$value</code></span>
    )</div>
 
   <p class="para rdfs-comment">
@@ -56,8 +56,16 @@
 
      <p class="para">
       The number of milliseconds that the getdns library will wait for requests to
-      return. The default is not specified. Note that this argument is passed by
-      reference and any existing value will be overwritten.
+      return. The default is not specified. The value returned will be a 16-character
+      hexadecimal string representing the timeout value. Note that this argument is
+      passed by reference and any existing value will be overwritten.
+     </p>
+     <p class="para">
+      The getdns library uses an unsigned 64-bit integer to represent the timeout
+      value. PHP does not have native support for unsigned 64-bit integers, so
+      a character string representation of the value is used to pass the value
+      between PHP user space and getdns. String values are padded with leading
+      zero (0) characters.
      </p>
     </dd>
 
