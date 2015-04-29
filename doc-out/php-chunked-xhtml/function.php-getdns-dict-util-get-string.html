@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-dict-util-get-string" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_dict_util_get_string</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.4.0)</p><p class="refpurpose"><span class="refname">php_getdns_dict_util_get_string</span> &mdash; <span class="dc-title">Get a bindata string value from a dictionary.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">php_getdns_dict_util_get_string</span> &mdash; <span class="dc-title">Get a bindata string value from a dictionary.</span></p>
 
  </div>
 
@@ -70,6 +70,7 @@
      <p class="para">
       The character string value of the bindata associated with the given name.
       Note that this argument is passed by reference and any existing value will be overwritten.
+      NULL is returned if any conversion or memory allocation errors are encountered.
      </p>
     </dd>
 

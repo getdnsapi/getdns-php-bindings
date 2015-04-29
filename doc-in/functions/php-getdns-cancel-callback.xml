@@ -12,7 +12,7 @@
   <methodsynopsis>
    <type>int</type><methodname>php_getdns_cancel_callback</methodname>
    <methodparam><type>int</type><parameter>context</parameter></methodparam>
-   <methodparam><type>double</type><parameter>transID</parameter></methodparam>
+   <methodparam><type>string</type><parameter>transID</parameter></methodparam>
   </methodsynopsis>
   <para>
    This function causes the getdns library to call the callback with a callbackType
@@ -42,6 +42,9 @@
     <listitem>
      <para>
       The transaction identifier associated with the callback to be cancelled.
+      The identifier must be represented as a 16-character string value in
+      hexadecimal format representing an unsigned 64-bit integer that was
+      returned from one of the asynchronous query functions.
      </para>
     </listitem>
    </varlistentry>

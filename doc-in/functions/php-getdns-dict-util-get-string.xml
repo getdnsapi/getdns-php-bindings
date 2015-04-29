@@ -46,6 +46,7 @@
      <para>
       The character string value of the bindata associated with the given name.
       Note that this argument is passed by reference and any existing value will be overwritten.
+      NULL is returned if any conversion or memory allocation errors are encountered.
      </para>
     </listitem>
    </varlistentry>

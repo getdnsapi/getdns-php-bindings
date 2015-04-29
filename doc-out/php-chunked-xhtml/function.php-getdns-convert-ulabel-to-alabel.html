@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-convert-ulabel-to-alabel" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_convert_ulabel_to_alabel</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.4.0)</p><p class="refpurpose"><span class="refname">php_getdns_convert_ulabel_to_alabel</span> &mdash; <span class="dc-title">Convert an Internationalized Domain Name from U-label format to A-label format.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">php_getdns_convert_ulabel_to_alabel</span> &mdash; <span class="dc-title">Convert an Internationalized Domain Name from U-label format to A-label format.</span></p>
 
  </div>
 
@@ -58,6 +58,8 @@
   <h3 class="title">Return Values</h3>
   <p class="para">
    This function returns a string representing an IDN in A-label format.
+   NULL is returned if any conversion or memory allocation errors are
+   encountered.
   </p>
  </div>
 

@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-cancel-callback" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_cancel_callback</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.4.0)</p><p class="refpurpose"><span class="refname">php_getdns_cancel_callback</span> &mdash; <span class="dc-title">Cancel an existing asynchronous transaction.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">php_getdns_cancel_callback</span> &mdash; <span class="dc-title">Cancel an existing asynchronous transaction.</span></p>
 
  </div>
 
@@ -22,7 +22,7 @@
   <div class="methodsynopsis dc-description">
    <span class="type">int</span> <span class="methodname"><strong>php_getdns_cancel_callback</strong></span>
     ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
-   , <span class="methodparam"><span class="type">double</span> <code class="parameter">$transID</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$transID</code></span>
    )</div>
 
   <p class="para rdfs-comment">
@@ -62,6 +62,9 @@
 
      <p class="para">
       The transaction identifier associated with the callback to be cancelled.
+      The identifier must be represented as a 16-character string value in
+      hexadecimal format representing an unsigned 64-bit integer that was
+      returned from one of the asynchronous query functions.
      </p>
     </dd>
 

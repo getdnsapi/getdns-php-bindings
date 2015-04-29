@@ -12,7 +12,7 @@
   <methodsynopsis>
    <type>int</type><methodname>php_getdns_context_set_timeout</methodname>
    <methodparam><type>int</type><parameter>context</parameter></methodparam>
-   <methodparam><type>double</type><parameter>value</parameter></methodparam>
+   <methodparam><type>string</type><parameter>value</parameter></methodparam>
   </methodsynopsis>
   <para>
    This function can be used to set the number of milliseconds for the getdns library
@@ -37,6 +37,14 @@
      <para>
       The number of milliseconds for the getdns library to wait for requests to return.
       The default is not specified.
+     </para>
+     <para>
+      The getdns library uses an unsigned 64-bit integer to represent the timeout value.
+      PHP does not have native support for unsigned 64-bit integers, so a character
+      string representation of the value in hexadecimal format is used to pass the
+      value between PHP user space and getdns. For example, "2710" is used to
+      represent 10,000 milliseconds. The character string must contain no more than
+      16 characters. Padding with leading zeros (0) is acceptable.
      </para>
     </listitem>
    </varlistentry>
