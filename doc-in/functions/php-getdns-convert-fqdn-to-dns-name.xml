@@ -12,7 +12,7 @@
   <methodsynopsis>
    <type>int</type><methodname>php_getdns_convert_fqdn_to_dns_name</methodname>
    <methodparam><type>string</type><parameter>string</parameter></methodparam>
-   <methodparam><type>int</type><parameter role="reference">bindata</parameter></methodparam>
+   <methodparam><type>string</type><parameter role="reference">bindata</parameter></methodparam>
   </methodsynopsis>
   <para>
    This function converts a fully-qualified domain name (FQDN) in presentation format
@@ -42,8 +42,10 @@
     <term><parameter>bindata</parameter></term>
     <listitem>
      <para>
-      A reference to a bindata value that will contain a FQDN in DNS format. Note
-      that this argument is passed by reference and any existing value will be
+      The bindata value to be returned that will contain a FQDN in DNS
+      format. The character string can be converted into an associative
+      array of elements using the PHP unpack() function. Note that this
+      argument is passed by reference and any existing value will be
       overwritten.
      </para>
     </listitem>

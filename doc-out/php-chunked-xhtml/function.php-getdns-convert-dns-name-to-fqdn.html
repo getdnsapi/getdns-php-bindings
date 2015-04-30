@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-convert-dns-name-to-fqdn" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_convert_dns_name_to_fqdn</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">php_getdns_convert_dns_name_to_fqdn</span> &mdash; <span class="dc-title">Convert a domain name in DNS format to presentation format.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.6.0)</p><p class="refpurpose"><span class="refname">php_getdns_convert_dns_name_to_fqdn</span> &mdash; <span class="dc-title">Convert a domain name in DNS format to presentation format.</span></p>
 
  </div>
 
@@ -21,7 +21,7 @@
   <h3 class="title">Description</h3>
   <div class="methodsynopsis dc-description">
    <span class="type">int</span> <span class="methodname"><strong>php_getdns_convert_dns_name_to_fqdn</strong></span>
-    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$bindata</code></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$bindata</code></span>
    , <span class="methodparam"><span class="type">string</span> <code class="parameter reference">&$string</code></span>
    )</div>
 
@@ -51,6 +51,7 @@
 
      <p class="para">
       A bindata value that contains a FQDN in DNS format.
+      The PHP pack() function can be used to create a string of binary data.
      </p>
     </dd>
 

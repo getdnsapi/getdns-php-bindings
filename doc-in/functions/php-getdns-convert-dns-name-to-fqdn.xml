@@ -11,7 +11,7 @@
   &reftitle.description;
   <methodsynopsis>
    <type>int</type><methodname>php_getdns_convert_dns_name_to_fqdn</methodname>
-   <methodparam><type>int</type><parameter>bindata</parameter></methodparam>
+   <methodparam><type>string</type><parameter>bindata</parameter></methodparam>
    <methodparam><type>string</type><parameter role="reference">string</parameter></methodparam>
   </methodsynopsis>
   <para>
@@ -35,6 +35,7 @@
     <listitem>
      <para>
       A bindata value that contains a FQDN in DNS format.
+      The PHP pack() function can be used to create a string of binary data.
      </para>
     </listitem>
    </varlistentry>

@@ -13,7 +13,7 @@
 </div><hr /><div id="function.php-getdns-convert-fqdn-to-dns-name" class="refentry">
  <div class="refnamediv">
   <h1 class="refname">php_getdns_convert_fqdn_to_dns_name</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.5.0)</p><p class="refpurpose"><span class="refname">php_getdns_convert_fqdn_to_dns_name</span> &mdash; <span class="dc-title">Convert a domain name in presentation format to DNS format.</span></p>
+  <p class="verinfo">(PECL getdns &gt;= 0.6.0)</p><p class="refpurpose"><span class="refname">php_getdns_convert_fqdn_to_dns_name</span> &mdash; <span class="dc-title">Convert a domain name in presentation format to DNS format.</span></p>
 
  </div>
 
@@ -22,7 +22,7 @@
   <div class="methodsynopsis dc-description">
    <span class="type">int</span> <span class="methodname"><strong>php_getdns_convert_fqdn_to_dns_name</strong></span>
     ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$string</code></span>
-   , <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$bindata</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter reference">&$bindata</code></span>
    )</div>
 
   <p class="para rdfs-comment">
@@ -62,8 +62,10 @@
     <dd>
 
      <p class="para">
-      A reference to a bindata value that will contain a FQDN in DNS format. Note
-      that this argument is passed by reference and any existing value will be
+      The bindata value to be returned that will contain a FQDN in DNS
+      format. The character string can be converted into an associative
+      array of elements using the PHP unpack() function. Note that this
+      argument is passed by reference and any existing value will be
       overwritten.
      </p>
     </dd>
