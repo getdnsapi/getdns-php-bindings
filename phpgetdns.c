@@ -1957,22 +1957,23 @@ PHP_FUNCTION(php_getdns_convert_alabel_to_ulabel)
  */
 PHP_FUNCTION(php_getdns_convert_dns_name_to_fqdn)
 {
-    long phpPtr = 0;
+    char *phpPtr = NULL, *fqdn = NULL;
     zval *phpOut = NULL;
-    char *fqdn = NULL;
-    int fqdnLen = 0;
-    getdns_bindata *dnsName = NULL;
+    int phpPtrLen = 0, fqdnLen = 0;
+    getdns_bindata dnsName = {0, NULL};
     getdns_return_t result = 0;
 
     /* Retrieve parameters. */
-    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpPtr, &phpOut) ==
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "sz",
+            &phpPtr, &phpPtrLen, &phpOut) ==
 	FAILURE) {
 	RETURN_NULL();
     }
 
     /* Convert parameters and call the function. */
-    dnsName = (getdns_bindata *) phpPtr;
-    result = getdns_convert_dns_name_to_fqdn(dnsName, &fqdn);
+    dnsName.size = phpPtrLen;
+    dnsName.data = phpPtr;
+    result = getdns_convert_dns_name_to_fqdn(&dnsName, &fqdn);
     convert_to_null(phpOut);
     if (fqdn) {
         fqdnLen = strlen(fqdn);
@@ -2007,7 +2008,9 @@ PHP_FUNCTION(php_getdns_convert_fqdn_to_dns_name)
 
     /* Store the output value and return the result. */
     convert_to_null(phpOut);
-    ZVAL_LONG(phpOut, (long) dnsName);
+    if (dnsName->data) {
+        ZVAL_STRINGL(phpOut, (char *) dnsName->data, dnsName->size, 1);
+    }
     RETURN_LONG((long) result);
 }
 
@@ -2125,7 +2128,9 @@ PHP_FUNCTION(php_getdns_dict_get_bindata)
 
     /* Store the output value and return the result. */
     convert_to_null(phpBindata);
-    ZVAL_STRINGL(phpBindata, (char *) answer->data, answer->size, 1);
+    if (answer->data) {
+        ZVAL_STRINGL(phpBindata, (char *) answer->data, answer->size, 1);
+    }
     RETURN_LONG((long) result);
 }
 
@@ -2728,7 +2733,9 @@ PHP_FUNCTION(php_getdns_list_get_bindata)
 
     /* Store the response value and return the result. */
     convert_to_null(phpBindata);
-    ZVAL_STRINGL(phpBindata, (char *) answer->data, answer->size, 1);
+    if (answer->data) {
+        ZVAL_STRINGL(phpBindata, (char *) answer->data, answer->size, 1);
+    }
     RETURN_LONG((long) result);
 }
 
