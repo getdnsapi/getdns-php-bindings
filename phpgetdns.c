@@ -114,6 +114,10 @@ ZEND_BEGIN_ARG_INFO_EX(convert_string_bindata_args, 0, 0, 2)
     ZEND_ARG_INFO(1, bindata)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(date_time_args, 0, 0, 1)
+    ZEND_ARG_INFO(1, dateTime)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(dict_get_names_args, 0, 0, 2)
     ZEND_ARG_INFO(0, dict)
     ZEND_ARG_INFO(1, names)
@@ -322,6 +326,7 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_pretty_print_list, pretty_print_value_args)
     PHP_FE(php_getdns_print_json_dict, pretty_print_json_value_args)
     PHP_FE(php_getdns_print_json_list, pretty_print_json_value_args)
+    PHP_FE(php_getdns_root_trust_anchor, date_time_args)
     PHP_FE(php_getdns_service, address_svc_args)
     PHP_FE(php_getdns_service_sync, address_svc_sync_args)
     PHP_FE(php_getdns_validate_dnssec, validate_dnssec_args)
@@ -2128,8 +2133,10 @@ PHP_FUNCTION(php_getdns_dict_get_bindata)
 
     /* Store the output value and return the result. */
     convert_to_null(phpBindata);
-    if (answer->data) {
-        ZVAL_STRINGL(phpBindata, (char *) answer->data, answer->size, 1);
+    if (answer) {
+        if (answer->data) {
+            ZVAL_STRINGL(phpBindata, (char *) answer->data, answer->size, 1);
+        }
     }
     RETURN_LONG((long) result);
 }
@@ -2733,8 +2740,10 @@ PHP_FUNCTION(php_getdns_list_get_bindata)
 
     /* Store the response value and return the result. */
     convert_to_null(phpBindata);
-    if (answer->data) {
-        ZVAL_STRINGL(phpBindata, (char *) answer->data, answer->size, 1);
+    if (answer) {
+        if (answer->data) {
+            ZVAL_STRINGL(phpBindata, (char *) answer->data, answer->size, 1);
+	}
     }
     RETURN_LONG((long) result);
 }
@@ -2748,7 +2757,7 @@ PHP_FUNCTION(php_getdns_list_get_data_type)
     zval *phpOut = NULL;
     size_t index = 0;
     const getdns_list *list = NULL;
-    getdns_data_type *dataType = NULL;
+    getdns_data_type dataType = 0;
     getdns_return_t result = 0;
 
     /* Retrieve parameters. */
@@ -2760,7 +2769,7 @@ PHP_FUNCTION(php_getdns_list_get_data_type)
     /* Convert parameters and call the function. */
     list = (const getdns_list *) phpPtr;
     index = (size_t) phpIndex;
-    result = getdns_list_get_data_type(list, index, dataType);
+    result = getdns_list_get_data_type(list, index, &dataType);
 
     /* Store the response value and return the result. */
     convert_to_null(phpOut);
@@ -3000,22 +3009,28 @@ PHP_FUNCTION(php_getdns_list_set_list)
  */
 PHP_FUNCTION(php_getdns_root_trust_anchor)
 {
-    long phpPtr = 0;
+    zval *phpDate;
     getdns_list *list = NULL;
-    time_t anchorDate;
+    time_t anchorDate = 0;
 
     /* Retrieve parameters. */
-    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "l", &phpPtr) ==
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "z", &phpDate) ==
 	FAILURE) {
 	RETURN_NULL();
     }
 
     /* Convert parameters and call the function. */
-    anchorDate = (time_t) phpPtr;
     list = getdns_root_trust_anchor(&anchorDate);
+    convert_to_null(phpDate);
+    ZVAL_LONG(phpDate, (long) anchorDate);
 
     /* Return the address of the list. */
-    RETURN_LONG((long) list);
+    if (list) {
+        RETURN_LONG((long) list);
+    }
+    else {
+        RETURN_LONG(0);
+    }
 }
 
 /**
@@ -3918,8 +3933,13 @@ PHP_FUNCTION(php_getdns_pretty_print_list)
     ppList = getdns_pretty_print_list(list);
 
     /* Return the string value. Duplicate the string for PHP and free the local copy. */
-    RETVAL_STRING(ppList, 1);
-    free(ppList);
+    if (ppList) {
+        RETVAL_STRING(ppList, 1);
+        free(ppList);
+    }
+    else {
+	RETURN_NULL();
+    }
 }
 
 /**
