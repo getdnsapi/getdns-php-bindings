@@ -95,6 +95,7 @@
  <function name='php_getdns_pretty_print_list' from='PECL getdns &gt;= 0.6.0'/>
  <function name='php_getdns_print_json_dict' from='PECL getdns &gt;= 0.6.0'/>
  <function name='php_getdns_print_json_list' from='PECL getdns &gt;= 0.6.0'/>
+ <function name='php_getdns_root_trust_anchor' from='PECL getdns &gt;= 0.6.0'/>
  <function name='php_getdns_service' from='PECL getdns &gt;= 0.6.0'/>
  <function name='php_getdns_service_sync' from='PECL getdns &gt;= 0.6.0'/>
  <function name='php_getdns_validate_dnssec' from='PECL getdns &gt;= 0.6.0'/>

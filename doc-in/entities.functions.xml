@@ -87,6 +87,7 @@
 &reference.getdns.functions.php-getdns-pretty-print-list;
 &reference.getdns.functions.php-getdns-print-json-dict;
 &reference.getdns.functions.php-getdns-print-json-list;
+&reference.getdns.functions.php-getdns-root-trust-anchor;
 &reference.getdns.functions.php-getdns-service-sync;
 &reference.getdns.functions.php-getdns-service;
 &reference.getdns.functions.php-getdns-validate-dnssec;

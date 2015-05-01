@@ -14,9 +14,16 @@
    <methodparam><type>int</type><parameter>context</parameter></methodparam>
   </methodsynopsis>
   <para>
-   This function informs the context to process its outstanding requests. Clients
-   should call this when either a timeout has occurred or the file descriptor
+   This non-blocking function informs the context to process its outstanding requests.
+   Clients should call this when either a timeout has occurred or the file descriptor
    signals that it is ready. User callbacks are fired during this call.
+  </para>
+  <para>
+   Note that this function does not work when the getdns library is configured for
+   use as a stub resolver and the libevent extension is being used (as it is with
+   this PHP extension). This function may soon be deprecated in favor of the
+   php_getdns_context_run() function. Clients are advised to use
+   php_getdns_context_run() instead.
   </para>
  </refsect1>
 

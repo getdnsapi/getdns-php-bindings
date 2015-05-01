@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Revision$ -->
 
-<refentry xml:id="function.php-getdns-context-run" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+<refentry xml:id="function.php-getdns-root-trust-anchor" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
  <refnamediv>
-  <refname>php_getdns_context_run</refname>
-  <refpurpose>Run a context's asynchronous event loop.</refpurpose>
+  <refname>php_getdns_root_trust_anchor</refname>
+  <refpurpose>Retrieve the default list of trust anchor records.</refpurpose>
  </refnamediv>
 
  <refsect1 role="description">
   &reftitle.description;
   <methodsynopsis>
-   <type>NULL</type><methodname>php_getdns_context_run</methodname>
-   <methodparam><type>int</type><parameter>context</parameter></methodparam>
+   <type>int</type><methodname>php_getdns_root_trust_anchor</methodname>
+   <methodparam><type>int</type><parameter role="reference">anchorDate</parameter></methodparam>
   </methodsynopsis>
   <para>
-   This function blocks and runs a context's asynchronous event loop until all
-   outstanding requests have been processed. 
+   This function retrieves the default list of trust anchor records that is used
+   by the getdns library to validate DNSSEC.
   </para>
  </refsect1>
 
@@ -23,10 +23,12 @@
   &reftitle.parameters;
   <variablelist>
    <varlistentry>
-    <term><parameter>context</parameter></term>
+    <term><parameter>anchorDate</parameter></term>
     <listitem>
      <para>
-      The previously created DNS context that is to be used with this request.
+      An integer that will be set to the number of seconds since epoch that the
+      trust anchors were obtained. Note that this argument is passed by reference
+      and any existing value will be overwritten.
      </para>
     </listitem>
    </varlistentry>
@@ -36,7 +38,8 @@
  <refsect1 role="returnvalues">
   &reftitle.returnvalues;
   <para>
-   This function does not return any values.
+   This function returns an integer representing the trust anchor list.
+   Zero (0) is returned if no default trust anchor is present.
   </para>
  </refsect1>
 
