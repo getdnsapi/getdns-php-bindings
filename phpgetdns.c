@@ -2143,7 +2143,7 @@ PHP_FUNCTION(php_getdns_dict_get_data_type)
     char *phpName = NULL;
     size_t phpNameLen = 0;
     zval *phpOut = NULL;
-    getdns_data_type *dataType = NULL;
+    getdns_data_type dataType = 0;
     getdns_dict *dict = NULL;
     getdns_return_t result = 0;
 
@@ -2156,7 +2156,7 @@ PHP_FUNCTION(php_getdns_dict_get_data_type)
 
     /* Convert parameters and call the function. */
     dict = (getdns_dict *) phpPtr;
-    result = getdns_dict_get_data_type(dict, phpName, dataType);
+    result = getdns_dict_get_data_type(dict, phpName, &dataType);
 
     /* Store the output value and return the result. */
     convert_to_null(phpOut);
