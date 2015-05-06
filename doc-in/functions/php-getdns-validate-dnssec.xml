@@ -19,9 +19,17 @@
    This function can be used by an application to have the getdns library perform DNSSEC
    validation without using extensions as part of a query. The getdns library will use
    the resource records in supportRecords to construct the validation chain and the
-   DNSKEY or DS records in trustAnchors as trust anchors. The default list of trust
-   anchor records that is used by the library to validate DNSSEC can be retrieved
-   using the php_getdns_root_trust_anchor() helper function.
+   DNSKEY or DS records in trustAnchors as trust anchors.
+  </para>
+  <para>
+   Note, though, that the utility of this function is currently limited by a bug
+   in the getdns library related to the processing of responses that include
+   compressed names (such as those that include NS, MX and CNAME records).
+   This function also has the shortcoming that it cannot recognize insecure
+   delegations, so it should never be blindly used to determine the DNSSEC
+   status of answers received with the dnssec_return_validation_chain extension.
+   Real DNSSEC validation needs a more intelligent approach than this function
+   can offer with the current getdns API's prototype.
   </para>
  </refsect1>
 
@@ -32,7 +40,10 @@
     <term><parameter>toValidate</parameter></term>
     <listitem>
      <para>
-      A reference to the list that represents the resource record to be validated.
+      A reference to the list that represents the response resource records to be validated.
+      The needed list can be found by retrieving the "replies_tree" list from the response
+      dictionary, retrieving the dictionary in the first position (index value 0) from
+      that list, and then retrieving the "answer" list from that dictionary.
      </para>
     </listitem>
    </varlistentry>
@@ -41,7 +52,10 @@
     <listitem>
      <para>
       A reference to the list that represents the records used to construct the
-      validation chain.
+      validation chain. The support records can be included in the response by
+      setting the "dnssec_return_validation_chain" extension value to
+      GETDNS_EXTENSION_TRUE. The list of support records can then be retrieved
+      from the response dictionary using the "validation_chain" identifier.
      </para>
     </listitem>
    </varlistentry>
@@ -50,7 +64,9 @@
     <listitem>
      <para>
       A reference to the list that represents the trust anchor records to use
-      for validation.
+      for validation.  The default list of trust anchor records that is used
+      by the library to validate DNSSEC can be retrieved using the
+      php_getdns_root_trust_anchor() helper function.
      </para>
     </listitem>
    </varlistentry>
@@ -60,7 +76,10 @@
  <refsect1 role="returnvalues">
   &reftitle.returnvalues;
   <para>
-   This function returns an integer response code. GETDNS_DNSSEC_SECURE indicates successful completion.
+   This function returns an integer response code. GETDNS_DNSSEC_SECURE indicates confirmation of
+   DNSSEC security. GETDNS_DNSSEC_BOGUS indicates that the response was determined to be invalid.
+   GETDNS_DNSSEC_INDETERMINATE indicates that the DNSSEC state could not be determined.
+   GETDNS_DNSSEC_INSECURE indicates that the response was determined to be insecure.
   </para>
  </refsect1>
 
