@@ -4,7 +4,7 @@ getdns-php
 A PHP language binding for the getdns API, version 0.6.0.
 This implementation is licensed under the New BSD License (BSD-new).
 
-NOTE: THIS IS AN ALPHA RELEASE!
+NOTE: THIS IS A BETA RELEASE!
 
 Dependencies:
 
@@ -61,14 +61,15 @@ doc-out/php-chunked-xhtml/index.html.
 
 ## Regression Tests
 
-An incomplete suite of regression tests (written in
+A suite of regression tests (written in
 [phpt](http://qa.php.net/write-test.php) format) is included
 with the extension. Test cases can be found in the tests
 directory. All of the tests can be executing by running
 "make test" after building the extension as described
-above.
+above. The test cases are written to validate positive
+code paths that produce successful results.
 
 ## To Do
 
-* Complete testing and test case development.
+* Testing of error code paths.
 * Fix bugs as they are uncovered by testing.
