@@ -746,6 +746,46 @@
      </simpara>
     </listitem>
    </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tls-only-keep-connections-open">
+    <term>
+     <constant>GETDNS_TRANSPORT_TLS_ONLY_KEEP_CONNECTIONS_OPEN</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tls-only-keep-connections-open-text">
+    <term>
+     <constant>GETDNS_TRANSPORT_TLS_ONLY_KEEP_CONNECTIONS_OPEN_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tls-first-and-fall-back-to-tcp-keep-connections-open">
+    <term>
+     <constant>GETDNS_TRANSPORT_TLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tls-first-and-fall-back-to-tcp-keep-connections-open-text">
+    <term>
+     <constant>GETDNS_TRANSPORT_TLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
    <varlistentry xml:id="constant.getdns-append-name-always">
     <term>
      <constant>GETDNS_APPEND_NAME_ALWAYS</constant>

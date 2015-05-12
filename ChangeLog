@@ -1,3 +1,6 @@
+* 2015-05-12: Version 0.6.1
+  * Update for compatibility with getdns 0.1.8.
+
 * 2015-05-06: Version 0.6.0
   * Fixed the bindata data type for the FQDN/DNS name conversion functions.
   * Updated documentation.
