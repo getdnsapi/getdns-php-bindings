@@ -230,6 +230,16 @@ ZEND_BEGIN_ARG_INFO_EX(set_use_threads_args, 0, 0, 2)
     ZEND_ARG_INFO(0, useThreads)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(util_convert_dict_args, 0, 0, 2)
+    ZEND_ARG_INFO(0, dict)
+    ZEND_ARG_INFO(1, phpArray)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(util_convert_list_args, 0, 0, 2)
+    ZEND_ARG_INFO(0, list)
+    ZEND_ARG_INFO(1, phpArray)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(validate_dnssec_args, 0, 0, 3)
     ZEND_ARG_INFO(0, toValidate)
     ZEND_ARG_INFO(0, supportRecords)
@@ -329,6 +339,8 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_root_trust_anchor, date_time_args)
     PHP_FE(php_getdns_service, address_svc_args)
     PHP_FE(php_getdns_service_sync, address_svc_sync_args)
+    PHP_FE(php_getdns_util_convert_dict, util_convert_dict_args)
+    PHP_FE(php_getdns_util_convert_list, util_convert_list_args)
     PHP_FE(php_getdns_validate_dnssec, validate_dnssec_args)
     {NULL, NULL, NULL}
 };
@@ -4021,4 +4033,307 @@ PHP_FUNCTION(php_getdns_print_json_list)
     /* Return the string value. Duplicate the string for PHP and free the local copy. */
     RETVAL_STRING(ppList, 1);
     free(ppList);
+}
+
+/* Internal utility functions for data structure conversion. */
+
+getdns_return_t convert_list_internal();
+
+getdns_return_t
+bin_to_hex(char *bin, size_t binLen, char **hex)
+{
+    int i;
+    char hexStr[]= "0123456789ABCDEF";
+
+    /* Allocate the return buffer. */
+    *hex = malloc(binLen * 2 + 1);
+    if (!hex) {
+        return (GETDNS_RETURN_MEMORY_ERROR);
+    }
+    (*hex)[binLen * 2] = 0;
+
+    /* Copy and convert each binary byte. */
+    for (i = 0; i < binLen; i++) {
+        (*hex)[i * 2 + 0] = hexStr[(bin[i] >> 4) & 0x0F];
+	(*hex)[i * 2 + 1] = hexStr[(bin[i]) & 0x0F];
+    }
+    return(GETDNS_RETURN_GOOD);
+}
+
+/**
+ * Internal function to convert a getdns dictionary to a PHP array.
+ */
+getdns_return_t
+convert_dict_internal(const struct getdns_dict *dict, zval *retValue)
+{
+    getdns_bindata *tmpBindata = NULL;
+    getdns_data_type dataType;
+    getdns_dict *tmpDict = NULL;
+    getdns_list *list = NULL, *tmpList = NULL;
+    getdns_return_t result;
+    size_t listLength;
+    char *tmpName = NULL, *tmpStr = NULL;
+    size_t i;
+    uint32_t tmpInt;
+    zval *tmpArray = NULL;
+
+    /* Initialize the array to be returned. */
+    convert_to_null(retValue);
+    array_init(retValue);
+
+    /* Get the names from the dictionary. */
+    result = getdns_dict_get_names(dict, &list);
+    if (result != GETDNS_RETURN_GOOD) {
+        if (list) {
+	    getdns_list_destroy(list);
+	}
+	convert_to_null(retValue);
+        return (result);
+    }
+
+    /* Walk through the list of names. */
+    result = getdns_list_get_length(list, &listLength);
+    if (result != GETDNS_RETURN_GOOD) {
+	getdns_list_destroy(list);
+	convert_to_null(retValue);
+        return (result);
+    }
+
+    for (i = 0; i < listLength; i++) {
+        result = getdns_list_get_data_type(list, i, &dataType);
+	if (result != GETDNS_RETURN_GOOD) {
+	    break;
+	}
+
+	/* The list should only contain the dictionary element names. */
+	if (dataType = t_bindata) {
+	    result = getdns_list_get_bindata(list, i, &tmpBindata);
+	    if (result != GETDNS_RETURN_GOOD) {
+		break;
+	    }
+    
+            /* Each value should be a NULL-terminated string. */
+	    tmpName = (char *) tmpBindata->data;
+
+	    /* Use the name to get the type and value from the dictionary. */
+	    result = getdns_dict_get_data_type(dict, tmpName, &dataType);
+	    if (result != GETDNS_RETURN_GOOD) {
+	        break;
+	    }
+
+	    switch (dataType) {
+	        case t_int:
+		    result = getdns_dict_get_int(dict, tmpName, &tmpInt);
+		    if (result != GETDNS_RETURN_GOOD) {
+		        break;
+		    }
+		    add_assoc_long(retValue, tmpName, tmpInt);
+		    break;
+                case t_bindata:
+		    result = getdns_dict_get_bindata(dict, tmpName, &tmpBindata);
+		    if (result != GETDNS_RETURN_GOOD) {
+		        break;
+		    }
+		    tmpStr = NULL;
+		    result = bin_to_hex(tmpBindata->data, tmpBindata->size, &tmpStr);
+		    if (result != GETDNS_RETURN_GOOD) {
+		        break;
+		    }
+		    add_assoc_string(retValue, tmpName, tmpStr, 1);
+		    free(tmpStr);
+		    break;
+		case t_dict:
+		    result = getdns_dict_get_dict(dict, tmpName, &tmpDict);
+		    if (result != GETDNS_RETURN_GOOD) {
+		        break;
+		    }
+		    MAKE_STD_ZVAL(tmpArray);
+		    array_init(tmpArray);
+		    result = convert_dict_internal(tmpDict, tmpArray);
+		    if (result != GETDNS_RETURN_GOOD) {
+		        break;
+                    }
+                    add_assoc_zval(retValue, tmpName, tmpArray);
+		    break;
+		case t_list:
+		    result = getdns_dict_get_list(dict, tmpName, &tmpList);
+		    if (result != GETDNS_RETURN_GOOD) {
+		        break;
+		    }
+		    MAKE_STD_ZVAL(tmpArray);
+		    array_init(tmpArray);
+		    result = convert_list_internal(tmpList, tmpArray);
+		    if (result != GETDNS_RETURN_GOOD) {
+		        break;
+                    }
+                    add_assoc_zval(retValue, tmpName, tmpArray);
+		    break;
+		default:
+		    result = GETDNS_RETURN_GENERIC_ERROR;
+	    }
+	    if (result != GETDNS_RETURN_GOOD) {
+                break;
+            }
+	}
+	else {
+	    result = GETDNS_RETURN_GENERIC_ERROR;
+	    break;
+	}
+    }
+
+    /* Return the result. */
+    getdns_list_destroy(list);
+    if (result != GETDNS_RETURN_GOOD) {
+        convert_to_null(retValue);
+    }
+    return (result);
+}
+
+/**
+ * Internal function to convert a getdns list to a PHP array.
+ */
+getdns_return_t
+convert_list_internal(const struct getdns_list *list, zval *retValue)
+{
+    getdns_bindata *tmpBindata = NULL;
+    getdns_data_type dataType;
+    getdns_dict *tmpDict = NULL;
+    getdns_list *tmpList = NULL;
+    getdns_return_t result;
+    size_t listLength;
+    char *tmpStr = NULL;
+    size_t i;
+    uint32_t tmpInt;
+    zval *tmpArray = NULL;
+
+    /* Initialize the array to be returned. */
+    convert_to_null(retValue);
+    array_init(retValue);
+
+    /* Walk through the list of names. */
+    result = getdns_list_get_length(list, &listLength);
+    if (result != GETDNS_RETURN_GOOD) {
+	convert_to_null(retValue);
+        return (result);
+    }
+
+    for (i = 0; i < listLength; i++) {
+        result = getdns_list_get_data_type(list, i, &dataType);
+	if (result != GETDNS_RETURN_GOOD) {
+	    break;
+	}
+
+	/* The list can contain different types of data. */
+	switch (dataType) {
+	    case t_int:
+                result = getdns_list_get_int(list, i, &tmpInt);
+		if (result != GETDNS_RETURN_GOOD) {
+		    break;
+		}
+		add_index_long(retValue, i, tmpInt);
+		break;
+            case t_bindata:
+	        result = getdns_list_get_bindata(list, i, &tmpBindata);
+		if (result != GETDNS_RETURN_GOOD) {
+		    break;
+		}
+		tmpStr = NULL;
+		result = bin_to_hex(tmpBindata->data, tmpBindata->size, &tmpStr);
+		if (result != GETDNS_RETURN_GOOD) {
+		    break;
+		}
+		add_index_string(retValue, i, tmpStr, 1);
+		free(tmpStr);
+		break;
+            case t_dict:
+                result = getdns_list_get_dict(list, i, &tmpDict);
+		if (result != GETDNS_RETURN_GOOD) {
+		    break;
+		}
+		MAKE_STD_ZVAL(tmpArray);
+		array_init(tmpArray);
+		result = convert_dict_internal(tmpDict, tmpArray);
+		if (result != GETDNS_RETURN_GOOD) {
+		    break;
+                }
+                add_index_zval(retValue, i, tmpArray);
+		break;
+            case t_list:
+		result = getdns_list_get_list(list, i, &tmpList);
+		if (result != GETDNS_RETURN_GOOD) {
+		    break;
+		}
+		MAKE_STD_ZVAL(tmpArray);
+		array_init(tmpArray);
+		result = convert_list_internal(tmpList, tmpArray);
+		if (result != GETDNS_RETURN_GOOD) {
+		    break;
+                }
+                add_index_zval(retValue, i, tmpArray);
+		break;
+            default:
+                result = GETDNS_RETURN_GENERIC_ERROR;
+        }
+	if (result != GETDNS_RETURN_GOOD) {
+            break;
+        }
+    }
+
+    /* Return the result. */
+    if (result != GETDNS_RETURN_GOOD) {
+        convert_to_null(retValue);
+    }
+    return (result);
+}
+
+/* Non-API utility functions. */
+
+/**
+ * Function to convert a getdns dictionary to a PHP array.
+ */
+PHP_FUNCTION(php_getdns_util_convert_dict)
+{
+    long phpDict = 0;
+    zval *phpArray = NULL;
+    getdns_dict *dict = NULL;
+    getdns_return_t result;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpDict, &phpArray) ==
+	FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters. */
+    dict = (getdns_dict *) phpDict;
+    convert_to_null(phpArray);
+    result = convert_dict_internal(dict, phpArray);
+
+    /* Return the result. */
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to convert a getdns list to a PHP array.
+ */
+PHP_FUNCTION(php_getdns_util_convert_list)
+{
+    long phpList = 0;
+    zval *phpArray = NULL;
+    getdns_list *list = NULL;
+    getdns_return_t result;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpList, &phpArray) ==
+	FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters. */
+    list = (getdns_list *) phpList;
+    convert_to_null(phpArray);
+    result = convert_list_internal(list, phpArray);
+
+    /* Return the result. */
+    RETURN_LONG((long) result);
 }
