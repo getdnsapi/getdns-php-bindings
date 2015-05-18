@@ -5,10 +5,12 @@ PHP_ARG_ENABLE(getdns,
 if test "$PHP_GETDNS" != "no"; then
   AC_MSG_CHECKING(for libgetdns in default path)
   for i in /usr/local /usr; do
-    if test -r $i/lib/libgetdns.so; then
-      GETDNS_DIR=$i
-      AC_MSG_RESULT(found libgetdns.so in $i)
-    fi
+    for j in so dylib; do
+      if test -r $i/lib/libgetdns.$j; then
+        GETDNS_DIR=$i
+        AC_MSG_RESULT(found libgetdns.$j in $i)
+      fi
+    done
   done
 
   if test -z "$GETDNS_DIR"; then
@@ -18,10 +20,12 @@ if test "$PHP_GETDNS" != "no"; then
 
   AC_MSG_CHECKING(for libgetdns_ext_event in default path)
   for i in /usr/local /usr; do
-    if test -r $i/lib/libgetdns_ext_event.so; then
-      GETDNS_EVENT_DIR=$i
-      AC_MSG_RESULT(found libgetdns_ext_event.so in $i)
-    fi
+    for j in so dylib; do
+      if test -r $i/lib/libgetdns_ext_event.$j; then
+        GETDNS_EVENT_DIR=$i
+        AC_MSG_RESULT(found libgetdns_ext_event.$j in $i)
+      fi
+    done
   done
 
   if test -z "$GETDNS_EVENT_DIR"; then
