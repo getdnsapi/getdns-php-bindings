@@ -1,3 +1,15 @@
+* 2015-05-20: Version 0.7.0
+  * Added non-API functions to convert getdns dictionaries and lists
+    to PHP arrays. Added another function to convert PHP arrays into
+    either a dictionary or list depending on the array being indexed
+    or associative.
+  * Added tests for the three new functions (php_getdns_util_convert_array(),
+    php_getdns_util_convert_dict(), and php_getdns_util_convert_list()).
+  * Updated documentation.
+
+* 2015-05-14: Version 0.6.2
+  * Update for compatibility with getdns 0.2.0.
+
 * 2015-05-12: Version 0.6.1
   * Update for compatibility with getdns 0.1.8.
 
