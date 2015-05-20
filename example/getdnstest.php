@@ -44,11 +44,14 @@
    */
   function php_echo_addresses($dict, $callbackType, $userArg, $transID)
   {
-    // Do something appropriate with userArg.
+    // Do something appropriate with userArg and other test bits.
     if ($userArg != NULL) {
       //var_dump($userArg);
+      //var_dump($transID);
+      $dictArray = array();
+      $result = php_getdns_util_convert_dict($dict, $dictArray);
+      var_dump($result, $dictArray);
     }
-    //var_dump($transID);
 
     switch ($callbackType) {
       case GETDNS_CALLBACK_COMPLETE:
