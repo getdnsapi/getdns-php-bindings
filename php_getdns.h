@@ -57,7 +57,7 @@ ZEND_END_MODULE_GLOBALS(getdns)
 
 /* Miscellaneous definitions. */
 
-#define PHP_GETDNS_VERSION "0.6.2"
+#define PHP_GETDNS_VERSION "0.7.0"
 #define PHP_GETDNS_EXTNAME "getdns"
 
 /* PHP environment setup functions. */

@@ -90,4 +90,7 @@
 &reference.getdns.functions.php-getdns-root-trust-anchor;
 &reference.getdns.functions.php-getdns-service-sync;
 &reference.getdns.functions.php-getdns-service;
+&reference.getdns.functions.php-getdns-util-convert-array;
+&reference.getdns.functions.php-getdns-util-convert-dict;
+&reference.getdns.functions.php-getdns-util-convert-list;
 &reference.getdns.functions.php-getdns-validate-dnssec;
