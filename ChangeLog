@@ -1,3 +1,6 @@
+* 2015-05-XX: Version 0.7.2
+  * Issue 4: fixed memory leaks found by valgrind.
+
 * 2015-05-21: Version 0.7.1
   * Issue 3: fixed memory leaks in php_getdns_util_convert_array().
 
