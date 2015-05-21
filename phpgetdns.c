@@ -4107,24 +4107,26 @@ convert_array_internal_dict(HashTable *hash, long *dictAddr)
 		if (type2 == HASH_KEY_IS_STRING) {
 		    /* Found an associative array. Convert to dictionary. */
 		    long tmpDictAddr = 0;
+		    getdns_dict *tmpDict = NULL;
 
 		    result = convert_array_internal_dict(tmpArrayHash, &tmpDictAddr);
+		    tmpDict = (getdns_dict *) tmpDictAddr;
 		    if (result == GETDNS_RETURN_GOOD) {
-			getdns_dict *tmpDict = (getdns_dict *) tmpDictAddr;
-
 		        result = getdns_dict_set_dict(dict, key, tmpDict);
 		    }
+		    getdns_dict_destroy(tmpDict);
 		}
 		else {
 		    /* Found an indexed array. Convert to list. */
 		    long tmpListAddr = 0;
+		    getdns_list *tmpList = NULL;
 
 		    result = convert_array_internal_list(tmpArrayHash, &tmpListAddr);
+		    tmpList = (getdns_list *) tmpListAddr;
 		    if (result == GETDNS_RETURN_GOOD) {
-			getdns_list *tmpList = (getdns_list *) tmpListAddr;
-
 		        result = getdns_dict_set_list(dict, key, tmpList);
 		    }
+		    getdns_list_destroy(tmpList);
 		}
 		break;
 	    default:
@@ -4202,24 +4204,26 @@ convert_array_internal_list(HashTable *hash, long *listAddr)
 		if (type2 == HASH_KEY_IS_STRING) {
 		    /* Found an associative array. Convert to dictionary. */
 		    long tmpDictAddr = 0;
+		    getdns_dict *tmpDict = NULL;
 
 		    result = convert_array_internal_dict(tmpArrayHash, &tmpDictAddr);
+		    tmpDict = (getdns_dict *) tmpDictAddr;
 		    if (result == GETDNS_RETURN_GOOD) {
-			getdns_dict *tmpDict = (getdns_dict *) tmpDictAddr;
-
 		        result = getdns_list_set_dict(list, idx, tmpDict);
 		    }
+		    getdns_dict_destroy(tmpDict);
 		}
 		else {
 		    /* Found an indexed array. Convert to list. */
 		    long tmpListAddr = 0;
+		    getdns_list *tmpList = NULL;
 
 		    result = convert_array_internal_list(tmpArrayHash, &tmpListAddr);
+		    tmpList = (getdns_list *) tmpListAddr;
 		    if (result == GETDNS_RETURN_GOOD) {
-			getdns_list *tmpList = (getdns_list *) tmpListAddr;
-
 		        result = getdns_list_set_list(list, idx, tmpList);
 		    }
+		    getdns_list_destroy(tmpList);
 		}
 		break;
 	    default:
