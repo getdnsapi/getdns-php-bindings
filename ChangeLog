@@ -1,3 +1,6 @@
+* 2015-05-21: Version 0.7.1
+  * Issue 3: fixed memory leaks in php_getdns_util_convert_array().
+
 * 2015-05-20: Version 0.7.0
   * Added non-API functions to convert getdns dictionaries and lists
     to PHP arrays. Added another function to convert PHP arrays into
