@@ -28,6 +28,28 @@
  <p class="para">
   NOTE: THIS IS A BETA RELEASE! This implementation is licensed under the New BSD License (BSD-new).
  </p>
+ <p class="para">
+  Implementation notes:
+ </p>
+ <p class="para">
+  Dictionaries and lists: the getdns API and library organize information using data
+  structures called &quot;dictionaries&quot; and &quot;lists&quot;. Dictionaries are similar to associative
+  arrays in PHP. Elements are identified by a character string and can be set and
+  retrieved using the string as a reference. Lists are similar to indexed arrays.
+  Elements are identified by an integer key and can be set and retrieved using the
+  integer index as a reference. This extension uses an integer reference that
+  represents the memory address for dictionaries and lists created by the getdns
+  library. Values can be set or retrieved using functions provided by the getdns
+  library. Dictionaries and lists can also be converted to PHP arrays (and vice-versa)
+  using a set of non-API functions provided by this extension.
+ </p>
+ <p class="para">
+  Transaction identifiers: the getdns library uses 64-bit unsigned integers to
+  represent the transaction identifiers associated with asynchronous operations.
+  PHP 5.x doesn&#039;t provide native support for 64-bit unsigned integers, so this
+  extension represents transaction identifier values as 16-character hexadecimal
+  strings that represent the 64-bit identifier value.
+ </p>
  </div><hr /><div class="manualnavbar" style="text-align: center;">
  <div class="prev" style="text-align: left; float: left;"><a href="book.getdns.html">getdns</a></div>
  <div class="next" style="text-align: right; float: right;"><a href="getdns.setup.html">Installing/Configuring</a></div>
