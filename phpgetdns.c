@@ -1251,8 +1251,9 @@ void async_callback(getdns_context *context,
     MAKE_STD_ZVAL(clientArgs[3]);
     transIDStr = (char *) malloc(transIDSize + 1);
     if (transIDStr) {
+        transIDStr[transIDSize] = 0;
         snprintf(transIDStr, transIDSize + 1, "%016llX", (unsigned long long) transID);
-        ZVAL_STRING(clientArgs[3], transIDStr, 1);
+        ZVAL_STRINGL(clientArgs[3], transIDStr, transIDSize, 1);
         free(transIDStr);
         phpResult = call_user_function(EG(function_table), NULL,
                    &funcName, &retVal, 4, clientArgs TSRMLS_DC);
@@ -1328,8 +1329,9 @@ PHP_FUNCTION(php_getdns_address)
         convert_to_null(phpTrans);
         transIDStr = (char *) malloc(transIDSize + 1);
         if (transIDStr) {
+	    transIDStr[transIDSize] = 0;
             snprintf(transIDStr, transIDSize + 1, "%016llX", (unsigned long long) trans);
-            ZVAL_STRING(phpTrans, transIDStr, 1);
+            ZVAL_STRINGL(phpTrans, transIDStr, transIDSize, 1);
             free(transIDStr);
         }
     }
@@ -3697,8 +3699,9 @@ PHP_FUNCTION(php_getdns_context_get_timeout)
     convert_to_null(phpOut);
     timeoutStr = (char *) malloc(timeoutSize + 1);
     if (timeoutStr) {
+        timeoutStr[timeoutSize] = 0;
         snprintf(timeoutStr, timeoutSize + 1, "%016llX", (unsigned long long) value);
-        ZVAL_STRING(phpOut, timeoutStr, 1);
+        ZVAL_STRINGL(phpOut, timeoutStr, timeoutSize, 1);
         free(timeoutStr);
     }
     RETURN_LONG((long) result);
