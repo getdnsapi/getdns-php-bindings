@@ -666,6 +666,26 @@
      </simpara>
     </listitem>
    </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-udp">
+    <term>
+     <constant>GETDNS_TRANSPORT_UDP</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-udp-text">
+    <term>
+     <constant>GETDNS_TRANSPORT_UDP_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
    <varlistentry xml:id="constant.getdns-transport-udp-first-and-fall-back-to-tcp">
     <term>
      <constant>GETDNS_TRANSPORT_UDP_FIRST_AND_FALL_BACK_TO_TCP</constant>
@@ -699,6 +719,26 @@
    <varlistentry xml:id="constant.getdns-transport-udp-only-text">
     <term>
      <constant>GETDNS_TRANSPORT_UDP_ONLY_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tcp">
+    <term>
+     <constant>GETDNS_TRANSPORT_TCP</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tcp-text">
+    <term>
+     <constant>GETDNS_TRANSPORT_TCP_TEXT</constant>
      (<type>string</type>)
     </term>
     <listitem>
@@ -746,6 +786,26 @@
      </simpara>
     </listitem>
    </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tls">
+    <term>
+     <constant>GETDNS_TRANSPORT_TLS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-tls-text">
+    <term>
+     <constant>GETDNS_TRANSPORT_TLS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
    <varlistentry xml:id="constant.getdns-transport-tls-only-keep-connections-open">
     <term>
      <constant>GETDNS_TRANSPORT_TLS_ONLY_KEEP_CONNECTIONS_OPEN</constant>
@@ -779,6 +839,26 @@
    <varlistentry xml:id="constant.getdns-transport-tls-first-and-fall-back-to-tcp-keep-connections-open-text">
     <term>
      <constant>GETDNS_TRANSPORT_TLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-starttls">
+    <term>
+     <constant>GETDNS_TRANSPORT_STARTTLS</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-transport-starttls-text">
+    <term>
+     <constant>GETDNS_TRANSPORT_STARTTLS_TEXT</constant>
      (<type>string</type>)
     </term>
     <listitem>
@@ -879,6 +959,26 @@
    <varlistentry xml:id="constant.getdns-append-name-never-text">
     <term>
      <constant>GETDNS_APPEND_NAME_NEVER_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-idle-timeout">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_IDLE_TIMEOUT</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-idle-timeout-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_IDLE_TIMEOUT_TEXT</constant>
      (<type>string</type>)
     </term>
     <listitem>

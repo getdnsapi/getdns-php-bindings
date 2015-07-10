@@ -2,37 +2,38 @@
 <html>
  <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Set the timeout value for DNS queries.</title>
+  <title>Set the idle connection timeout value for DNS transports.</title>
 
  </head>
  <body><div class="manualnavbar" style="text-align: center;">
- <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-suffix.html">php_getdns_context_set_suffix</a></div>
- <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-update-callback.html">php_getdns_context_set_update_callback</a></div>
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-follow-redirects.html">php_getdns_context_set_follow_redirects</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-limit-outstanding-queries.html">php_getdns_context_set_limit_outstanding_queries</a></div>
  <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
  <div class="home"><a href="index.html">PHP Manual</a></div>
-</div><hr /><div id="function.php-getdns-context-set-timeout" class="refentry">
+</div><hr /><div id="function.php-getdns-context-set-idle-timeout" class="refentry">
  <div class="refnamediv">
-  <h1 class="refname">php_getdns_context_set_timeout</h1>
-  <p class="verinfo">(PECL getdns &gt;= 0.8.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_set_timeout</span> &mdash; <span class="dc-title">Set the timeout value for DNS queries.</span></p>
+  <h1 class="refname">php_getdns_context_set_idle_timeout</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.8.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_set_idle_timeout</span> &mdash; <span class="dc-title">Set the idle connection timeout value for DNS transports.</span></p>
 
  </div>
 
- <div class="refsect1 description" id="refsect1-function.php-getdns-context-set-timeout-description">
+ <div class="refsect1 description" id="refsect1-function.php-getdns-context-set-idle-timeout-description">
   <h3 class="title">Description</h3>
   <div class="methodsynopsis dc-description">
-   <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_set_timeout</strong></span>
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_set_idle_timeout</strong></span>
     ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
    , <span class="methodparam"><span class="type">string</span> <code class="parameter">$value</code></span>
    )</div>
 
   <p class="para rdfs-comment">
    This function can be used to set the number of milliseconds for the getdns library
-   to wait for requests to return.
+   to leave an idle TCP, TLS, or STARTTLS connection open. &quot;Idle&quot; means no outstanding
+   responses and no pending queries.
   </p>
  </div>
 
 
- <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-set-timeout-parameters">
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-set-idle-timeout-parameters">
   <h3 class="title">Parameters</h3>
   <dl>
 
@@ -55,8 +56,8 @@
     <dd>
 
      <p class="para">
-      The number of milliseconds for the getdns library to wait for requests to return.
-      The default is not specified.
+      The number of milliseconds for the getdns library to leave idle transport
+      connections open. The default is zero (0).
      </p>
      <p class="para">
       The getdns library uses an unsigned 64-bit integer to represent the timeout value.
@@ -74,7 +75,7 @@
  </div>
 
 
- <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-set-timeout-returnvalues">
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-set-idle-timeout-returnvalues">
   <h3 class="title">Return Values</h3>
   <p class="para">
    This function returns an integer response code. GETDNS_RETURN_GOOD indicates successful completion.
@@ -84,8 +85,8 @@
 
 
 </div><hr /><div class="manualnavbar" style="text-align: center;">
- <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-suffix.html">php_getdns_context_set_suffix</a></div>
- <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-update-callback.html">php_getdns_context_set_update_callback</a></div>
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-follow-redirects.html">php_getdns_context_set_follow_redirects</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-limit-outstanding-queries.html">php_getdns_context_set_limit_outstanding_queries</a></div>
  <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
  <div class="home"><a href="index.html">PHP Manual</a></div>
 </div></body></html>
