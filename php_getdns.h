@@ -57,7 +57,7 @@ ZEND_END_MODULE_GLOBALS(getdns)
 
 /* Miscellaneous definitions. */
 
-#define PHP_GETDNS_VERSION "0.7.2"
+#define PHP_GETDNS_VERSION "0.8.0"
 #define PHP_GETDNS_EXTNAME "getdns"
 
 /* PHP environment setup functions. */
@@ -100,6 +100,7 @@ PHP_FUNCTION(php_getdns_context_run);
 PHP_FUNCTION(php_getdns_context_set_append_name);
 PHP_FUNCTION(php_getdns_context_set_dns_root_servers);
 PHP_FUNCTION(php_getdns_context_set_dns_transport);
+PHP_FUNCTION(php_getdns_context_set_dns_transport_list);
 PHP_FUNCTION(php_getdns_context_set_dnssec_allowed_skew);
 PHP_FUNCTION(php_getdns_context_set_dnssec_trust_anchors);
 PHP_FUNCTION(php_getdns_context_set_edns_do_bit);
@@ -107,6 +108,7 @@ PHP_FUNCTION(php_getdns_context_set_edns_extended_rcode);
 PHP_FUNCTION(php_getdns_context_set_edns_maximum_udp_payload_size);
 PHP_FUNCTION(php_getdns_context_set_edns_version);
 PHP_FUNCTION(php_getdns_context_set_follow_redirects);
+PHP_FUNCTION(php_getdns_context_set_idle_timeout);
 PHP_FUNCTION(php_getdns_context_set_limit_outstanding_queries);
 PHP_FUNCTION(php_getdns_context_set_namespaces);
 PHP_FUNCTION(php_getdns_context_set_resolution_type);
