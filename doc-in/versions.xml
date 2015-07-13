@@ -78,6 +78,10 @@
  <function name='php_getdns_general' from='PECL getdns &gt;= 0.8.0'/>
  <function name='php_getdns_general_sync' from='PECL getdns &gt;= 0.8.0'/>
  <function name='php_getdns_get_errorstr_by_id' from='PECL getdns &gt;= 0.8.0'/>
+ <function name='php_getdns_get_api_version' from='PECL getdns &gt;= 0.8.0'/>
+ <function name='php_getdns_get_api_version_number' from='PECL getdns &gt;= 0.8.0'/>
+ <function name='php_getdns_get_version' from='PECL getdns &gt;= 0.8.0'/>
+ <function name='php_getdns_get_version_number' from='PECL getdns &gt;= 0.8.0'/>
  <function name='php_getdns_hostname' from='PECL getdns &gt;= 0.8.0'/>
  <function name='php_getdns_hostname_sync' from='PECL getdns &gt;= 0.8.0'/>
  <function name='php_getdns_list_create' from='PECL getdns &gt;= 0.8.0'/>

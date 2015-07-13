@@ -1,7 +1,9 @@
-* 2015-07-XX: Version 0.8.0
+* 2015-07-13: Version 0.8.0
   * Added php_getdns_context_set_dns_transport_list() function.
   * Added php_getdns_context_set_idle_timeout() function.
-  * Added documentation, test cases, and associated constants for both
+  * Added php_get_api_version(), php_get_api_version_number(),
+    php_get_version(), and php_get_version_number() functions.
+  * Added documentation, test cases, and associated constants for all
     of the above for compatibility with getdns v0.3.0.
 
 * 2015-05-28: Version 0.7.2

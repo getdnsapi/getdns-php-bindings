@@ -69,7 +69,11 @@
 &reference.getdns.functions.php-getdns-display-ip-address;
 &reference.getdns.functions.php-getdns-general-sync;
 &reference.getdns.functions.php-getdns-general;
+&reference.getdns.functions.php-getdns-get-api-version-number;
+&reference.getdns.functions.php-getdns-get-api-version;
 &reference.getdns.functions.php-getdns-get-errorstr-by-id;
+&reference.getdns.functions.php-getdns-get-version-number;
+&reference.getdns.functions.php-getdns-get-version;
 &reference.getdns.functions.php-getdns-hostname-sync;
 &reference.getdns.functions.php-getdns-hostname;
 &reference.getdns.functions.php-getdns-list-create-with-context;

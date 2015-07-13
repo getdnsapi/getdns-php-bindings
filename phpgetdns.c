@@ -324,6 +324,10 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_general, general_args)
     PHP_FE(php_getdns_general_sync, general_sync_args)
     PHP_FE(php_getdns_get_errorstr_by_id, errorstr_args)
+    PHP_FE(php_getdns_get_api_version, NULL)
+    PHP_FE(php_getdns_get_api_version_number, NULL)
+    PHP_FE(php_getdns_get_version, NULL)
+    PHP_FE(php_getdns_get_version_number, NULL)
     PHP_FE(php_getdns_hostname, hostname_args)
     PHP_FE(php_getdns_hostname_sync, hostname_sync_args)
     PHP_FE(php_getdns_list_create, NULL)
@@ -4088,6 +4092,62 @@ PHP_FUNCTION(php_getdns_get_errorstr_by_id)
 
     /* Return the result. */
     RETURN_STRING(errorStr, 1);
+}
+
+/**
+ * Function to get the runtime API version number in string format.
+ */
+PHP_FUNCTION(php_getdns_get_api_version)
+{
+    const char *apiVersStr = NULL;
+
+    /* Call the function. */
+    apiVersStr = getdns_get_api_version();
+
+    /* Return the result. */
+    RETURN_STRING(apiVersStr, 1);
+}
+
+/**
+ * Function to get the runtime API version number in number format.
+ */
+PHP_FUNCTION(php_getdns_get_api_version_number)
+{
+    uint32_t apiVersNum = 0;
+
+    /* Call the function. */
+    apiVersNum = getdns_get_api_version_number();
+
+    /* Return the result. */
+    RETURN_LONG(apiVersNum);
+}
+
+/**
+ * Function to get the runtime library version number in string format.
+ */
+PHP_FUNCTION(php_getdns_get_version)
+{
+    const char *versStr = NULL;
+
+    /* Call the function. */
+    versStr = getdns_get_version();
+
+    /* Return the result. */
+    RETURN_STRING(versStr, 1);
+}
+
+/**
+ * Function to get the runtime library version number in number format.
+ */
+PHP_FUNCTION(php_getdns_get_version_number)
+{
+    uint32_t versNum = 0;
+
+    /* Call the function. */
+    versNum = getdns_get_version_number();
+
+    /* Return the result. */
+    RETURN_LONG(versNum);
 }
 
 /**

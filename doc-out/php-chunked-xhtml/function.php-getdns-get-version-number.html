@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Get the getdns runtime library version information in number format.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-get-errorstr-by-id.html">php_getdns_get_errorstr_by_id</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-get-version.html">php_getdns_get_version</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-get-version-number" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_get_version_number</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.8.0)</p><p class="refpurpose"><span class="refname">php_getdns_get_version_number</span> &mdash; <span class="dc-title">Get the getdns runtime library version information in number format.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-get-version-number-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_get_version_number</strong></span>
+    ( <span class="methodparam">void</span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function returns the runtime getdns library version information in number format.
+   Note that this will give you the version of the library that you&#039;re currently
+   linked against, not the version of the headers used to compile the library.
+   Compile-time information can be found using the phpinfo() function once
+   the getdns extension has been loaded by PHP. The version information should
+   be consistent for reliable operation.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-get-version-number-parameters">
+  <h3 class="title">Parameters</h3>
+  <p class="para">This function has no parameters.</p>
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-get-version-number-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns a 32-bit integer representation of the runtime getdns library
+   version information. The format uses the three high-order bytes to represent the
+   major, minor, and patch level parts of the runtime version number. The low-order
+   byte is unused. For example, version &quot;0.3.0&quot; has a numeric representation of
+   0x00030000.
+  </p>
+ </div>
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-get-errorstr-by-id.html">php_getdns_get_errorstr_by_id</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-get-version.html">php_getdns_get_version</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>
