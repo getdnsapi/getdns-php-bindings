@@ -27,6 +27,7 @@
 &reference.getdns.functions.php-getdns-context-run;
 &reference.getdns.functions.php-getdns-context-set-append-name;
 &reference.getdns.functions.php-getdns-context-set-dns-root-servers;
+&reference.getdns.functions.php-getdns-context-set-dns-transport-list;
 &reference.getdns.functions.php-getdns-context-set-dns-transport;
 &reference.getdns.functions.php-getdns-context-set-dnssec-allowed-skew;
 &reference.getdns.functions.php-getdns-context-set-dnssec-trust-anchors;
@@ -35,6 +36,7 @@
 &reference.getdns.functions.php-getdns-context-set-edns-maximum-udp-payload-size;
 &reference.getdns.functions.php-getdns-context-set-edns-version;
 &reference.getdns.functions.php-getdns-context-set-follow-redirects;
+&reference.getdns.functions.php-getdns-context-set-idle-timeout;
 &reference.getdns.functions.php-getdns-context-set-limit-outstanding-queries;
 &reference.getdns.functions.php-getdns-context-set-namespaces;
 &reference.getdns.functions.php-getdns-context-set-resolution-type;
@@ -67,7 +69,11 @@
 &reference.getdns.functions.php-getdns-display-ip-address;
 &reference.getdns.functions.php-getdns-general-sync;
 &reference.getdns.functions.php-getdns-general;
+&reference.getdns.functions.php-getdns-get-api-version-number;
+&reference.getdns.functions.php-getdns-get-api-version;
 &reference.getdns.functions.php-getdns-get-errorstr-by-id;
+&reference.getdns.functions.php-getdns-get-version-number;
+&reference.getdns.functions.php-getdns-get-version;
 &reference.getdns.functions.php-getdns-hostname-sync;
 &reference.getdns.functions.php-getdns-hostname;
 &reference.getdns.functions.php-getdns-list-create-with-context;

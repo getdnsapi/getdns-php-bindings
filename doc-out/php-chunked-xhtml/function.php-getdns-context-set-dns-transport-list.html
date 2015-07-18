@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Set the ordered list of transports that will be used for DNS lookups.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-dns-root-servers.html">php_getdns_context_set_dns_root_servers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-dns-transport.html">php_getdns_context_set_dns_transport</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-context-set-dns-transport-list" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_context_set_dns_transport_list</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.8.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_set_dns_transport_list</span> &mdash; <span class="dc-title">Set the ordered list of transports that will be used for DNS lookups.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-context-set-dns-transport-list-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_set_dns_transport_list</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$count</code></span>
+   , <span class="methodparam"><span class="type">array</span> <code class="parameter">$value</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function sets the ordered list of transports that will be used for DNS lookups.
+   If only one transport value is specified it will be the only transport used.
+   Basic resolution will fail if that transport option is not available.
+   Fallback transport options are specified by including multiple values in the list.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-set-dns-transport-list-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created DNS context that is to be used with this request.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">count</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The number of elements contained in the array of transport values.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">value</code></dt>
+
+    <dd>
+
+     <p class="para">
+      An indexed array of transport values. Valid values include GETDNS_TRANSPORT_UDP,
+      GETDNS_TRANSPORT_TCP, GETDNS_TRANSPORT_TLS, and GETDNS_TRANSPORT_STARTTLS. The
+      default is a list containing GETDNS_TRANSPORT_UDP followed by GETDNS_TRANSPORT_TCP.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-set-dns-transport-list-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-dns-root-servers.html">php_getdns_context_set_dns_root_servers</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-dns-transport.html">php_getdns_context_set_dns_transport</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

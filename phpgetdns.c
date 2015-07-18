@@ -94,6 +94,12 @@ ZEND_BEGIN_ARG_INFO_EX(context_only_args, 0, 0, 1)
     ZEND_ARG_INFO(0, context)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(context_set_array_args, 0, 0, 3)
+    ZEND_ARG_INFO(0, context)
+    ZEND_ARG_INFO(0, count)
+    ZEND_ARG_INFO(0, value)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(context_set_update_callback_args, 0, 0, 2)
     ZEND_ARG_INFO(0, context)
     ZEND_ARG_INFO(0, userArg)
@@ -214,12 +220,6 @@ ZEND_BEGIN_ARG_INFO_EX(pretty_print_json_value_args, 0, 0, 2)
     ZEND_ARG_INFO(0, prettyPrint)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(set_namespaces_args, 0, 0, 3)
-    ZEND_ARG_INFO(0, context)
-    ZEND_ARG_INFO(0, count)
-    ZEND_ARG_INFO(0, value)
-ZEND_END_ARG_INFO()
-
 ZEND_BEGIN_ARG_INFO_EX(set_return_dnssec_status_args, 0, 0, 2)
     ZEND_ARG_INFO(0, context)
     ZEND_ARG_INFO(0, enabled)
@@ -282,6 +282,7 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_context_set_append_name, context_set_value_args)
     PHP_FE(php_getdns_context_set_dns_root_servers, context_set_value_args)
     PHP_FE(php_getdns_context_set_dns_transport, context_set_value_args)
+    PHP_FE(php_getdns_context_set_dns_transport_list, context_set_array_args)
     PHP_FE(php_getdns_context_set_dnssec_allowed_skew, context_set_value_args)
     PHP_FE(php_getdns_context_set_dnssec_trust_anchors, context_set_value_args)
     PHP_FE(php_getdns_context_set_edns_do_bit, context_set_value_args)
@@ -289,8 +290,9 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_context_set_edns_maximum_udp_payload_size, context_set_value_args)
     PHP_FE(php_getdns_context_set_edns_version, context_set_value_args)
     PHP_FE(php_getdns_context_set_follow_redirects, context_set_value_args)
+    PHP_FE(php_getdns_context_set_idle_timeout, context_set_value_args)
     PHP_FE(php_getdns_context_set_limit_outstanding_queries, context_set_value_args)
-    PHP_FE(php_getdns_context_set_namespaces, set_namespaces_args)
+    PHP_FE(php_getdns_context_set_namespaces, context_set_array_args)
     PHP_FE(php_getdns_context_set_resolution_type, context_set_value_args)
     PHP_FE(php_getdns_context_set_return_dnssec_status, set_return_dnssec_status_args)
     PHP_FE(php_getdns_context_set_suffix, context_set_value_args)
@@ -322,6 +324,10 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_general, general_args)
     PHP_FE(php_getdns_general_sync, general_sync_args)
     PHP_FE(php_getdns_get_errorstr_by_id, errorstr_args)
+    PHP_FE(php_getdns_get_api_version, NULL)
+    PHP_FE(php_getdns_get_api_version_number, NULL)
+    PHP_FE(php_getdns_get_version, NULL)
+    PHP_FE(php_getdns_get_version_number, NULL)
     PHP_FE(php_getdns_hostname, hostname_args)
     PHP_FE(php_getdns_hostname_sync, hostname_sync_args)
     PHP_FE(php_getdns_list_create, NULL)
@@ -661,6 +667,24 @@ PHP_RINIT_FUNCTION(getdns)
 	("GETDNS_TRANSPORT_STARTTLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN_TEXT",
 	 Z_STRVAL_P(respStr), CONST_CS);
 
+    /* Register base transports for use in transport list. */
+
+    REGISTER_LONG_CONSTANT("GETDNS_TRANSPORT_UDP", GETDNS_TRANSPORT_UDP, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_TRANSPORT_UDP_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_TRANSPORT_UDP_TEXT", Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_TRANSPORT_TCP", GETDNS_TRANSPORT_TCP, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_TRANSPORT_TCP_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_TRANSPORT_TCP_TEXT", Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_TRANSPORT_TLS", GETDNS_TRANSPORT_TLS, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_TRANSPORT_TLS_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_TRANSPORT_TLS_TEXT", Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_TRANSPORT_STARTTLS", GETDNS_TRANSPORT_STARTTLS, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_TRANSPORT_STARTTLS_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_TRANSPORT_STARTTLS_TEXT", Z_STRVAL_P(respStr), CONST_CS);
+
     /* Register suffix appending methods. */
 
     REGISTER_LONG_CONSTANT("GETDNS_APPEND_NAME_ALWAYS",
@@ -813,6 +837,12 @@ PHP_RINIT_FUNCTION(getdns)
 			   GETDNS_CONTEXT_CODE_TIMEOUT, CONST_CS);
     ZVAL_STRING(respStr, GETDNS_CONTEXT_CODE_TIMEOUT_TEXT, 1);
     REGISTER_STRING_CONSTANT("GETDNS_CONTEXT_CODE_TIMEOUT_TEXT",
+			     Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_CONTEXT_CODE_IDLE_TIMEOUT",
+			   GETDNS_CONTEXT_CODE_IDLE_TIMEOUT, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_CONTEXT_CODE_IDLE_TIMEOUT_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_CONTEXT_CODE_IDLE_TIMEOUT_TEXT",
 			     Z_STRVAL_P(respStr), CONST_CS);
 
     /* Register callback types. */
@@ -1140,10 +1170,11 @@ PHP_MSHUTDOWN_FUNCTION(getdns)
 PHP_MINFO_FUNCTION(getdns)
 {
     php_info_print_table_start();
-    php_info_print_table_header(2, "GetDNS Support", "enabled");
+    php_info_print_table_header(2, "Extension for the getdns Library", "enabled");
     php_info_print_table_row(2, "Extension Version", PHP_GETDNS_VERSION);
-    php_info_print_table_row(2, "getdns Library Version", GETDNS_COMPILATION_COMMENT);
-    php_info_print_table_row(2, "Author",
+    php_info_print_table_row(2, "Compatible getdns Library Version", GETDNS_VERSION);
+    php_info_print_table_row(2, "Compatible getdns API Version", GETDNS_API_VERSION);
+    php_info_print_table_row(2, "Extension Author",
 			     "Scott Hollenbeck <shollenbeck@verisign.com>");
     php_info_print_table_end();
     DISPLAY_INI_ENTRIES();
@@ -1599,6 +1630,72 @@ PHP_FUNCTION(php_getdns_context_set_dns_transport)
 }
 
 /**
+ * Function to set a list of preferred transport protocols
+ * in priority order.
+ */
+PHP_FUNCTION(php_getdns_context_set_dns_transport_list)
+{
+    long phpContext = 0, phpCount = 0;
+    zval *phpArray, **arrayData = NULL;
+    HashTable *arrayHash = NULL;
+    HashPosition hashPtr = NULL;
+    getdns_context *context = NULL;
+    size_t count = 0;
+    int arrayCount = 0;
+    getdns_transport_list_t *transports = NULL, *valPtr = NULL;
+    getdns_return_t result;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "llz", &phpContext,
+	 &phpCount, &phpArray) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters. */
+    context = (getdns_context *) phpContext;
+    count = (size_t) phpCount;
+
+    /* The list of transports is received in an array. Convert the array. */
+    if (Z_TYPE_P(phpArray) != IS_ARRAY) {
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    }
+
+    /* Convert the PHP array to an array of namespace values. */
+    arrayHash = Z_ARRVAL_P(phpArray);
+    arrayCount = zend_hash_num_elements(arrayHash);
+    if (arrayCount != count) {
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER); 
+    }
+
+    transports = malloc(count * sizeof(getdns_transport_list_t));
+    if (transports) {
+        valPtr = transports;
+        for (zend_hash_internal_pointer_reset_ex(arrayHash, &hashPtr);
+             zend_hash_get_current_data_ex(arrayHash, (void**) &arrayData, &hashPtr) == SUCCESS;
+             zend_hash_move_forward_ex(arrayHash, &hashPtr)) {
+            if (Z_TYPE_PP(arrayData) == IS_LONG) {
+	        *valPtr = (getdns_transport_list_t) Z_LVAL_PP(arrayData);
+	        *valPtr++;
+	    }
+	    else {
+	        free(transports);
+	        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+	    }
+        }
+
+        result = getdns_context_set_dns_transport_list(context, count, transports);
+        free(transports);
+    }
+    else {
+        result = GETDNS_RETURN_MEMORY_ERROR;
+    }
+
+    /* Return the result. */
+    RETURN_LONG((long) result);
+}
+
+/**
  * Function to set DNSSEC allowed skew.
  */
 PHP_FUNCTION(php_getdns_context_set_dnssec_allowed_skew)
@@ -1773,6 +1870,42 @@ PHP_FUNCTION(php_getdns_context_set_follow_redirects)
     context = (getdns_context *) phpContext;
     value = (getdns_redirects_t) phpValue;
     result = getdns_context_set_follow_redirects(context, value);
+
+    /* Return the result. */
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to set the idle timeout.
+ */
+PHP_FUNCTION(php_getdns_context_set_idle_timeout)
+{
+    long phpPtr = 0;
+    zval *phpValue = 0;
+    getdns_context *context = NULL;
+    getdns_return_t result;
+    uint64_t value = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpPtr, &phpValue) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Validate parameters. */
+    if (Z_TYPE_P(phpValue) == IS_STRING) {
+    	char *valStr = Z_STRVAL_P(phpValue);
+	char *endPtr = NULL;
+
+	value = (uint64_t) strtoull(valStr, &endPtr, 16);
+    }   
+    else {
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    }
+
+    /* Convert parameters and call the function. */
+    context = (getdns_context *) phpPtr;
+    result = getdns_context_set_idle_timeout(context, value);
 
     /* Return the result. */
     RETURN_LONG((long) result);
@@ -3959,6 +4092,62 @@ PHP_FUNCTION(php_getdns_get_errorstr_by_id)
 
     /* Return the result. */
     RETURN_STRING(errorStr, 1);
+}
+
+/**
+ * Function to get the runtime API version number in string format.
+ */
+PHP_FUNCTION(php_getdns_get_api_version)
+{
+    const char *apiVersStr = NULL;
+
+    /* Call the function. */
+    apiVersStr = getdns_get_api_version();
+
+    /* Return the result. */
+    RETURN_STRING(apiVersStr, 1);
+}
+
+/**
+ * Function to get the runtime API version number in number format.
+ */
+PHP_FUNCTION(php_getdns_get_api_version_number)
+{
+    uint32_t apiVersNum = 0;
+
+    /* Call the function. */
+    apiVersNum = getdns_get_api_version_number();
+
+    /* Return the result. */
+    RETURN_LONG(apiVersNum);
+}
+
+/**
+ * Function to get the runtime library version number in string format.
+ */
+PHP_FUNCTION(php_getdns_get_version)
+{
+    const char *versStr = NULL;
+
+    /* Call the function. */
+    versStr = getdns_get_version();
+
+    /* Return the result. */
+    RETURN_STRING(versStr, 1);
+}
+
+/**
+ * Function to get the runtime library version number in number format.
+ */
+PHP_FUNCTION(php_getdns_get_version_number)
+{
+    uint32_t versNum = 0;
+
+    /* Call the function. */
+    versNum = getdns_get_version_number();
+
+    /* Return the result. */
+    RETURN_LONG(versNum);
 }
 
 /**
