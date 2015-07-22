@@ -18,24 +18,9 @@ if test "$PHP_GETDNS" != "no"; then
     AC_MSG_ERROR(Please install the libgetdns library)
   fi
 
-  AC_MSG_CHECKING(for libgetdns_ext_event in default path)
-  for i in /usr/local /usr; do
-    for j in so dylib; do
-      if test -r $i/lib/libgetdns_ext_event.$j; then
-        GETDNS_EVENT_DIR=$i
-        AC_MSG_RESULT(found libgetdns_ext_event.$j in $i)
-      fi
-    done
-  done
-
-  if test -z "$GETDNS_EVENT_DIR"; then
-    AC_MSG_RESULT(not found)
-    AC_MSG_ERROR(Please install the libgetdns_ext_event library)
-  fi
-
   AC_MSG_CHECKING([getdns header files])
   GETDNS_INC_DIR="/usr/local/include/getdns"
-  INC_FILES="$GETDNS_INC_DIR/getdns.h $GETDNS_INC_DIR/getdns_extra.h $GETDNS_INC_DIR/getdns_ext_libevent.h"
+  INC_FILES="$GETDNS_INC_DIR/getdns.h $GETDNS_INC_DIR/getdns_extra.h"
   for i in $INC_FILES; do
     if test ! -f $i; then
       AC_MSG_ERROR([getdns header files not found in $GETDNS_INC_DIR])
@@ -51,13 +36,12 @@ if test "$PHP_GETDNS" != "no"; then
       AC_MSG_ERROR([Invalid libgetdns.])
     ],
     [
-      -L$GETDNS_DIR/lib -lgetdns -lgetdns_ext_event
+      -L$GETDNS_DIR/lib -lgetdns
     ]
   )
 
   PHP_SUBST(GETDNS_SHARED_LIBADD)
   PHP_ADD_LIBRARY_WITH_PATH(getdns, $GETDNS_DIR/lib, GETDNS_SHARED_LIBADD)
-  PHP_ADD_LIBRARY_WITH_PATH(getdns_ext_event, $GETDNS_DIR/lib, GETDNS_SHARED_LIBADD)
   PHP_ADD_INCLUDE($GETDNS_INC_DIR)
   AC_DEFINE(HAVE_GETDNS, 1, [whether the getdns extension is enabled])
   PHP_NEW_EXTENSION(getdns, phpgetdns.c, $ext_shared)

@@ -46,7 +46,6 @@
 #include "php_ini.h"
 #include "php_getdns.h"
 #include "getdns.h"
-#include "getdns_ext_libevent.h"
 #include "getdns_extra.h"
 
 ZEND_DECLARE_MODULE_GLOBALS(getdns)
@@ -1461,19 +1460,6 @@ PHP_FUNCTION(php_getdns_context_create)
     /* Store the context value and return the result. */
     convert_to_long(phpOut);
     ZVAL_LONG(phpOut, (long) context);
-
-    /* Create an event base for async functions. */
-    if (result == GETDNS_RETURN_GOOD) {
-        struct event_base *eventBase = (struct event_base *) (intptr_t) event_base_new();
-        if (eventBase == NULL) {
-	    result = GETDNS_RETURN_GENERIC_ERROR;
-	    ZVAL_LONG(phpOut, 0);
-            getdns_context_destroy(context);
-        }
-        else {
-	    (void) getdns_extension_set_libevent_base(context, eventBase);
-        }
-    }
     RETURN_LONG((long) result);
 }
 
