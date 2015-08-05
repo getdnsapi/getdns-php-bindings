@@ -1,4 +1,4 @@
-* 2015-XX-XX: Version 0.8.1
+* 2015-08-05: Version 0.8.1
   * Removed the libevent dependency to use the getdns default event
     loop instead.
 
