@@ -1,3 +1,7 @@
+* 2015-08-05: Version 0.8.1
+  * Removed the libevent dependency to use the getdns default event
+    loop instead.
+
 * 2015-07-13: Version 0.8.0
   * Added php_getdns_context_set_dns_transport_list() function.
   * Added php_getdns_context_set_idle_timeout() function.
