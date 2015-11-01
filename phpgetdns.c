@@ -296,6 +296,7 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_context_set_return_dnssec_status, set_return_dnssec_status_args)
     PHP_FE(php_getdns_context_set_suffix, context_set_value_args)
     PHP_FE(php_getdns_context_set_timeout, context_set_value_args)
+    PHP_FE(php_getdns_context_set_tls_authentication, context_set_value_args)
     PHP_FE(php_getdns_context_set_update_callback, context_set_update_callback_args)
     PHP_FE(php_getdns_context_set_upstream_recursive_servers, context_set_value_args)
     PHP_FE(php_getdns_context_set_use_threads, set_use_threads_args)
@@ -481,6 +482,30 @@ PHP_RINIT_FUNCTION(getdns)
 			   GETDNS_RETURN_INVALID_PARAMETER, CONST_CS);
     ZVAL_STRING(respStr, GETDNS_RETURN_INVALID_PARAMETER_TEXT, 1);
     REGISTER_STRING_CONSTANT("GETDNS_RETURN_INVALID_PARAMETER_TEXT",
+			     Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_RETURN_NOT_IMPLEMENTED",
+			   GETDNS_RETURN_NOT_IMPLEMENTED, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_RETURN_NOT_IMPLEMENTED_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_RETURN_NOT_IMPLEMENTED_TEXT",
+			     Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_AUTHENTICATION_NONE",
+			   GETDNS_AUTHENTICATION_NONE, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_AUTHENTICATION_NONE_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_AUTHENTICATION_NONE_TEXT",
+			     Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_AUTHENTICATION_HOSTNAME",
+			   GETDNS_AUTHENTICATION_HOSTNAME, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_AUTHENTICATION_HOSTNAME_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_AUTHENTICATION_HOSTNAME_TEXT",
+			     Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION",
+			   GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION_TEXT",
 			     Z_STRVAL_P(respStr), CONST_CS);
 
     /* Register response status codes. */
@@ -2065,6 +2090,32 @@ PHP_FUNCTION(php_getdns_context_set_timeout)
     /* Convert parameters and call the function. */
     context = (getdns_context *) phpPtr;
     result = getdns_context_set_timeout(context, value);
+
+    /* Return the result. */
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to set the TLS authentication type.
+ */
+PHP_FUNCTION(php_getdns_context_set_tls_authentication)
+{
+    long phpContext = 0, phpValue = 0;
+    getdns_context *context = NULL;
+    getdns_tls_authentication_t value = 0;
+    getdns_return_t result;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+  	(ZEND_NUM_ARGS()TSRMLS_CC, "ll", &phpContext,
+	 &phpValue) == FAILURE) {
+ 	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    context = (getdns_context *) phpContext;
+    value = (getdns_tls_authentication_t) phpValue;
+    result = getdns_context_set_tls_authentication(context, value);
 
     /* Return the result. */
     RETURN_LONG((long) result);

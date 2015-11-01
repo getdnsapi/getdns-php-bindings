@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Set the TLS server authentication mode.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-timeout.html">php_getdns_context_set_timeout</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-update-callback.html">php_getdns_context_set_update_callback</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-context-set-tls-authentication" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_context_set_tls_authentication</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.9.0)</p><p class="refpurpose"><span class="refname">php_getdns_context_set_tls_authentication</span> &mdash; <span class="dc-title">Set the TLS server authentication mode.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-context-set-tls-authentication-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_context_set_tls_authentication</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$value</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function can be used to set the mode for upstream server hostname
+   authentication for TLS connections in stub mode. The stub resolver can
+   require that a server provide a valid certificate (validated using the
+   default CA repository) and that the hostname specified in the
+   &quot;tls_auth_name&quot; field of the upstream dictionary matches the name in
+   the certificate. The authentication setting is only enforced when the
+   transport list contains only GETDNS_TRANSPORT_TLS, and in this case if
+   authentication fails for all upstreams, queries will fail. If the
+   transport list contains other clear text transports then opportunistic
+   TLS will be performed which does not require authentication of the TLS
+   connection.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-context-set-tls-authentication-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created DNS context that is to be used with this request.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">value</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The value to be set. It must be either GETDNS_AUTHENTICATION_NONE
+      (the default) or GETDNS_AUTHENTICATION_HOSTNAME to request host
+      name validation.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-context-set-tls-authentication-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-context-set-timeout.html">php_getdns_context_set_timeout</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-context-set-update-callback.html">php_getdns_context_set_update_callback</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

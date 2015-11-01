@@ -286,6 +286,66 @@
      </simpara>
     </listitem>
    </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-not-implemented">
+    <term>
+     <constant>GETDNS_RETURN_NOT_IMPLEMENTED</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-return-not-implemented-text">
+    <term>
+     <constant>GETDNS_RETURN_NOT_IMPLEMENTED_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-authentication-none">
+    <term>
+     <constant>GETDNS_AUTHENTICATION_NONE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-authentication-none-text">
+    <term>
+     <constant>GETDNS_AUTHENTICATION_NONE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-authentication-hostname">
+    <term>
+     <constant>GETDNS_AUTHENTICATION_HOSTNAME</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-authentication-hostname-text">
+    <term>
+     <constant>GETDNS_AUTHENTICATION_HOSTNAME_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
    <varlistentry xml:id="constant.getdns-respstatus-good">
     <term>
      <constant>GETDNS_RESPSTATUS_GOOD</constant>
@@ -1039,6 +1099,26 @@
    <varlistentry xml:id="constant.getdns-context-code-follow-redirects-text">
     <term>
      <constant>GETDNS_CONTEXT_CODE_FOLLOW_REDIRECTS_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-tls-authentication">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-tls-authentication-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION_TEXT</constant>
      (<type>string</type>)
     </term>
     <listitem>
