@@ -43,6 +43,7 @@
 &reference.getdns.functions.php-getdns-context-set-return-dnssec-status;
 &reference.getdns.functions.php-getdns-context-set-suffix;
 &reference.getdns.functions.php-getdns-context-set-timeout;
+&reference.getdns.functions.php-getdns-context-set-tls-authentication;
 &reference.getdns.functions.php-getdns-context-set-update-callback;
 &reference.getdns.functions.php-getdns-context-set-upstream-recursive-servers;
 &reference.getdns.functions.php-getdns-context-set-use-threads;

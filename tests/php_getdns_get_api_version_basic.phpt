@@ -8,4 +8,4 @@ var_dump($versStr);
 
 ?>
 --EXPECTF--
-string(9) "July 2015"
+string(12) "October 2015"
