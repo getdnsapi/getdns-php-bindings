@@ -10,6 +10,7 @@
 &reference.getdns.functions.php-getdns-context-get-dns-transport;
 &reference.getdns.functions.php-getdns-context-get-dnssec-allowed-skew;
 &reference.getdns.functions.php-getdns-context-get-dnssec-trust-anchors;
+&reference.getdns.functions.php-getdns-context-get-edns-client-subnet-private;
 &reference.getdns.functions.php-getdns-context-get-edns-do-bit;
 &reference.getdns.functions.php-getdns-context-get-edns-extended-rcode;
 &reference.getdns.functions.php-getdns-context-get-edns-maximum-udp-payload-size;
@@ -21,6 +22,8 @@
 &reference.getdns.functions.php-getdns-context-get-resolution-type;
 &reference.getdns.functions.php-getdns-context-get-suffix;
 &reference.getdns.functions.php-getdns-context-get-timeout;
+&reference.getdns.functions.php-getdns-context-get-tls-authentication;
+&reference.getdns.functions.php-getdns-context-get-tls-query-padding-blocksize;
 &reference.getdns.functions.php-getdns-context-get-update-callback;
 &reference.getdns.functions.php-getdns-context-get-upstream-recursive-servers;
 &reference.getdns.functions.php-getdns-context-process-async;
@@ -31,6 +34,7 @@
 &reference.getdns.functions.php-getdns-context-set-dns-transport;
 &reference.getdns.functions.php-getdns-context-set-dnssec-allowed-skew;
 &reference.getdns.functions.php-getdns-context-set-dnssec-trust-anchors;
+&reference.getdns.functions.php-getdns-context-set-edns-client-subnet-private;
 &reference.getdns.functions.php-getdns-context-set-edns-do-bit;
 &reference.getdns.functions.php-getdns-context-set-edns-extended-rcode;
 &reference.getdns.functions.php-getdns-context-set-edns-maximum-udp-payload-size;
@@ -44,6 +48,7 @@
 &reference.getdns.functions.php-getdns-context-set-suffix;
 &reference.getdns.functions.php-getdns-context-set-timeout;
 &reference.getdns.functions.php-getdns-context-set-tls-authentication;
+&reference.getdns.functions.php-getdns-context-set-tls-query-padding-blocksize;
 &reference.getdns.functions.php-getdns-context-set-update-callback;
 &reference.getdns.functions.php-getdns-context-set-upstream-recursive-servers;
 &reference.getdns.functions.php-getdns-context-set-use-threads;

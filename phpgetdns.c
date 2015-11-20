@@ -263,6 +263,7 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_context_get_dns_transport, context_get_value_args)
     PHP_FE(php_getdns_context_get_dnssec_allowed_skew, context_get_value_args)
     PHP_FE(php_getdns_context_get_dnssec_trust_anchors, context_get_value_args)
+    PHP_FE(php_getdns_context_get_edns_client_subnet_private, context_get_value_args)
     PHP_FE(php_getdns_context_get_edns_do_bit, context_get_value_args)
     PHP_FE(php_getdns_context_get_edns_extended_rcode, context_get_value_args)
     PHP_FE(php_getdns_context_get_edns_maximum_udp_payload_size, context_get_value_args)
@@ -274,6 +275,8 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_context_get_resolution_type, context_get_value_args)
     PHP_FE(php_getdns_context_get_suffix, context_get_value_args)
     PHP_FE(php_getdns_context_get_timeout, context_get_value_args)
+    PHP_FE(php_getdns_context_get_tls_authentication, context_get_value_args)
+    PHP_FE(php_getdns_context_get_tls_query_padding_blocksize, context_get_value_args)
     PHP_FE(php_getdns_context_get_update_callback, context_get_update_callback_args)
     PHP_FE(php_getdns_context_get_upstream_recursive_servers, context_get_value_args)
     PHP_FE(php_getdns_context_process_async, context_only_args)
@@ -284,6 +287,7 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_context_set_dns_transport_list, context_set_array_args)
     PHP_FE(php_getdns_context_set_dnssec_allowed_skew, context_set_value_args)
     PHP_FE(php_getdns_context_set_dnssec_trust_anchors, context_set_value_args)
+    PHP_FE(php_getdns_context_set_edns_client_subnet_private, context_set_value_args)
     PHP_FE(php_getdns_context_set_edns_do_bit, context_set_value_args)
     PHP_FE(php_getdns_context_set_edns_extended_rcode, context_set_value_args)
     PHP_FE(php_getdns_context_set_edns_maximum_udp_payload_size, context_set_value_args)
@@ -297,6 +301,7 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_context_set_suffix, context_set_value_args)
     PHP_FE(php_getdns_context_set_timeout, context_set_value_args)
     PHP_FE(php_getdns_context_set_tls_authentication, context_set_value_args)
+    PHP_FE(php_getdns_context_set_tls_query_padding_blocksize, context_set_value_args)
     PHP_FE(php_getdns_context_set_update_callback, context_set_update_callback_args)
     PHP_FE(php_getdns_context_set_upstream_recursive_servers, context_set_value_args)
     PHP_FE(php_getdns_context_set_use_threads, set_use_threads_args)
@@ -500,12 +505,6 @@ PHP_RINIT_FUNCTION(getdns)
 			   GETDNS_AUTHENTICATION_HOSTNAME, CONST_CS);
     ZVAL_STRING(respStr, GETDNS_AUTHENTICATION_HOSTNAME_TEXT, 1);
     REGISTER_STRING_CONSTANT("GETDNS_AUTHENTICATION_HOSTNAME_TEXT",
-			     Z_STRVAL_P(respStr), CONST_CS);
-
-    REGISTER_LONG_CONSTANT("GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION",
-			   GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION, CONST_CS);
-    ZVAL_STRING(respStr, GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION_TEXT, 1);
-    REGISTER_STRING_CONSTANT("GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION_TEXT",
 			     Z_STRVAL_P(respStr), CONST_CS);
 
     /* Register response status codes. */
@@ -867,6 +866,24 @@ PHP_RINIT_FUNCTION(getdns)
 			   GETDNS_CONTEXT_CODE_IDLE_TIMEOUT, CONST_CS);
     ZVAL_STRING(respStr, GETDNS_CONTEXT_CODE_IDLE_TIMEOUT_TEXT, 1);
     REGISTER_STRING_CONSTANT("GETDNS_CONTEXT_CODE_IDLE_TIMEOUT_TEXT",
+			     Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION",
+			   GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION_TEXT",
+			     Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_CONTEXT_CODE_EDNS_CLIENT_SUBNET_PRIVATE",
+			   GETDNS_CONTEXT_CODE_EDNS_CLIENT_SUBNET_PRIVATE, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_CONTEXT_CODE_EDNS_CLIENT_SUBNET_PRIVATE_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_CONTEXT_CODE_EDNS_CLIENT_SUBNET_PRIVATE_TEXT",
+			     Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_CONTEXT_CODE_TLS_QUERY_PADDING_BLOCKSIZE",
+			   GETDNS_CONTEXT_CODE_TLS_QUERY_PADDING_BLOCKSIZE, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_CONTEXT_CODE_TLS_QUERY_PADDING_BLOCKSIZE_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_CONTEXT_CODE_TLS_QUERY_PADDING_BLOCKSIZE_TEXT",
 			     Z_STRVAL_P(respStr), CONST_CS);
 
     /* Register callback types. */
@@ -1759,6 +1776,32 @@ PHP_FUNCTION(php_getdns_context_set_dnssec_trust_anchors)
 }
 
 /**
+ * Function to set the EDNS client subnet private option.
+ */
+PHP_FUNCTION(php_getdns_context_set_edns_client_subnet_private)
+{
+    long phpPtr = 0;
+    zend_bool phpValue = 0;
+    getdns_context *context = NULL;
+    getdns_return_t result;
+    uint8_t value;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+        (ZEND_NUM_ARGS()TSRMLS_CC, "lb", &phpPtr, &phpValue) == FAILURE) {
+        RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    context = (getdns_context *) phpPtr;
+    value = (uint8_t) phpValue;
+    result = getdns_context_set_edns_client_subnet_private(context, value);
+
+    /* Return the result. */
+    RETURN_LONG((long) result);
+}
+
+/**
  * Function to set the EDNS DO bit.
  */
 PHP_FUNCTION(php_getdns_context_set_edns_do_bit)
@@ -2116,6 +2159,32 @@ PHP_FUNCTION(php_getdns_context_set_tls_authentication)
     context = (getdns_context *) phpContext;
     value = (getdns_tls_authentication_t) phpValue;
     result = getdns_context_set_tls_authentication(context, value);
+
+    /* Return the result. */
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to set the TLS query padding block size.
+ */
+PHP_FUNCTION(php_getdns_context_set_tls_query_padding_blocksize)
+{
+    long phpContext = 0, phpValue = 0;
+    getdns_context *context = NULL;
+    uint16_t value = 0;
+    getdns_return_t result;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+        (ZEND_NUM_ARGS()TSRMLS_CC, "ll", &phpContext,
+         &phpValue) == FAILURE) {
+        RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    context = (getdns_context *) phpContext;
+    value = (uint16_t) phpValue;
+    result = getdns_context_set_tls_query_padding_blocksize(context, value);
 
     /* Return the result. */
     RETURN_LONG((long) result);
@@ -3560,6 +3629,33 @@ PHP_FUNCTION(php_getdns_context_get_dnssec_trust_anchors)
 }
 
 /**
+ * Function to retrieve the EDNS client subnet private value from a context.
+ */
+PHP_FUNCTION(php_getdns_context_get_edns_client_subnet_private)
+{
+    long phpContext = 0;
+    zval *phpOut = NULL;
+    getdns_context *context = NULL;
+    uint8_t value;
+    getdns_return_t result;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpContext, &phpOut)
+        == FAILURE) {
+        RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    context = (getdns_context *) phpContext;
+    result = getdns_context_get_edns_client_subnet_private(context, &value);
+
+    /* Store the response value and return the result. */
+    convert_to_null(phpOut);
+    ZVAL_BOOL(phpOut, (long) value);
+    RETURN_LONG((long) result);
+}
+
+/**
  * Function to retrieve the EDNS DO bit value from a context.
  */
 PHP_FUNCTION(php_getdns_context_get_edns_do_bit)
@@ -3874,6 +3970,60 @@ PHP_FUNCTION(php_getdns_context_get_timeout)
         ZVAL_STRINGL(phpOut, timeoutStr, timeoutSize, 1);
         free(timeoutStr);
     }
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to retrieve the TLS authentication type from a context.
+ */
+PHP_FUNCTION(php_getdns_context_get_tls_authentication)
+{
+    long phpContext = 0;
+    zval *phpOut = NULL;
+    getdns_context *context = NULL;
+    getdns_tls_authentication_t value;
+    getdns_return_t result;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpContext, &phpOut)
+        == FAILURE) {
+        RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    context = (getdns_context *) phpContext;
+    result = getdns_context_get_tls_authentication(context, &value);
+
+    /* Store the response value and return the result. */
+    convert_to_null(phpOut);
+    ZVAL_LONG(phpOut, (long) value);
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to retrieve the TLS query pattern block size from a context.
+ */
+PHP_FUNCTION(php_getdns_context_get_tls_query_padding_blocksize)
+{
+    long phpContext = 0;
+    zval *phpOut = NULL;
+    getdns_context *context = NULL;
+    uint16_t value;
+    getdns_return_t result;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpContext, &phpOut)
+        == FAILURE) {
+        RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    context = (getdns_context *) phpContext;
+    result = getdns_context_get_tls_query_padding_blocksize(context, &value);
+
+    /* Store the response value and return the result. */
+    convert_to_null(phpOut);
+    ZVAL_LONG(phpOut, (long) value);
     RETURN_LONG((long) result);
 }
 
