@@ -1026,7 +1026,27 @@
      </simpara>
     </listitem>
    </varlistentry>
-   <varlistentry xml:id="constant.getdns-context-idle-timeout">
+   <varlistentry xml:id="constant.getdns-context-code-edns-client-subnet-private">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_EDNS_CLIENT_SUBNET_PRIVATE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-edns-client-subnet-private-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_EDNS_CLIENT_SUBNET_PRIVATE_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-idle-timeout">
     <term>
      <constant>GETDNS_CONTEXT_CODE_IDLE_TIMEOUT</constant>
      (<type>integer</type>)
@@ -1119,6 +1139,26 @@
    <varlistentry xml:id="constant.getdns-context-code-tls-authentication-text">
     <term>
      <constant>GETDNS_CONTEXT_CODE_TLS_AUTHENTICATION_TEXT</constant>
+     (<type>string</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-tls-query-padding-blocksize">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_TLS_QUERY_PADDING_BLOCKSIZE</constant>
+     (<type>integer</type>)
+    </term>
+    <listitem>
+     <simpara>
+     </simpara>
+    </listitem>
+   </varlistentry>
+   <varlistentry xml:id="constant.getdns-context-code-tls-query-padding-blocksize-text">
+    <term>
+     <constant>GETDNS_CONTEXT_CODE_TLS_QUERY_PADDING_BLOCKSIZE_TEXT</constant>
      (<type>string</type>)
     </term>
     <listitem>

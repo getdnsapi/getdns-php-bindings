@@ -57,7 +57,7 @@ ZEND_END_MODULE_GLOBALS(getdns)
 
 /* Miscellaneous definitions. */
 
-#define PHP_GETDNS_VERSION "0.9.0"
+#define PHP_GETDNS_VERSION "0.10.0"
 #define PHP_GETDNS_EXTNAME "getdns"
 
 /* PHP environment setup functions. */
@@ -82,6 +82,7 @@ PHP_FUNCTION(php_getdns_context_get_dns_root_servers);
 PHP_FUNCTION(php_getdns_context_get_dns_transport);
 PHP_FUNCTION(php_getdns_context_get_dnssec_allowed_skew);
 PHP_FUNCTION(php_getdns_context_get_dnssec_trust_anchors);
+PHP_FUNCTION(php_getdns_context_get_edns_client_subnet_private);
 PHP_FUNCTION(php_getdns_context_get_edns_do_bit);
 PHP_FUNCTION(php_getdns_context_get_edns_extended_rcode);
 PHP_FUNCTION(php_getdns_context_get_edns_maximum_udp_payload_size);
@@ -93,6 +94,8 @@ PHP_FUNCTION(php_getdns_context_get_num_pending_requests);
 PHP_FUNCTION(php_getdns_context_get_resolution_type);
 PHP_FUNCTION(php_getdns_context_get_suffix);
 PHP_FUNCTION(php_getdns_context_get_timeout);
+PHP_FUNCTION(php_getdns_context_get_tls_authentication);
+PHP_FUNCTION(php_getdns_context_get_tls_query_padding_blocksize);
 PHP_FUNCTION(php_getdns_context_get_update_callback);
 PHP_FUNCTION(php_getdns_context_get_upstream_recursive_servers);
 PHP_FUNCTION(php_getdns_context_process_async);
@@ -103,6 +106,7 @@ PHP_FUNCTION(php_getdns_context_set_dns_transport);
 PHP_FUNCTION(php_getdns_context_set_dns_transport_list);
 PHP_FUNCTION(php_getdns_context_set_dnssec_allowed_skew);
 PHP_FUNCTION(php_getdns_context_set_dnssec_trust_anchors);
+PHP_FUNCTION(php_getdns_context_set_edns_client_subnet_private);
 PHP_FUNCTION(php_getdns_context_set_edns_do_bit);
 PHP_FUNCTION(php_getdns_context_set_edns_extended_rcode);
 PHP_FUNCTION(php_getdns_context_set_edns_maximum_udp_payload_size);
@@ -116,6 +120,7 @@ PHP_FUNCTION(php_getdns_context_set_return_dnssec_status);
 PHP_FUNCTION(php_getdns_context_set_suffix);
 PHP_FUNCTION(php_getdns_context_set_timeout);
 PHP_FUNCTION(php_getdns_context_set_tls_authentication);
+PHP_FUNCTION(php_getdns_context_set_tls_query_padding_blocksize);
 PHP_FUNCTION(php_getdns_context_set_update_callback);
 PHP_FUNCTION(php_getdns_context_set_upstream_recursive_servers);
 PHP_FUNCTION(php_getdns_context_set_use_threads);
