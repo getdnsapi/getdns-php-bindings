@@ -1,3 +1,6 @@
+* 2016-01-XX: Version 0.11.0
+  * Updated for compatibility with getdns 0.9.0.
+
 * 2015-11-20: Version 0.10.0
   * Updated for compatibility with getdns 0.5.1.
     * Added php_getdns_context_get_tls_authentication()

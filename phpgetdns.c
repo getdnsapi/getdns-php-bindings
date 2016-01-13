@@ -149,8 +149,32 @@ ZEND_BEGIN_ARG_INFO_EX(dict_set_value_args, 0, 0, 3)
     ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(dict2wire_args, 0, 0, 3)
+    ZEND_ARG_INFO(0, dict)
+    ZEND_ARG_INFO(1, wire)
+    ZEND_ARG_INFO(1, wireSize)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(dict2str_args, 0, 0, 2)
+    ZEND_ARG_INFO(0, dict)
+    ZEND_ARG_INFO(1, str)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(dict2strlen_args, 0, 0, 3)
+    ZEND_ARG_INFO(0, dict)
+    ZEND_ARG_INFO(1, str)
+    ZEND_ARG_INFO(1, strLen)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(errorstr_args, 0, 0, 1)
     ZEND_ARG_INFO(0, errorValue)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(fp2rr_list_args, 0, 0, 4)
+    ZEND_ARG_INFO(0, inFile)
+    ZEND_ARG_INFO(1, list)
+    ZEND_ARG_INFO(0, origin)
+    ZEND_ARG_INFO(0, defaultTTL)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(general_args, 0, 0, 7)
@@ -210,6 +234,16 @@ ZEND_BEGIN_ARG_INFO_EX(one_string_arg, 0, 0, 1)
     ZEND_ARG_INFO(0, string)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(pin_create_args, 0, 0, 2)
+    ZEND_ARG_INFO(0, context)
+    ZEND_ARG_INFO(0, str)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(pinset_check_args, 0, 0, 2)
+    ZEND_ARG_INFO(0, pinset)
+    ZEND_ARG_INFO(1, errorlist)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(pretty_print_value_args, 0, 0, 1)
     ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
@@ -227,6 +261,13 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(set_use_threads_args, 0, 0, 2)
     ZEND_ARG_INFO(0, context)
     ZEND_ARG_INFO(0, useThreads)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(str2rr_args, 0, 0, 4)
+    ZEND_ARG_INFO(0, rrStr)
+    ZEND_ARG_INFO(1, rrDict)
+    ZEND_ARG_INFO(0, origin)
+    ZEND_ARG_INFO(0, defaultTTL)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(util_convert_array_args, 0, 0, 2)
@@ -248,6 +289,24 @@ ZEND_BEGIN_ARG_INFO_EX(validate_dnssec_args, 0, 0, 3)
     ZEND_ARG_INFO(0, toValidate)
     ZEND_ARG_INFO(0, supportRecords)
     ZEND_ARG_INFO(0, trustAnchors)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(wire2rr_dict_args, 0, 0, 3)
+    ZEND_ARG_INFO(0, wire)
+    ZEND_ARG_INFO(0, wireSize)
+    ZEND_ARG_INFO(1, dict)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(wire2rr_dict_buf_args, 0, 0, 3)
+    ZEND_ARG_INFO(0, wire)
+    ZEND_ARG_INFO(1, wireSize)
+    ZEND_ARG_INFO(1, dict)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(wire2rr_dict_scan_args, 0, 0, 3)
+    ZEND_ARG_INFO(1, wire)
+    ZEND_ARG_INFO(1, wireSize)
+    ZEND_ARG_INFO(1, dict)
 ZEND_END_ARG_INFO()
 
 static zend_function_entry getdns_functions[] = {
@@ -326,6 +385,7 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_dict_util_get_string, dict_get_value_args)
     PHP_FE(php_getdns_dict_util_set_string, dict_set_value_args)
     PHP_FE(php_getdns_display_ip_address, bindata_only_args)
+    PHP_FE(php_getdns_fp2rr_list, fp2rr_list_args)
     PHP_FE(php_getdns_general, general_args)
     PHP_FE(php_getdns_general_sync, general_sync_args)
     PHP_FE(php_getdns_get_errorstr_by_id, errorstr_args)
@@ -352,13 +412,25 @@ static zend_function_entry getdns_functions[] = {
     PHP_FE(php_getdns_pretty_print_list, pretty_print_value_args)
     PHP_FE(php_getdns_print_json_dict, pretty_print_json_value_args)
     PHP_FE(php_getdns_print_json_list, pretty_print_json_value_args)
+    PHP_FE(php_getdns_pubkey_pin_create_from_string, pin_create_args)
+    PHP_FE(php_getdns_pubkey_pinset_sanity_check, pinset_check_args)
     PHP_FE(php_getdns_root_trust_anchor, date_time_args)
+    PHP_FE(php_getdns_rr_dict2str, dict2str_args)
+    PHP_FE(php_getdns_rr_dict2str_buf, dict2strlen_args)
+    PHP_FE(php_getdns_rr_dict2str_scan, dict2strlen_args)
+    PHP_FE(php_getdns_rr_dict2wire, dict2wire_args)
+    PHP_FE(php_getdns_rr_dict2wire_buf, dict2wire_args)
+    PHP_FE(php_getdns_rr_dict2wire_scan, dict2wire_args)
     PHP_FE(php_getdns_service, address_svc_args)
     PHP_FE(php_getdns_service_sync, address_svc_sync_args)
+    PHP_FE(php_getdns_str2rr_dict, str2rr_args)
     PHP_FE(php_getdns_util_convert_array, util_convert_array_args)
     PHP_FE(php_getdns_util_convert_dict, util_convert_dict_args)
     PHP_FE(php_getdns_util_convert_list, util_convert_list_args)
     PHP_FE(php_getdns_validate_dnssec, validate_dnssec_args)
+    PHP_FE(php_getdns_wire2rr_dict, wire2rr_dict_args)
+    PHP_FE(php_getdns_wire2rr_dict_buf, wire2rr_dict_buf_args)
+    PHP_FE(php_getdns_wire2rr_dict_scan, wire2rr_dict_scan_args)
     {NULL, NULL, NULL}
 };
 
@@ -495,16 +567,26 @@ PHP_RINIT_FUNCTION(getdns)
     REGISTER_STRING_CONSTANT("GETDNS_RETURN_NOT_IMPLEMENTED_TEXT",
 			     Z_STRVAL_P(respStr), CONST_CS);
 
+    REGISTER_LONG_CONSTANT("GETDNS_RETURN_NEED_MORE_SPACE",
+			   GETDNS_RETURN_NEED_MORE_SPACE, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_RETURN_NEED_MORE_SPACE_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_RETURN_NEED_MORE_SPACE_TEXT",
+			     Z_STRVAL_P(respStr), CONST_CS);
+
     REGISTER_LONG_CONSTANT("GETDNS_AUTHENTICATION_NONE",
 			   GETDNS_AUTHENTICATION_NONE, CONST_CS);
     ZVAL_STRING(respStr, GETDNS_AUTHENTICATION_NONE_TEXT, 1);
     REGISTER_STRING_CONSTANT("GETDNS_AUTHENTICATION_NONE_TEXT",
 			     Z_STRVAL_P(respStr), CONST_CS);
 
+    /* Note that GETDNS_AUTHENTICATION_HOSTNAME is an alias for
+       GETDNS_AUTHENTICATION_REQUIRED. */
     REGISTER_LONG_CONSTANT("GETDNS_AUTHENTICATION_HOSTNAME",
 			   GETDNS_AUTHENTICATION_HOSTNAME, CONST_CS);
-    ZVAL_STRING(respStr, GETDNS_AUTHENTICATION_HOSTNAME_TEXT, 1);
-    REGISTER_STRING_CONSTANT("GETDNS_AUTHENTICATION_HOSTNAME_TEXT",
+    REGISTER_LONG_CONSTANT("GETDNS_AUTHENTICATION_REQUIRED",
+			   GETDNS_AUTHENTICATION_REQUIRED, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_AUTHENTICATION_REQUIRED_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_AUTHENTICATION_REQUIRED_TEXT",
 			     Z_STRVAL_P(respStr), CONST_CS);
 
     /* Register response status codes. */
@@ -681,15 +763,6 @@ PHP_RINIT_FUNCTION(getdns)
 	("GETDNS_TRANSPORT_TLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN_TEXT",
 	 Z_STRVAL_P(respStr), CONST_CS);
 
-    REGISTER_LONG_CONSTANT
-	("GETDNS_TRANSPORT_STARTTLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN",
-	 GETDNS_TRANSPORT_STARTTLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN, CONST_CS);
-    ZVAL_STRING(respStr,
-		GETDNS_TRANSPORT_STARTTLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN_TEXT, 1);
-    REGISTER_STRING_CONSTANT
-	("GETDNS_TRANSPORT_STARTTLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN_TEXT",
-	 Z_STRVAL_P(respStr), CONST_CS);
-
     /* Register base transports for use in transport list. */
 
     REGISTER_LONG_CONSTANT("GETDNS_TRANSPORT_UDP", GETDNS_TRANSPORT_UDP, CONST_CS);
@@ -703,10 +776,6 @@ PHP_RINIT_FUNCTION(getdns)
     REGISTER_LONG_CONSTANT("GETDNS_TRANSPORT_TLS", GETDNS_TRANSPORT_TLS, CONST_CS);
     ZVAL_STRING(respStr, GETDNS_TRANSPORT_TLS_TEXT, 1);
     REGISTER_STRING_CONSTANT("GETDNS_TRANSPORT_TLS_TEXT", Z_STRVAL_P(respStr), CONST_CS);
-
-    REGISTER_LONG_CONSTANT("GETDNS_TRANSPORT_STARTTLS", GETDNS_TRANSPORT_STARTTLS, CONST_CS);
-    ZVAL_STRING(respStr, GETDNS_TRANSPORT_STARTTLS_TEXT, 1);
-    REGISTER_STRING_CONSTANT("GETDNS_TRANSPORT_STARTTLS_TEXT", Z_STRVAL_P(respStr), CONST_CS);
 
     /* Register suffix appending methods. */
 
@@ -884,6 +953,12 @@ PHP_RINIT_FUNCTION(getdns)
 			   GETDNS_CONTEXT_CODE_TLS_QUERY_PADDING_BLOCKSIZE, CONST_CS);
     ZVAL_STRING(respStr, GETDNS_CONTEXT_CODE_TLS_QUERY_PADDING_BLOCKSIZE_TEXT, 1);
     REGISTER_STRING_CONSTANT("GETDNS_CONTEXT_CODE_TLS_QUERY_PADDING_BLOCKSIZE_TEXT",
+			     Z_STRVAL_P(respStr), CONST_CS);
+
+    REGISTER_LONG_CONSTANT("GETDNS_CONTEXT_CODE_PUBKEY_PINSET",
+			   GETDNS_CONTEXT_CODE_PUBKEY_PINSET, CONST_CS);
+    ZVAL_STRING(respStr, GETDNS_CONTEXT_CODE_PUBKEY_PINSET_TEXT, 1);
+    REGISTER_STRING_CONSTANT("GETDNS_CONTEXT_CODE_PUBKEY_PINSET_TEXT",
 			     Z_STRVAL_P(respStr), CONST_CS);
 
     /* Register callback types. */
@@ -3291,6 +3366,64 @@ PHP_FUNCTION(php_getdns_list_set_list)
 }
 
 /**
+ * Function to create a pin from a string.
+ */
+PHP_FUNCTION(php_getdns_pubkey_pin_create_from_string)
+{
+    getdns_dict *dict = NULL;
+    long phpContext = 0;
+    char *phpStr = NULL;
+    size_t phpStrLen = 0;
+    getdns_context *context = NULL;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "ls", &phpContext,
+	 &phpStr, &phpStrLen) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    if (phpContext != 0) {
+        /* Keep context NULL. */
+        context = (getdns_context *) phpContext;
+    }
+    if (phpStrLen == 0) {
+        phpStr = NULL;
+    }
+
+    /* Call the function.
+       Note that the return value is NULL if the string did not match the context. */
+    dict = getdns_pubkey_pin_create_from_string(context, phpStr);
+
+    /* Return the address of the dictionary. */
+    RETURN_LONG((long) dict);
+}
+
+/**
+ * Function to validate a pin set.
+ */
+PHP_FUNCTION(php_getdns_pubkey_pinset_sanity_check)
+{
+    long phpPinSet = 0, phpErrorList = 0;
+    getdns_list *pinSet = NULL, *errorList = NULL;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters(ZEND_NUM_ARGS()TSRMLS_CC, "ll",
+	 &phpPinSet, &phpErrorList) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    pinSet = (getdns_list *) phpPinSet;
+    errorList = (getdns_list *) phpErrorList;
+    result = getdns_pubkey_pinset_sanity_check(pinSet, errorList);
+
+    /* Return the result. */
+    RETURN_LONG((long) result);
+}
+
+/**
  * Function to get the root trust anchor.
  */
 PHP_FUNCTION(php_getdns_root_trust_anchor)
@@ -3320,6 +3453,267 @@ PHP_FUNCTION(php_getdns_root_trust_anchor)
 }
 
 /**
+ * Function to convert a resource record dictionary to string format.
+ */
+PHP_FUNCTION(php_getdns_rr_dict2str)
+{
+    long phpDict = 0;
+    zval *phpStr = NULL;
+    getdns_dict *dict = NULL;
+    char *str = NULL;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lz", &phpDict, &phpStr) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    dict = (getdns_dict *) phpDict;
+    result = getdns_rr_dict2str(dict, &str);
+
+    if (str) {
+        /* Store the output value and return the result. */
+        convert_to_string(phpStr);
+        Z_STRVAL_P(phpStr) = estrdup(str);
+        Z_STRLEN_P(phpStr) = strlen(str);
+        free(str);
+    }
+    else {
+        convert_to_null(phpStr);
+    }
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to convert a resource record dictionary to string format.
+ */
+PHP_FUNCTION(php_getdns_rr_dict2str_buf)
+{
+    long phpDict = 0;
+    zval *phpStr = NULL, *phpStrLen = NULL;
+    getdns_dict *dict = NULL;
+    char *str = NULL;
+    size_t strLen = 0;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lzz", &phpDict, &phpStr,
+	 &phpStrLen) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    dict = (getdns_dict *) phpDict;
+    strLen = Z_LVAL_P(phpStrLen);
+    if (Z_TYPE_P(phpStr) != IS_STRING || Z_STRLEN_P(phpStr) != strLen) {
+        convert_to_null(phpStrLen); 
+        ZVAL_LONG(phpStrLen, 0);
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    }
+
+    str = malloc(strLen);
+    if (str) {
+        result = getdns_rr_dict2str_buf(dict, str, &strLen);
+        /* Store the output value and return the result. */
+        Z_STRVAL_P(phpStr) = estrdup(str);
+        Z_STRLEN_P(phpStr) = strLen;
+        convert_to_null(phpStrLen);
+        ZVAL_LONG(phpStrLen, (long) strLen);
+        free(str);
+    }
+    else {
+        result = GETDNS_RETURN_MEMORY_ERROR;
+        convert_to_null(phpStrLen);
+        ZVAL_LONG(phpStrLen, 0);
+    }
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to convert a resource record dictionary to string format.
+ */
+PHP_FUNCTION(php_getdns_rr_dict2str_scan)
+{
+    long phpDict = 0;
+    zval *phpStr = NULL, *phpStrLen = NULL;
+    getdns_dict *dict = NULL;
+    char *str = NULL;
+    int strLen = 0;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lzz", &phpDict, &phpStr,
+	 &phpStrLen) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    dict = (getdns_dict *) phpDict;
+    strLen = Z_LVAL_P(phpStrLen);
+    if (Z_TYPE_P(phpStr) != IS_STRING || Z_STRLEN_P(phpStr) != strLen) {
+        convert_to_null(phpStrLen); 
+        ZVAL_LONG(phpStrLen, 0);
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    }
+
+    str = malloc(strLen);
+    if (str) {
+        char *strTmp = str;
+
+        result = getdns_rr_dict2str_scan(dict, &str, &strLen);
+        /* Store the output value and return the result. */
+        Z_STRVAL_P(phpStr) = estrdup(str);
+        Z_STRLEN_P(phpStr) = strLen;
+        convert_to_null(phpStrLen);
+        ZVAL_LONG(phpStrLen, (long) strLen);
+        free(strTmp);
+    }
+    else {
+        result = GETDNS_RETURN_MEMORY_ERROR;
+        convert_to_null(phpStrLen);
+        ZVAL_LONG(phpStrLen, 0);
+    }
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to convert a resource record dictionary to wire format.
+ */
+PHP_FUNCTION(php_getdns_rr_dict2wire)
+{
+    long phpDict = 0;
+    zval *phpWire = NULL, *phpWireSize = NULL;
+    getdns_dict *dict = NULL;
+    uint8_t *wire = NULL;
+    size_t wireSize = 0;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lzz", &phpDict, &phpWire,
+	 &phpWireSize) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    dict = (getdns_dict *) phpDict;
+    result = getdns_rr_dict2wire(dict, &wire, &wireSize);
+
+    if (wire) {
+        /* Store the output value and return the result. */
+        convert_to_string(phpWire);
+        Z_STRVAL_P(phpWire) = estrdup(wire);
+        Z_STRLEN_P(phpWire) = wireSize;
+        convert_to_null(phpWireSize);
+        ZVAL_LONG(phpWireSize, (long) wireSize);
+        free(wire);
+    }
+    else {
+        convert_to_null(phpWire);
+        ZVAL_LONG(phpWireSize, 0);
+    }
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to convert a resource record dictionary to wire format.
+ */
+PHP_FUNCTION(php_getdns_rr_dict2wire_buf)
+{
+    long phpDict = 0;
+    zval *phpWire = NULL, *phpWireSize = NULL;
+    getdns_dict *dict = NULL;
+    uint8_t *wire = NULL;
+    size_t wireSize = 0;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lzz", &phpDict, &phpWire,
+	 &phpWireSize) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    dict = (getdns_dict *) phpDict;
+    wireSize = Z_LVAL_P(phpWireSize);
+    if (Z_TYPE_P(phpWire) != IS_STRING || Z_STRLEN_P(phpWire) != wireSize) {
+        convert_to_null(phpWireSize); 
+        ZVAL_LONG(phpWireSize, 0);
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    }
+
+    wire = malloc(wireSize);
+    if (wire) {
+        result = getdns_rr_dict2wire_buf(dict, wire, &wireSize);
+        /* Store the output value and return the result. */
+        Z_STRVAL_P(phpWire) = estrdup(wire);
+        Z_STRLEN_P(phpWire) = wireSize;
+        convert_to_null(phpWireSize);
+        ZVAL_LONG(phpWireSize, (long) wireSize);
+        free(wire);
+    }
+    else {
+        result = GETDNS_RETURN_MEMORY_ERROR;
+        convert_to_null(phpWireSize);
+        ZVAL_LONG(phpWireSize, 0);
+    }
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to convert a resource record dictionary to wire format.
+ */
+PHP_FUNCTION(php_getdns_rr_dict2wire_scan)
+{
+    long phpDict = 0;
+    zval *phpWire = NULL, *phpWireSize = NULL;
+    getdns_dict *dict = NULL;
+    uint8_t *wire = NULL;
+    int wireSize = 0;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "lzz", &phpDict, &phpWire,
+	 &phpWireSize) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    dict = (getdns_dict *) phpDict;
+    wireSize = Z_LVAL_P(phpWireSize);
+    if (Z_TYPE_P(phpWire) != IS_STRING || Z_STRLEN_P(phpWire) != wireSize) {
+        convert_to_null(phpWireSize); 
+        ZVAL_LONG(phpWireSize, 0);
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    }
+
+    wire = malloc(wireSize);
+    if (wire) {
+        uint8_t *wireTmp = wire;
+
+        result = getdns_rr_dict2wire_scan(dict, &wire, &wireSize);
+        /* Store the output value and return the result. */
+        Z_STRVAL_P(phpWire) = estrdup(wire);
+        Z_STRLEN_P(phpWire) = wireSize;
+        convert_to_null(phpWireSize);
+        ZVAL_LONG(phpWireSize, (long) wireSize);
+        free(wireTmp);
+    }
+    else {
+        result = GETDNS_RETURN_MEMORY_ERROR;
+        convert_to_null(phpWireSize);
+        ZVAL_LONG(phpWireSize, 0);
+    }
+    RETURN_LONG((long) result);
+}
+
+/**
  * Function to create a "pretty printed" representation of a dictionary.
  */
 PHP_FUNCTION(php_getdns_pretty_print_dict)
@@ -3335,6 +3729,9 @@ PHP_FUNCTION(php_getdns_pretty_print_dict)
     }
 
     /* Convert parameters and call the function. */
+    if (!phpPtr) {
+        RETURN_NULL();
+    }
     dict = (getdns_dict *) phpPtr;
     ppDict = getdns_pretty_print_dict(dict);
 
@@ -3437,6 +3834,37 @@ PHP_FUNCTION(php_getdns_service_sync)
     /* Store the response value and return the result. */
     convert_to_null(phpOut);
     ZVAL_LONG(phpOut, (long) response);
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to convert a resource record string to dictionary format.
+ */
+PHP_FUNCTION(php_getdns_str2rr_dict)
+{
+    long phpTTL = 0;
+    zval *phpDict = NULL;
+    char *phpRRStr = NULL, *phpOrigin = NULL;
+    int phpRRStrLen = 0, phpOriginLen = 0;
+    getdns_dict *dict = NULL;
+    uint32_t defTTL = 0;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "szsl",
+        &phpRRStr, &phpRRStrLen, &phpDict,
+        &phpOrigin, &phpOriginLen, &phpTTL) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    defTTL = phpTTL;
+    result = getdns_str2rr_dict(phpRRStr, &dict, phpOrigin, defTTL);
+
+    /* Store the response value and return the result. */
+    convert_to_null(phpDict);
+    ZVAL_LONG(phpDict, (long) dict);
     RETURN_LONG((long) result);
 }
 
@@ -4259,6 +4687,45 @@ PHP_FUNCTION(php_getdns_dict_util_set_string)
 }
 
 /**
+ * Function to convert a zone file to a list of dictionaries representing the RRs.
+ */
+PHP_FUNCTION(php_getdns_fp2rr_list)
+{
+    long phpTTL = 0;
+    zval *phpList = NULL;
+    char *phpFileName = NULL, *phpOrigin = NULL;
+    int phpFileNameLen = 0, phpOriginLen = 0;
+    FILE *fp = NULL;
+    getdns_list *list = NULL;
+    uint32_t defTTL = 0;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "szsl",
+        &phpFileName, &phpFileNameLen, &phpList,
+        &phpOrigin, &phpOriginLen, &phpTTL) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    fp = fopen(phpFileName, "r");
+    if (!fp) {
+        convert_to_null(phpList);
+        ZVAL_LONG(phpList, 0);
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    }
+    defTTL = phpTTL;
+    result = getdns_fp2rr_list(fp, &list, phpOrigin, defTTL);
+    fclose(fp);
+
+    /* Store the response value and return the result. */
+    convert_to_null(phpList);
+    ZVAL_LONG(phpList, (long) list);
+    RETURN_LONG((long) result);
+}
+
+/**
  * Function to translate an error code to a string.
  */
 PHP_FUNCTION(php_getdns_get_errorstr_by_id)
@@ -4353,6 +4820,9 @@ PHP_FUNCTION(php_getdns_pretty_print_list)
     }
 
     /* Convert parameters and call the function. */
+    if (!phpPtr) {
+        RETURN_NULL();
+    }
     list = (getdns_list *) phpPtr;
     ppList = getdns_pretty_print_list(list);
 
@@ -4418,6 +4888,114 @@ PHP_FUNCTION(php_getdns_print_json_list)
     /* Return the string value. Duplicate the string for PHP and free the local copy. */
     RETVAL_STRING(ppList, 1);
     free(ppList);
+}
+
+/**
+ * Function to convert a wire format string to a resource record dictionary.
+ */
+PHP_FUNCTION(php_getdns_wire2rr_dict)
+{
+    char *phpWire = NULL;
+    int phpWireLen = 0;
+    long phpWireSize = 0;
+    zval *phpDict = NULL;
+    getdns_dict *dict = NULL;
+    uint8_t *wire = NULL;
+    size_t wireSize = 0;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "slz",
+         &phpWire, &phpWireLen, &phpWireSize, &phpDict) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    if (phpWireLen != phpWireSize) {
+        convert_to_null(phpDict);
+        ZVAL_LONG(phpDict, 0);
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    }
+    wire = (uint8_t *) phpWire;
+    wireSize = phpWireSize;
+    result = getdns_wire2rr_dict(wire, wireSize, &dict);
+
+    /* Store the output value and return the result. */
+    convert_to_null(phpDict);
+    ZVAL_LONG(phpDict, (long) dict);
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to convert a wire format string to a resource record dictionary.
+ */
+PHP_FUNCTION(php_getdns_wire2rr_dict_buf)
+{
+    char *phpWire = NULL;
+    int phpWireLen = 0;
+    zval *phpWireSize = NULL, *phpDict = NULL;
+    getdns_dict *dict = NULL;
+    uint8_t *wire = NULL;
+    size_t wireSize = 0;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "szz",
+         &phpWire, &phpWireLen, &phpWireSize, &phpDict) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    wireSize = (size_t) Z_LVAL_P(phpWireSize);
+    if (phpWireLen != wireSize) {
+        convert_to_null(phpDict);
+        ZVAL_LONG(phpDict, 0);
+        RETURN_LONG((long) GETDNS_RETURN_INVALID_PARAMETER);
+    }
+    wire = (uint8_t *) phpWire;
+    result = getdns_wire2rr_dict_buf(wire, &wireSize, &dict);
+
+    /* Store the output values and return the result. */
+    convert_to_null(phpDict);
+    ZVAL_LONG(phpWireSize, (long) wireSize);
+    ZVAL_LONG(phpDict, (long) dict);
+    RETURN_LONG((long) result);
+}
+
+/**
+ * Function to convert a wire format string to a resource record dictionary.
+ */
+PHP_FUNCTION(php_getdns_wire2rr_dict_scan)
+{
+    zval *phpWire = NULL, *phpWireSize = NULL, *phpDict = NULL;
+    getdns_dict *dict = NULL;
+    const uint8_t *wire = NULL;
+    size_t wireSize = 0;
+    getdns_return_t result = 0;
+
+    /* Retrieve parameters. */
+    if (zend_parse_parameters
+	(ZEND_NUM_ARGS()TSRMLS_CC, "zzz",
+         &phpWire, &phpWireSize, &phpDict) == FAILURE) {
+	RETURN_NULL();
+    }
+
+    /* Convert parameters and call the function. */
+    wire = (const uint8_t *) Z_STRVAL_P(phpWire);
+    wireSize = (size_t) Z_LVAL_P(phpWireSize);
+    result = getdns_wire2rr_dict_scan(&wire, &wireSize, &dict);
+
+    /* Store the output values and return the result. */
+    convert_to_null(phpDict);
+    if (!result) {
+        ZVAL_LONG(phpDict, (long) dict);
+        ZVAL_LONG(phpWireSize, (long) wireSize);
+        Z_STRVAL_P(phpWire) = estrdup(wire);
+        Z_STRLEN_P(phpWire) = wireSize;
+    }
+    RETURN_LONG((long) result);
 }
 
 /* Internal utility functions for data structure conversion. */

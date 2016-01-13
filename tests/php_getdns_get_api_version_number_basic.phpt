@@ -8,4 +8,4 @@ var_dump($versNum);
 
 ?>
 --EXPECTF--
-int(132057600)
+int(132058112)

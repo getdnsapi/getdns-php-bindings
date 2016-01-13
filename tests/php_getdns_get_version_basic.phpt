@@ -8,4 +8,4 @@ var_dump($versStr);
 
 ?>
 --EXPECTF--
-string(5) "0.5.%s"
+string(5) "0.9.%s"

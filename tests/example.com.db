@@ -1,0 +1,28 @@
+$TTL 14400
+$ORIGIN example.com.
+
+; Specify the primary nameserver in SOA
+@ 14400 IN SOA ns1.example.com. webmaster.example.com. (
+                                2016011302 ; Serial in YYYYMMDDXX (XX is increment)
+                                10800; refresh seconds
+                                3600; retry
+                                604800; expire
+                                38400; minimum
+                                );
+; IPv4 address for example.com
+       IN A 10.1.2.3
+
+; Name servers
+       IN NS ns1.example.com.
+       IN NS ns2.example.com.
+
+; Name server IPv4 addresses
+ns1  IN A 10.1.1.1
+ns2  IN A 10.2.2.2
+
+; Aliases
+www IN CNAME example.com.
+ftp IN CNAME example.com.
+
+; Mail Exchanger record with priority
+mail IN MX 10 example.com.
