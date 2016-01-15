@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Convert an HTTP Public Key Pinning (HPKP)-style pin description to a dictionary.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-print-json-list.html">php_getdns_print_json_list</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-pubkey-pinset-sanity-check.html">php_getdns_pubkey_pinset_sanity_check</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-pubkey-pin-create-from-string" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_pubkey_pin_create_from_string</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.11.0)</p><p class="refpurpose"><span class="refname">php_getdns_pubkey_pin_create_from_string</span> &mdash; <span class="dc-title">Convert an HTTP Public Key Pinning (HPKP)-style pin description to a dictionary.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-pubkey-pin-create-from-string-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_pubkey_pin_create_from_string</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$context</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$str</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function converts an HTTP Public Key Pinning (HPKP)-style pin description
+   to a getdns dictionary. An example string value is: (with the quotes, without
+   any leading or trailing whitespace):
+  </p>
+  <p class="para">
+     pin-sha256=&quot;E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=&quot;
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-pubkey-pin-create-from-string-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">context</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The previously created DNS context that is to be used with this request.
+      The value of the context may be 0 (zero) to create a dictionary that is
+      not associated with a particular context.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">str</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The pinning string to parse.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-pubkey-pin-create-from-string-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer representation of a getdns dictionary. The
+   return value will be 0 (zero) if the input string could not be converted.
+   It is the caller&#039;s responsibility to call php_getdns_dict_destroy() on
+   the returned dictionary when it is no longer needed.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-print-json-list.html">php_getdns_print_json_list</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-pubkey-pinset-sanity-check.html">php_getdns_pubkey_pinset_sanity_check</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

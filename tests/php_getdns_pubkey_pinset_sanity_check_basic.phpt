@@ -27,12 +27,16 @@ var_dump($ppList);
 $errorList = php_getdns_list_create();
 var_dump($errorList);
 $result = php_getdns_pubkey_pinset_sanity_check($list, $errorList);
-var_dump($result);
 $ppList = php_getdns_pretty_print_list($errorList);
-var_dump($ppList);
+var_dump($result, $ppList);
+php_getdns_list_destroy($errorList);
+
+$errorList = 0;
+$result = php_getdns_pubkey_pinset_sanity_check($list, $errorList);
+$ppList = php_getdns_pretty_print_list($errorList);
+var_dump($result, $ppList);
 
 php_getdns_list_destroy($list);
-php_getdns_list_destroy($errorList);
 php_getdns_dict_destroy($dict1);
 php_getdns_dict_destroy($dict2);
 
@@ -48,3 +52,5 @@ string(222) "%a"
 int(%d)
 int(0)
 string(2) "[]"
+int(0)
+NULL

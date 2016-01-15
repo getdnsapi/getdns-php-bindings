@@ -1,5 +1,17 @@
-* 2016-01-XX: Version 0.11.0
+* 2016-01-15: Version 0.11.0
   * Updated for compatibility with getdns 0.9.0.
+    * Removed GETDNS_TRANSPORT_STARTTLS and GETDNS_TRANSPORT_STARTTLS_TEXT.
+    * Removed GETDNS_TRANSPORT_STARTTLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN and
+      GETDNS_TRANSPORT_STARTTLS_FIRST_AND_FALL_BACK_TO_TCP_KEEP_CONNECTIONS_OPEN_TEXT.
+    * Made GETDNS_AUTHENTICATION_HOSTNAME an alias for GETDNS_AUTHENTICATION_REQUIRED.
+    * Added new constants GETDNS_CONTEXT_CODE_PUBKEY_PINSET, GETDNS_CONTEXT_CODE_PUBKEY_PINSET_TEXT,
+      GETDNS_RETURN_NEED_MORE_SPACE, and GETDNS_RETURN_NEED_MORE_SPACE_TEXT.
+    * Added new functions getdns_pubkey_pin_create_from_string(),
+      getdns_pubkey_pinset_sanity_check(),
+      getdns_rr_dict2wire(), getdns_rr_dict2wire_buf(), getdns_rr_dict2wire_scan(),
+      getdns_wire2rr_dict(), getdns_wire2rr_dict_buf(), getdns_wire2rr_dict_scan(),
+      getdns_rr_dict2str(), getdns_rr_dict2str_buf(), getdns_rr_dict2str_scan(),
+      getdns_str2rr_dict(), and getdns_fp2rr_list().
 
 * 2015-11-20: Version 0.10.0
   * Updated for compatibility with getdns 0.5.1.

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Convert the contents of a DNS zone file to getdns list format.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-display-ip-address.html">php_getdns_display_ip_address</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-general-sync.html">php_getdns_general_sync</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-fp2rr-list" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_fp2rr_list</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.11.0)</p><p class="refpurpose"><span class="refname">php_getdns_fp2rr_list</span> &mdash; <span class="dc-title">Convert the contents of a DNS zone file to getdns list format.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-fp2rr-list-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_fp2rr_list</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$inFile</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$list</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter">$origin</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$defaultTTL</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function converts the contents of a DNS zone file to getdns list format.
+   This list will contain dictionaries representing the resource records found in
+   the zone file.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-fp2rr-list-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">inFile</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A string containing the path to the file to be opened for reading.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">list</code></dt>
+
+    <dd>
+
+     <p class="para">
+      On output this value will contain an integer representation of a list of
+      dictionaries that describe the resource records found in the zone file.
+      Note that this argument is passed by reference and any existing value will be
+      overwritten. The client is responsible for calling php_getdns_list_destroy()
+      when the list is no longer needed.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">origin</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A string that contains the default suffix to be used for any domain names
+      that are not fully qualified.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">defaultTTL</code></dt>
+
+    <dd>
+
+     <p class="para">
+      An integer that contains the default &quot;time to live&quot; (TTL) value to be used
+      in building the dictionaries.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-fp2rr-list-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates
+   successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-display-ip-address.html">php_getdns_display_ip_address</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-general-sync.html">php_getdns_general_sync</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

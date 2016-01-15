@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Convert a DNS resource record in dictionary format to binary wire format.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-rr-dict2str.html">php_getdns_rr_dict2str</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-rr-dict2wire-scan.html">php_getdns_rr_dict2wire_scan</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-rr-dict2wire-buf" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_rr_dict2wire_buf</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.11.0)</p><p class="refpurpose"><span class="refname">php_getdns_rr_dict2wire_buf</span> &mdash; <span class="dc-title">Convert a DNS resource record in dictionary format to binary wire format.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-rr-dict2wire-buf-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_rr_dict2wire_buf</strong></span>
+    ( <span class="methodparam"><span class="type">int</span> <code class="parameter">$dict</code></span>
+   , <span class="methodparam"><span class="type">string</span> <code class="parameter reference">&$wire</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$wireSize</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function converts a DNS resource record in dictionary format to binary wire format.
+   The output value is written into an existing buffer.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-rr-dict2wire-buf-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">dict</code></dt>
+
+    <dd>
+
+     <p class="para">
+      An integer representation of a getdns dictionary that contains a DNS
+      resource record.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">wire</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A binary string that will receive the resource record in wire format.
+      Note that this argument is passed by reference and any existing value will be
+      overwritten.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">wireSize</code></dt>
+
+    <dd>
+
+     <p class="para">
+      On input this value should contain the size of the buffer. On output this value will
+      describe the number of bytes needed for the wire format representation of the
+      resource record even if it did not fit. Note that this argument is passed by
+      reference and any existing value will be overwritten.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-rr-dict2wire-buf-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates
+   successful completion. GETDNS_RETURN_NEED_MORE_SPACE will be returned if the
+   buffer was too small and wireSize will be set to the number of bytes needed.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-rr-dict2str.html">php_getdns_rr_dict2str</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href="function.php-getdns-rr-dict2wire-scan.html">php_getdns_rr_dict2wire_scan</a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Convert a DNS resource record in binary wire format to dictionary format.</title>
+
+ </head>
+ <body><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-wire2rr-dict-scan.html">php_getdns_wire2rr_dict_scan</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href=""></a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div><hr /><div id="function.php-getdns-wire2rr-dict" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">php_getdns_wire2rr_dict</h1>
+  <p class="verinfo">(PECL getdns &gt;= 0.11.0)</p><p class="refpurpose"><span class="refname">php_getdns_wire2rr_dict</span> &mdash; <span class="dc-title">Convert a DNS resource record in binary wire format to dictionary format.</span></p>
+
+ </div>
+
+ <div class="refsect1 description" id="refsect1-function.php-getdns-wire2rr-dict-description">
+  <h3 class="title">Description</h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">int</span> <span class="methodname"><strong>php_getdns_wire2rr_dict</strong></span>
+    ( <span class="methodparam"><span class="type">string</span> <code class="parameter">$wire</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter">$wireSize</code></span>
+   , <span class="methodparam"><span class="type">int</span> <code class="parameter reference">&$dict</code></span>
+   )</div>
+
+  <p class="para rdfs-comment">
+   This function converts a DNS resource record in binary wire format to dictionary format.
+  </p>
+ </div>
+
+
+ <div class="refsect1 parameters" id="refsect1-function.php-getdns-wire2rr-dict-parameters">
+  <h3 class="title">Parameters</h3>
+  <dl>
+
+   
+    <dt>
+<code class="parameter">wire</code></dt>
+
+    <dd>
+
+     <p class="para">
+      A binary string that contains the resource record in wire format.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">wireSize</code></dt>
+
+    <dd>
+
+     <p class="para">
+      The size of the string in bytes.
+     </p>
+    </dd>
+
+   
+   
+    <dt>
+<code class="parameter">dict</code></dt>
+
+    <dd>
+
+     <p class="para">
+      An integer representation of a getdns dictionary that will contain a DNS
+      resource record. Note that this argument is passed by reference and any
+      existing value will be overwritten. The client is responsible for calling
+      php_getdns_dict_destroy() when the dictionary is no longer needed.
+     </p>
+    </dd>
+
+   
+  </dl>
+
+ </div>
+
+
+ <div class="refsect1 returnvalues" id="refsect1-function.php-getdns-wire2rr-dict-returnvalues">
+  <h3 class="title">Return Values</h3>
+  <p class="para">
+   This function returns an integer response code. GETDNS_RETURN_GOOD indicates
+   successful completion.
+  </p>
+ </div>
+
+
+
+</div><hr /><div class="manualnavbar" style="text-align: center;">
+ <div class="prev" style="text-align: left; float: left;"><a href="function.php-getdns-wire2rr-dict-scan.html">php_getdns_wire2rr_dict_scan</a></div>
+ <div class="next" style="text-align: right; float: right;"><a href=""></a></div>
+ <div class="up"><a href="ref.getdns.html">getdns Functions</a></div>
+ <div class="home"><a href="index.html">PHP Manual</a></div>
+</div></body></html>
