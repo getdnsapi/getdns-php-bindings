@@ -57,7 +57,7 @@ ZEND_END_MODULE_GLOBALS(getdns)
 
 /* Miscellaneous definitions. */
 
-#define PHP_GETDNS_VERSION "0.10.0"
+#define PHP_GETDNS_VERSION "0.11.0"
 #define PHP_GETDNS_EXTNAME "getdns"
 
 /* PHP environment setup functions. */
@@ -145,6 +145,7 @@ PHP_FUNCTION(php_getdns_dict_set_list);
 PHP_FUNCTION(php_getdns_dict_util_get_string);
 PHP_FUNCTION(php_getdns_dict_util_set_string);
 PHP_FUNCTION(php_getdns_display_ip_address);
+PHP_FUNCTION(php_getdns_fp2rr_list);
 PHP_FUNCTION(php_getdns_general);
 PHP_FUNCTION(php_getdns_general_sync);
 PHP_FUNCTION(php_getdns_get_errorstr_by_id);
@@ -171,13 +172,25 @@ PHP_FUNCTION(php_getdns_pretty_print_dict);
 PHP_FUNCTION(php_getdns_pretty_print_list);
 PHP_FUNCTION(php_getdns_print_json_dict);
 PHP_FUNCTION(php_getdns_print_json_list);
+PHP_FUNCTION(php_getdns_pubkey_pin_create_from_string);
+PHP_FUNCTION(php_getdns_pubkey_pinset_sanity_check);
 PHP_FUNCTION(php_getdns_root_trust_anchor);
+PHP_FUNCTION(php_getdns_rr_dict2str);
+PHP_FUNCTION(php_getdns_rr_dict2str_buf);
+PHP_FUNCTION(php_getdns_rr_dict2str_scan);
+PHP_FUNCTION(php_getdns_rr_dict2wire);
+PHP_FUNCTION(php_getdns_rr_dict2wire_buf);
+PHP_FUNCTION(php_getdns_rr_dict2wire_scan);
 PHP_FUNCTION(php_getdns_service);
 PHP_FUNCTION(php_getdns_service_sync);
+PHP_FUNCTION(php_getdns_str2rr_dict);
 PHP_FUNCTION(php_getdns_util_convert_array);
 PHP_FUNCTION(php_getdns_util_convert_dict);
 PHP_FUNCTION(php_getdns_util_convert_list);
 PHP_FUNCTION(php_getdns_validate_dnssec);
+PHP_FUNCTION(php_getdns_wire2rr_dict);
+PHP_FUNCTION(php_getdns_wire2rr_dict_buf);
+PHP_FUNCTION(php_getdns_wire2rr_dict_scan);
 
 extern zend_module_entry getdns_module_entry;
 #define phpext_getdns_ptr &getdns_module_entry

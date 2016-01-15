@@ -18,7 +18,7 @@ php_getdns_context_destroy($context);
 ?>
 --EXPECT--
 int(0)
-int(0)
+int(312)
 int(530)
-int(0)
+int(312)
 int(530)

@@ -16,5 +16,5 @@ php_getdns_context_destroy($context);
 ?>
 --EXPECTF--
 int(0)
-int(0)
+int(312)
 int(%d)
